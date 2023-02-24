@@ -13,7 +13,12 @@ class Router extends Bootstrap{
         $routes['page_home'] = array(
             'route' => $index,
             'controller' => 'IndexController',
-            'action' => 'home',
+            'action' => 'pageHome',
+        ); 
+        $routes['page_entrar_cadastrar'] = array(
+            'route' => '/entrar-cadastrar',
+            'controller' => 'IndexController',
+            'action' => 'pageEntrarCadastrar',
         ); 
         $this->setRoutes($routes);
     }

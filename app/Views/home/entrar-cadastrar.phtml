@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="css/entrar-cadastrar.css">
+<main>
+    <section class="entrar">
+        <div class="center">
+            <h3>Entrar</h3>
+            <form action="#">
+                <div class="box-input">
+                    <label for="emailEntrar">E-mail:</label>
+                    <input type="email" name="emailEntrar" id="emailEntrar" required>
+                </div>
+                <div class="box-input">
+                    <label for="passwordEntrar">Senha:</label>
+                    <div class="password">
+                        <input type="password" name="passwordEntrar" id="passwordEntrar" required>
+                        <i class="see entrar fa-regular fa-eye"></i>
+                        <i class="not-see entrar fa-regular fa-eye-slash"></i>
+                    </div>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </section>
+    <section class="cadastrar">
+        <div class="center">
+            <h3>Cadastrar</h3>
+            <form action="#">
+                <div class="box-input">
+                    <label for="name">Nome:</label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div class="box-input">
+                    <label for="lastName">Sobrenome:</label>
+                    <input type="text" name="lastName" id="lastName">
+                </div>
+                <div class="box-input">
+                    <label for="emailCadastrar">E-mail:</label>
+                    <input type="email" name="emailCadastrar" id="emailCadastrar" required>
+                </div>
+                <div class="box-input">
+                        <label for="passwordCadastrar">Senha:</label>
+                    <div class="password">
+                        <input type="password" name="passwordCadastrar" id="passwordCadastrar" required>
+                        <i class="see cadastrar fa-regular fa-eye"></i>
+                        <i class="not-see cadastrar fa-regular fa-eye-slash"></i>
+                    </div>
+                </div>
+                <div class="box-input">
+                        <label for="password-Cadastrar-CF">Confirmar senha:</label>
+                    <div class="password">
+                        <input type="password" name="passwordCF" id="password-Cadastrar-CF" required>
+                        <i class="see cadastrarCF fa-regular fa-eye"></i>
+                        <i class="not-see cadastrarCF fa-regular fa-eye-slash"></i>
+                    </div>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+</main>
+<script src="js/scripts.js"></script>

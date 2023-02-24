@@ -9,13 +9,20 @@ use App\Utils\models\Container;
 class IndexController{
 
 
-    public function home(){
+    public function pageHome(){
         $users= Container::getModel('Users');
         $text= $users->retornar();
         $content= Action::render('home/index', [
             'nome' => 'fabricio',
             'teste' => $text
         ]);
-        return Action::getLayout('layout 111', $content, 'layout1');
+        return Action::getLayout('BestMovies', $content, 'layout1');
+    }
+
+    public function pageEntrarCadastrar(){
+        $content= Action::render('home/entrar-cadastrar', [
+            'teste'=> 'fabricio'
+        ]);
+        return Action::getLayout('Entrar/Cadastrar', $content, 'layout1');
     }
 }

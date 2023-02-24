@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d5c56409b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/layout1.css">
-    <title>Document</title>
+    <title>{{title}}</title>
 </head>
 
 <body>
@@ -28,14 +28,13 @@
                 <ul>
                     <?php if(isset($_SESSION) && !empty($_SESSION['id']) && !empty($_SESSION['name'])):?>
                     <?php else: ?>
-                        <li><a href="#">Entrar / Cadastrar</a></li>
+                        <li><a href="/entrar-cadastrar">Entrar / Cadastrar</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
         </div>
     </header>
     {{content}}
-    <p>estamos no layout</p>
 </body>
 </html>
 
