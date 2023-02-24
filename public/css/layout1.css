@@ -1,3 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+:root{
+    --bg-site: #0a0a0a;
+    --bg-box: #262626;
+    --title-color: #e0e0e0;
+    --text-color: #adadad;
+    --main-red: #ff0000;
+}
+html{
+    font-size: 62.5%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
 body{
-    background: red;
+    width: 100%; height: 100vh;
+    background: var(--bg-site);
+}
+header{
+    width: 100%;
+    box-shadow: 0 2px 15px rgb(0, 0, 0);
+    background: var(--bg-box);
+}
+header .center{
+    width: 80%;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+header .center .logo{
+    width: 210px;
+}
+header .center .box-left-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .center .box-left-nav .logo img{
+    width: 100%;
+}
+header .center .box-left-nav form{
+    width: 400px; height: 33px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 75px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 0 rgb(0, 0, 0);
+}
+header .center .box-left-nav form input{
+    width: 100%; height: 100%;
+    padding-left: 10px;
+    font-size: 1.65rem;
+    font-weight: 500;
+    border: none;
+    color: black;
+    outline: none;
+    background: none;
+
+}
+header .center .box-left-nav form input::-webkit-search-cancel-button{
+    margin-right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+header .center .box-left-nav form button{
+    margin-right: 10px;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+header .center nav{
+    display: flex;
+    justify-content: flex-end;
+}
+header .center nav ul{
+    list-style: none;
+}
+header .center nav ul a{
+    font-size: 1.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--title-color);
+    transition: .2s;
+}
+header .center nav ul a:hover{
+    text-decoration: underline;
+    color: var(--main-red);
+    transition: .2s;
 }

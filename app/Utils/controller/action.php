@@ -14,7 +14,7 @@ class Action{
      */
     public static function getContentView(string $page,string $layout){
         
-        $file= empty($page) ? __DIR__.'./../../Views/' . $layout .'.html' : __DIR__.'./../../Views/' . $page .'.html';
+        $file= empty($page) ? __DIR__.'./../../Views/' . $layout .'.phtml' : __DIR__.'./../../Views/' . $page .'.phtml';
         if(file_exists($file)){
 
             return file_get_contents($file);
@@ -56,8 +56,7 @@ class Action{
     public static function getLayout(string $title, $content,string $layout){
         return self::render('', [
             'title' => $title,
-            'content' => $content,
-            'url' => URL
+            'content' => $content
         ], $layout);
     }
 }
