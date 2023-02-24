@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/entrar-cadastrar.css">
+<link rel="stylesheet" href="css/entrar-registrar.css">
 <main>
     <section class="entrar">
         <div class="center">
@@ -16,14 +16,16 @@
                         <i class="not-see entrar fa-regular fa-eye-slash"></i>
                     </div>
                 </div>
+                <p class="msgSuccess">{{msgSuccessE}}</p>
+                <p class="msgError">{{msgErrorE}}</p>
                 <button type="submit">Entrar</button>
             </form>
         </div>
     </section>
-    <section class="cadastrar">
+    <section class="registrar">
         <div class="center">
-            <h3>Cadastrar</h3>
-            <form action="#">
+            <h3>Criar conta</h3>
+            <form action="/registrar" method="post">
                 <div class="box-input">
                     <label for="name">Nome:</label>
                     <input type="text" name="name" id="name" required>
@@ -33,26 +35,28 @@
                     <input type="text" name="lastName" id="lastName">
                 </div>
                 <div class="box-input">
-                    <label for="emailCadastrar">E-mail:</label>
-                    <input type="email" name="emailCadastrar" id="emailCadastrar" required>
+                    <label for="emailRegistrar">E-mail:</label>
+                    <input type="email" name="emailRegistrar" id="emailRegistrar" required>
                 </div>
                 <div class="box-input">
-                        <label for="passwordCadastrar">Senha:</label>
+                        <label for="passwordRegistrar">Senha:</label>
                     <div class="password">
-                        <input type="password" name="passwordCadastrar" id="passwordCadastrar" required>
-                        <i class="see cadastrar fa-regular fa-eye"></i>
-                        <i class="not-see cadastrar fa-regular fa-eye-slash"></i>
+                        <input type="password" name="passwordRegistrar" id="passwordRegistrar" required>
+                        <i class="see registrar fa-regular fa-eye"></i>
+                        <i class="not-see registrar fa-regular fa-eye-slash"></i>
                     </div>
                 </div>
                 <div class="box-input">
-                        <label for="password-Cadastrar-CF">Confirmar senha:</label>
+                        <label for="password-Registrar-CS">Confirmar senha:</label>
                     <div class="password">
-                        <input type="password" name="passwordCF" id="password-Cadastrar-CF" required>
-                        <i class="see cadastrarCF fa-regular fa-eye"></i>
-                        <i class="not-see cadastrarCF fa-regular fa-eye-slash"></i>
+                        <input type="password" name="passwordCS" id="password-Registrar-CS" required>
+                        <i class="see registrarCS fa-regular fa-eye"></i>
+                        <i class="not-see registrarCS fa-regular fa-eye-slash"></i>
                     </div>
                 </div>
-                <button type="submit">Cadastrar</button>
+                    <p class="msgSuccess">{{msgSuccessR}}</p>
+                    <p class="msgError">{{msgErrorR}}</p>
+                <button type="submit">Registrar</button>
             </form>
         </div>
     </section>

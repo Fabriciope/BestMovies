@@ -14,35 +14,35 @@ btnNotSeeEntrar.addEventListener('click', ()=>{
 })
 
 
-const btnSeeCadastrar= document.querySelector('i.see.cadastrar');
-const btnNotSeeCadastrar= document.querySelector('.not-see.cadastrar');
-const inputPasswordCadastrar= document.getElementById('passwordCadastrar');
+const btnSeeRegistrar= document.querySelector('i.see.registrar');
+const btnNotSeeRegistrar= document.querySelector('.not-see.registrar');
+const inputPasswordRegistrar= document.getElementById('passwordRegistrar');
 
-btnSeeCadastrar.addEventListener('click', ()=>{
-    inputPasswordCadastrar.type='text';
-    btnSeeCadastrar.style.display='none';
-    btnNotSeeCadastrar.style.display='block';
+btnSeeRegistrar.addEventListener('click', ()=>{
+    inputPasswordRegistrar.type='text';
+    btnSeeRegistrar.style.display='none';
+    btnNotSeeRegistrar.style.display='block';
 })
-btnNotSeeCadastrar.addEventListener('click', ()=>{
-    inputPasswordCadastrar.type='password';
-    btnSeeCadastrar.style.display='block';
-    btnNotSeeCadastrar.style.display='none';
+btnNotSeeRegistrar.addEventListener('click', ()=>{
+    inputPasswordRegistrar.type='password';
+    btnSeeRegistrar.style.display='block';
+    btnNotSeeRegistrar.style.display='none';
 })
 
 
-const btnSeeCadastrarCF= document.querySelector('i.see.cadastrarCF');
-const btnNotSeeCadastrarCF= document.querySelector('.not-see.cadastrarCF');
-const inputPasswordCadastrarCF= document.getElementById('password-Cadastrar-CF');
+const btnSeeRegistrarCS= document.querySelector('i.see.registrarCS');
+const btnNotSeeRegistrarCS= document.querySelector('.not-see.registrarCS');
+const inputPasswordRegistrarCS= document.getElementById('password-Registrar-CS');
 
-btnSeeCadastrarCF.addEventListener('click', ()=>{
-    inputPasswordCadastrarCF.type='text';
-    btnSeeCadastrarCF.style.display='none';
-    btnNotSeeCadastrarCF.style.display='block';
+btnSeeRegistrarCS.addEventListener('click', ()=>{
+    inputPasswordRegistrarCS.type='text';
+    btnSeeRegistrarCS.style.display='none';
+    btnNotSeeRegistrarCS.style.display='block';
 })
-btnNotSeeCadastrarCF.addEventListener('click', ()=>{
-    inputPasswordCadastrarCF.type='password';
-    btnSeeCadastrarCF.style.display='block';
-    btnNotSeeCadastrarCF.style.display='none';
+btnNotSeeRegistrarCS.addEventListener('click', ()=>{
+    inputPasswordRegistrarCS.type='password';
+    btnSeeRegistrarCS.style.display='block';
+    btnNotSeeRegistrarCS.style.display='none';
 })
 
 

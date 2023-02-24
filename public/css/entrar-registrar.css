@@ -29,12 +29,13 @@ section.entrar .center .box-input{
     flex-direction: column;
 }
 section.entrar .center label{
+    margin-left: 8px;
     margin-bottom: 8px;
     font-size: 1.8rem;
 }
 section.entrar .center .box-input input{
     width: 100%; height: 30px;
-    padding-left: 10px;
+    padding-left: 13px;
     font-size: 1.73rem;
     font-weight: 500;
     outline: none;
@@ -68,35 +69,35 @@ section.entrar .center .box-input .password i.not-see{
 }
 section.entrar .center button{
     width: 100%;
-    padding: 4px 0;
-    margin-top: 6px;
+    padding: 3px 0;
+    margin-top: 10px;
     font-size: 2.14rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
     border-radius: 7px;
+    border: 3px solid var(--main-red);
     background: var(--main-red);
     transition: .2s;
 }
 section.entrar .center button:hover{
     background: transparent;
     color: var(--main-red);
-    border: 3px solid var(--main-red);
     transition: .2s;
 }
 section.entrar,
-section.cadastrar{
+section.registrar{
     width: 49%;
 }
-section.cadastrar .center{
+section.registrar .center{
     width: 100%;
     padding: 25px;
 }
-section.cadastrar .center h3,
-section.cadastrar .center label{
+section.registrar .center h3,
+section.registrar .center label{
     color: var(--title-color);
 }
-section.cadastrar .center h3{
+section.registrar .center h3{
     width: 200px;
     padding: 5px;
     margin: 0 auto 20px auto;
@@ -104,18 +105,19 @@ section.cadastrar .center h3{
     text-align: center;
     border-bottom: 2px solid var( --main-red);
 }
-section.cadastrar .center .box-input{
+section.registrar .center .box-input{
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
-section.cadastrar .center label{
+section.registrar .center label{
+    margin-left: 8px;
     margin-bottom: 8px;
     font-size: 1.8rem;
 }
-section.cadastrar .center .box-input input{
+section.registrar .center .box-input input{
     width: 100%; height: 30px;
-    padding-left: 10px;
+    padding-left: 13px;
     font-size: 1.73rem;
     font-weight: 500;
     outline: none;
@@ -123,7 +125,7 @@ section.cadastrar .center .box-input input{
     border: none;
     box-shadow: 0 2px 0 var(--bg-box);
 }
-section.cadastrar .center .box-input .password{
+section.registrar .center .box-input .password{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -131,40 +133,53 @@ section.cadastrar .center .box-input .password{
     background: white;
     box-shadow: 0 2px 0 var(--bg-box);
 }
-section.cadastrar .center .box-input .password input{
+section.registrar .center .box-input .password input{
     box-shadow: none;
 }
-section.cadastrar .center .box-input .password input:-webkit-text-security{
+/* section.registrar .center .box-input .password input:-webkit-text-security{
     text-decoration: ;
-}
-section.cadastrar .center .box-input .password i.see,
-section.cadastrar .center .box-input .password i.not-see{
+} */
+section.registrar .center .box-input .password i.see,
+section.registrar .center .box-input .password i.not-see{
     margin-right: 6px;
     font-size: 1.83rem;
     cursor: pointer;
     background: none;
 }
-section.cadastrar .center .box-input .password i.see{
+section.registrar .center .box-input .password i.see{
     display: block;
 }
-section.cadastrar .center .box-input .password i.not-see{
+section.registrar .center .box-input .password i.not-see{
     display: none;
 }
-section.cadastrar .center button{
+section.registrar .center button{
     width: 100%;
-    padding: 4px 0;
-    margin-top: 6px;
+    padding: 3px 0;
+    margin-top: 10px;
     font-size: 2.14rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
     border-radius: 7px;
+    border: 3px solid var(--main-red);
     background: var(--main-red);
     transition: .2s;
 }
-section.cadastrar .center button:hover{
+section.registrar .center button:hover{
     background: transparent;
     color: var(--main-red);
-    border: 3px solid var(--main-red);
     transition: .2s;
+}
+.msgSuccess,
+.msgError{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--title-color);
+    border-radius: 7px;
+}
+.msgSuccess{
+    color: #17e800;
+}
+.msgError{
+    color: red;
 }

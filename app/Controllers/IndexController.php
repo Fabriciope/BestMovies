@@ -6,6 +6,11 @@ use App\Utils\models\Container;
 
 // define('URL', 'http://' . $_SERVER['SERVER_NAME']);
 
+
+
+
+// tirar o indice de sucesso da section entrar pois não será nescessário utiliza-lo
+
 class IndexController{
 
 
@@ -19,10 +24,25 @@ class IndexController{
         return Action::getLayout('BestMovies', $content, 'layout1');
     }
 
-    public function pageEntrarCadastrar(){
-        $content= Action::render('home/entrar-cadastrar', [
+    public function pageEntrarRegistrar(){
+        $content= Action::render('home/entrar-registrar', [
+            'msgSuccessE' => '',
+            'msgErrorE' => '',
+            'msgSuccessR' => '',
+            'msgErrorR' => '',
             'teste'=> 'fabricio'
         ]);
-        return Action::getLayout('Entrar/Cadastrar', $content, 'layout1');
+        return Action::getLayout('Entrar/Registrar', $content, 'layout1',);
+    }
+
+    public function registerUser(){
+
+        $content= Action::render('home/entrar-registrar', [
+            'msgSuccessE' => '',
+            'msgErrorE' => '',
+            'msgSuccessR' => 'dddd',
+            'msgErrorR' => 'ddssd',
+        ]);
+        return Action::getLayout('Entrar/Registrar', $content, 'layout1');
     }
 }

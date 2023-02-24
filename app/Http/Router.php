@@ -15,10 +15,15 @@ class Router extends Bootstrap{
             'controller' => 'IndexController',
             'action' => 'pageHome',
         ); 
-        $routes['page_entrar_cadastrar'] = array(
-            'route' => '/entrar-cadastrar',
+        $routes['page_entrar_registrar'] = array(
+            'route' => '/entrar-registrar',
             'controller' => 'IndexController',
-            'action' => 'pageEntrarCadastrar',
+            'action' => 'pageEntrarRegistrar',
+        ); 
+        $routes['registrar'] = array(
+            'route' => '/registrar',
+            'controller' => 'IndexController',
+            'action' => 'registerUser',
         ); 
         $this->setRoutes($routes);
     }

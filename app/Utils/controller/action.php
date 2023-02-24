@@ -29,12 +29,12 @@ class Action{
     /**
      * Metodo responsável por retornar o conteúdo já renderizado
      *
-     * @param string $page
-     * @param array $vars
+     * @param string|null $page
+     * @param array|null $vars
      * @param string $layout
      * @return string
      */
-    public static function render(string $page,array $vars= [],string $layout= ''){
+    public static function render(string|null $page,array|null $vars= [],string $layout= ''){
         $contentPage= self::getContentview($page, $layout);
 
         $keys= array_keys($vars);
@@ -46,7 +46,7 @@ class Action{
     }
 
     /**
-     * Metodo responsável por retornar o conteúdo de algum layout
+     * Metodo responsável por retornar o conteúdo de algum layout 
      *
      * @param string $title
      * @param mixed $content
