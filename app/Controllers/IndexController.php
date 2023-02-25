@@ -36,7 +36,21 @@ class IndexController{
     }
 
     public function registerUser(){
-
+        echo '<pre>';
+        print_r($_POST);
+        echo '</pre>';
+        $name= filter_input(INPUT_POST, "name");
+        $lastName= filter_input(INPUT_POST, "lastName");
+        $email= filter_input(INPUT_POST, "emailRegistrar", FILTER_VALIDATE_EMAIL);
+        $password= password_hash(filter_input(INPUT_POST, "passwordRegistrar"), PASSWORD_DEFAULT);
+        $passwordCS= filter_input(INPUT_POST, "passwordCS");
+        $recordCheck= $name && $lastName && $email && $password && $passwordCS && password_verify($passwordCS, $password) ? true :false;
+        if($email){
+            echo 'verificado';
+        }else{
+            echo 'nao verificado invalido';
+        }
+        
         $content= Action::render('home/entrar-registrar', [
             'msgSuccessE' => '',
             'msgErrorE' => '',

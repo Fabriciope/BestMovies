@@ -5,8 +5,6 @@ main{
     display: flex;
     justify-content: space-between;
 }
-section.entrar{
-}
 section.entrar .center{
     width: 100%;
     padding: 25px;
@@ -36,7 +34,7 @@ section.entrar .center label{
 section.entrar .center .box-input input{
     width: 100%; height: 30px;
     padding-left: 13px;
-    font-size: 1.73rem;
+    font-size: 1.7rem;
     font-weight: 500;
     outline: none;
     border-radius: 7px;
@@ -118,7 +116,7 @@ section.registrar .center label{
 section.registrar .center .box-input input{
     width: 100%; height: 30px;
     padding-left: 13px;
-    font-size: 1.73rem;
+    font-size: 1.7rem;
     font-weight: 500;
     outline: none;
     border-radius: 7px;
@@ -181,5 +179,5 @@ section.registrar .center button:hover{
     color: #17e800;
 }
 .msgError{
-    color: red;
+    color: rgb(255, 40, 40);
 }

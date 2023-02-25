@@ -32,16 +32,16 @@
                 </div>
                 <div class="box-input">
                     <label for="lastName">Sobrenome:</label>
-                    <input type="text" name="lastName" id="lastName">
+                    <input type="text" name="lastName" id="lastName" required>
                 </div>
                 <div class="box-input">
                     <label for="emailRegistrar">E-mail:</label>
-                    <input type="email" name="emailRegistrar" id="emailRegistrar" required>
+                    <input type="email" name="emailRegistrar" id="emailRegistrar" placeholder="Ex: nome@gmail.com" required>
                 </div>
                 <div class="box-input">
                         <label for="passwordRegistrar">Senha:</label>
                     <div class="password">
-                        <input type="password" name="passwordRegistrar" id="passwordRegistrar" required>
+                        <input type="password" name="passwordRegistrar" id="passwordRegistrar" minlength="4" placeholder="Digite uma senha acima de 4 caracteres" required>
                         <i class="see registrar fa-regular fa-eye"></i>
                         <i class="not-see registrar fa-regular fa-eye-slash"></i>
                     </div>
@@ -49,7 +49,7 @@
                 <div class="box-input">
                         <label for="password-Registrar-CS">Confirmar senha:</label>
                     <div class="password">
-                        <input type="password" name="passwordCS" id="password-Registrar-CS" required>
+                        <input type="password" name="passwordCS" id="password-Registrar-CS" minlength="4" placeholder="Confirme sua senha" required>
                         <i class="see registrarCS fa-regular fa-eye"></i>
                         <i class="not-see registrarCS fa-regular fa-eye-slash"></i>
                     </div>
