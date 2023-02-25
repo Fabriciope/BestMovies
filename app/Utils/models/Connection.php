@@ -4,7 +4,7 @@ namespace App\Utils\models;
 class Connection{
 
     /**
-     * Metodo responsável por retornar a conexão com o banco de dados
+     * Método responsável por retornar a conexão com o banco de dados
      *
      * @return \PDO
      */

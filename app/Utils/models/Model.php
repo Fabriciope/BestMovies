@@ -5,7 +5,7 @@ class Model{
     protected $db;
 
     /**
-     * Metodo construtor responsável por colocar a conexão com o banco de dados no atributo $db
+     * Método construtor responsável por colocar a conexão com o banco de dados no atributo $db
      *
      * @param \PDO $conn
      */
@@ -14,7 +14,7 @@ class Model{
     }
 
     /**
-     * Metodo responsável por definir os valores dos atributos da classe
+     * Método responsável por definir os valores dos atributos da classe
      *
      * @param string $name
      * @param mixed $value
@@ -24,7 +24,7 @@ class Model{
     }
 
     /**
-     * Metodo responsável por retornar alguem atributo da classe
+     * Método responsável por retornar alguem atributo da classe
      *
      * @param string $name
      * @return mixed

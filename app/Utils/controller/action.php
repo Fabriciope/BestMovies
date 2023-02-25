@@ -6,7 +6,7 @@ class Action{
 
 
     /**
-     * Metodo responsável por retornar o conteúdo de uma página ou layout
+     * Método responsável por retornar o conteúdo de uma página ou layout
      *
      * @param string $page
      * @param string $layout
@@ -27,7 +27,7 @@ class Action{
     }
 
     /**
-     * Metodo responsável por retornar o conteúdo já renderizado
+     * Método responsável por retornar o conteúdo já renderizado
      *
      * @param string|null $page
      * @param array|null $vars
@@ -46,7 +46,7 @@ class Action{
     }
 
     /**
-     * Metodo responsável por retornar o conteúdo de algum layout 
+     * Método responsável por retornar o conteúdo de algum layout 
      *
      * @param string $title
      * @param mixed $content

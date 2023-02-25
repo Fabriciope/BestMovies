@@ -1,48 +1,48 @@
-const btnSeeEntrar= document.querySelector('i.see.entrar');
-const btnNotSeeEntrar= document.querySelector('.not-see.entrar');
-const inputPasswordEntrar= document.getElementById('passwordEntrar');
+const btnSeeEnter= document.querySelector('i.see.enter');
+const btnNotSeeEnter= document.querySelector('.not-see.enter');
+const inputPasswordEnter= document.getElementById('passwordEnter');
 
-btnSeeEntrar.addEventListener('click', ()=>{
-    inputPasswordEntrar.type='text';
-    btnSeeEntrar.style.display='none';
-    btnNotSeeEntrar.style.display='block';
+btnSeeEnter.addEventListener('click', ()=>{
+    inputPasswordEnter.type='text';
+    btnSeeEnter.style.display='none';
+    btnNotSeeEnter.style.display='block';
 })
-btnNotSeeEntrar.addEventListener('click', ()=>{
-    inputPasswordEntrar.type='password';
-    btnSeeEntrar.style.display='block';
-    btnNotSeeEntrar.style.display='none';
-})
-
-
-const btnSeeRegistrar= document.querySelector('i.see.registrar');
-const btnNotSeeRegistrar= document.querySelector('.not-see.registrar');
-const inputPasswordRegistrar= document.getElementById('passwordRegistrar');
-
-btnSeeRegistrar.addEventListener('click', ()=>{
-    inputPasswordRegistrar.type='text';
-    btnSeeRegistrar.style.display='none';
-    btnNotSeeRegistrar.style.display='block';
-})
-btnNotSeeRegistrar.addEventListener('click', ()=>{
-    inputPasswordRegistrar.type='password';
-    btnSeeRegistrar.style.display='block';
-    btnNotSeeRegistrar.style.display='none';
+btnNotSeeEnter.addEventListener('click', ()=>{
+    inputPasswordEnter.type='password';
+    btnSeeEnter.style.display='block';
+    btnNotSeeEnter.style.display='none';
 })
 
 
-const btnSeeRegistrarCS= document.querySelector('i.see.registrarCS');
-const btnNotSeeRegistrarCS= document.querySelector('.not-see.registrarCS');
-const inputPasswordRegistrarCS= document.getElementById('password-Registrar-CS');
+const btnSeeRegister= document.querySelector('i.see.register');
+const btnNotSeeRegister= document.querySelector('.not-see.register');
+const inputPasswordRegister= document.getElementById('passwordRegister');
 
-btnSeeRegistrarCS.addEventListener('click', ()=>{
-    inputPasswordRegistrarCS.type='text';
-    btnSeeRegistrarCS.style.display='none';
-    btnNotSeeRegistrarCS.style.display='block';
+btnSeeRegister.addEventListener('click', ()=>{
+    inputPasswordRegister.type='text';
+    btnSeeRegister.style.display='none';
+    btnNotSeeRegister.style.display='block';
 })
-btnNotSeeRegistrarCS.addEventListener('click', ()=>{
-    inputPasswordRegistrarCS.type='password';
-    btnSeeRegistrarCS.style.display='block';
-    btnNotSeeRegistrarCS.style.display='none';
+btnNotSeeRegister.addEventListener('click', ()=>{
+    inputPasswordRegister.type='password';
+    btnSeeRegister.style.display='block';
+    btnNotSeeRegister.style.display='none';
+})
+
+
+const btnSeeRegisterCS= document.querySelector('i.see.registerCS');
+const btnNotSeeRegisterCS= document.querySelector('.not-see.registerCS');
+const inputPasswordRegisterCS= document.getElementById('password-Register-CS');
+
+btnSeeRegisterCS.addEventListener('click', ()=>{
+    inputPasswordRegisterCS.type='text';
+    btnSeeRegisterCS.style.display='none';
+    btnNotSeeRegisterCS.style.display='block';
+})
+btnNotSeeRegisterCS.addEventListener('click', ()=>{
+    inputPasswordRegisterCS.type='password';
+    btnSeeRegisterCS.style.display='block';
+    btnNotSeeRegisterCS.style.display='none';
 })
 
 
