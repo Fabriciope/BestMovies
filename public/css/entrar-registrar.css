@@ -83,10 +83,12 @@ section.entrar .center button:hover{
     color: var(--main-red);
     transition: .2s;
 }
+
 section.entrar,
 section.registrar{
     width: 49%;
 }
+
 section.registrar .center{
     width: 100%;
     padding: 25px;
@@ -174,9 +176,6 @@ section.registrar .center button:hover{
     font-weight: 600;
     color: var(--title-color);
     border-radius: 7px;
-}
-.msgSuccess{
-    color: #17e800;
 }
 .msgError{
     color: rgb(255, 40, 40);

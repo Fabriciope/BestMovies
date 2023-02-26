@@ -1,13 +1,14 @@
-<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d5c56409b7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/layout1.css">
-    <title>{{title}}</title>
+    <title>BestMovies</title>
 </head>
 
 <body>
@@ -26,17 +27,18 @@
             </div>
             <nav>
                 <ul>
-                    <?php if(isset($_SESSION) && !empty($_SESSION['id']) && !empty($_SESSION['name'])):?>
-                    <?php else: ?>
-                        <li><a href="/entrar-registrar">Entrar / Registrar</a></li>
+                    <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
+                        <li><a href="#">nome do usucdcdcdario</a></li>
+                    <?php else: ?> 
+                        <li><a href="/entrar-registrar">Entrar / Registrar</a></li
+                       
                     <?php endif; ?>
                 </ul>
             </nav>
         </div>
     </header>
-    {{content}}
+    <?php
+        $this->getContentView();
+        ?>
 </body>
 </html>
-
-!
-1

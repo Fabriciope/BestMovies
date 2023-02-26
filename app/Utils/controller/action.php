@@ -1,62 +1,45 @@
 <?php
+
 namespace App\Utils\controller;
 
 
-class Action{
+abstract class Action
+{
+    protected $view;
+
+    public function __construct()
+    {
+        $this->view = new \stdClass();
+    }
 
 
-    /**
-     * Método responsável por retornar o conteúdo de uma página ou layout
-     *
-     * @param string $page
-     * @param string $layout
-     * @return string
-     */
-    public static function getContentView(string $page,string $layout){
-        
-        $file= empty($page) ? __DIR__.'./../../Views/' . $layout .'.phtml' : __DIR__.'./../../Views/' . $page .'.phtml';
-        if(file_exists($file)){
+    public function render(string $page, string $layout)
+    {
+        $this->view->page = $page;
+        if (file_exists(__DIR__ . './../../Views/' . $layout . '.php')) {
 
-            return file_get_contents($file);
-            
-        }else{
+            require_once __DIR__ . './../../Views/' . $layout . '.php';
+        } else {
+
+            $this->getContentView();
             // Retornar a home
             echo 'mds mn to';
             echo $file;
         }
     }
 
-    /**
-     * Método responsável por retornar o conteúdo já renderizado
-     *
-     * @param string|null $page
-     * @param array|null $vars
-     * @param string $layout
-     * @return string
-     */
-    public static function render(string|null $page,array|null $vars= [],string $layout= ''){
-        $contentPage= self::getContentview($page, $layout);
-
-        $keys= array_keys($vars);
-        $keys= array_map(function($key){
-            return '{{' . $key . '}}';
-        }, $keys);
-
-        return str_replace($keys, array_values($vars), $contentPage);
+    protected function getContentView()
+    {
+        require_once __DIR__ . './../../Views/' . $this->view->page . '.php';
     }
 
-    /**
-     * Método responsável por retornar o conteúdo de algum layout 
-     *
-     * @param string $title
-     * @param mixed $content
-     * @param string $layout
-     * @return string
-     */
-    public static function getLayout(string $title, $content,string $layout){
-        return self::render('', [
-            'title' => $title,
-            'content' => $content
-        ], $layout);
+
+
+    public static function validateUser()
+    {
+        session_start();
+        if (!isset($_SESSION['userID']) || empty($_SESSION['userID']) || !isset($_SESSION['username']) || empty($_SESSION['username'])) {
+            header('location: /home');
+        }
     }
 }
