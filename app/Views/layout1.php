@@ -27,12 +27,19 @@
             </div>
             <nav>
                 <ul>
+
                     <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
-                        <li><a href="#">nome do usucdcdcdario</a></li>
+
+                        <li class="userNavigation"><a href="#"><i class="fa-solid fa-photo-film"></i>Adicionar filme</a></li>
+                        <li class="userNavigation"><a href="#">Meus filmes</a></li>
+                        <li class="userNavigation"><a href="/perfil">Olá, <?=$_SESSION['username']?></a></li>
+
                     <?php else: ?> 
+
                         <li><a href="/entrar-registrar">Entrar / Registrar</a></li
                        
                     <?php endif; ?>
+                
                 </ul>
             </nav>
         </div>

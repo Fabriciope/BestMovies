@@ -21,12 +21,12 @@ body{
 }
 header{
     width: 100%;
-   o jeito que os controllers se comunicam com as views  margin-bottom: 13px;
+    margin-bottom: 13px;
     box-shadow: 0 2px 15px rgb(0, 0, 0);
     background: var(--bg-box);
 }
 header .center{
-    width: 80%;
+    width: 87%;
     padding: 5px 0;
     display: flex;
     justify-content: space-between;
@@ -34,7 +34,7 @@ header .center{
     margin: 0 auto;
 }
 header .center .logo{
-    width: 210px;
+    width: 190px;
 }
 header .center .box-left-nav{
     display: flex;
@@ -45,11 +45,11 @@ header .center .box-left-nav .logo img{
     width: 100%;
 }
 header .center .box-left-nav form{
-    width: 400px; height: 33px;
+    width: 400px; height: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 75px;
+    margin-left: 40px;
     border-radius: 8px;
     background: white;
     box-shadow: 0 2px 0 rgb(0, 0, 0);
@@ -83,6 +83,18 @@ header .center nav{
 }
 header .center nav ul{
     list-style: none;
+    display: flex;
+}
+header .center nav li.userNavigation{
+    margin-left: 18px;
+}
+header .center nav li.userNavigation a{
+    font-size: 1.67rem;
+    font-weight: 500;
+}
+header .center nav li.userNavigation a i{
+    margin-right: 5px;
+    font-size: 1.8rem;
 }
 header .center nav ul a{
     font-size: 1.9rem;
@@ -92,7 +104,8 @@ header .center nav ul a{
     transition: .2s;
 }
 header .center nav ul a:hover{
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: var(--main-red);
+    /* border-bottom: 2px solid var(--main-red); */
     transition: .2s;
 }

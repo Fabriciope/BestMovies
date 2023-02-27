@@ -1,2 +1,3 @@
-<?php
-echo $this->view->teste;
+<main>
+    <a style="color:white;" href="/logout">Sair</a>
+</main>

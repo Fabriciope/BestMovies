@@ -7,26 +7,32 @@ use App\Utils\models\Container;
 
 // define('URL', 'http://' . $_SERVER['SERVER_NAME']);
 
-
-
-
-// tirar o indice de sucesso da section entrar pois não será nescessário utiliza-lo
-
 class IndexController extends Action
 {
-
-
-
+    /**
+     * Método responsável por redirecionar para a página principal (home).
+     *
+     * @return void
+     */
     public function pageHome()
     {
-        
+        session_start();
+        // echo '<pre>';
+        // print_r($_SESSION);
+        // echo '</pre>';
         $this->render('home/index','layout1');
     }
 
+    /**
+     * Método responsável por redirecionar para a página de entrar/registrar.
+     *
+     * @return void
+     */
     public function pageEnterRegister()
     {
-
-        $this->view->userData = [
+        $this->view->data = [
+            'inputEmailEnter'=> '',
+            'inputPasswordEnter'=> '',
             'inputName' => '',
             'inputLastName' => '',
             'inputEmailRegister' => '',

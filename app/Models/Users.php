@@ -23,6 +23,7 @@ class Users extends Model
     public function checkUserData($passwordCS)
     {
         $msgError = [];
+
         if (!$this->__get('name')) {
             $msgError[] = 'Digite o seu nome';
         }
@@ -40,16 +41,18 @@ class Users extends Model
         }
 
         $query = 'SELECT * FROM users WHERE email = :email';
+
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $this->__get('email'));
         $statement->execute();
+
         $registeredEmail = $statement->fetchAll();
 
         if (count($registeredEmail) > 0) {
             $msgError[] = 'Este email já está registrado';
         }
 
-        return (array) $msgError;
+        return $msgError;
     }
 
     /**
@@ -63,8 +66,8 @@ class Users extends Model
         $query = 'INSERT INTO users (name, lastname, email, password) VALUES (:name, :lastname, :email, :password)';
 
         $statement = $this->db->prepare($query);
-        $statement->bindValue(':name', trim($this->__get('name')));
-        $statement->bindValue(':lastname', trim($this->__geT('lastName')));
+        $statement->bindValue(':name', ucfirst(trim($this->__get('name'))));
+        $statement->bindValue(':lastname', ucfirst(trim($this->__get('lastName'))));
         $statement->bindValue(':email', trim($this->__get('email')));
         $statement->bindValue(':password', password_hash(trim($this->__get('password')), PASSWORD_DEFAULT));
 
@@ -78,17 +81,17 @@ class Users extends Model
     }
 
     /**
-     * Método responsável por fazer a autenticação do usuário com os dados vindo do POST, e retornar um array se a verificação ocorrer corretamente e uma string caso a verificação falhe
+     * Método responsável por fazer a autenticação do usuário com os dados vindo do POST, e retornar um array que indicará o estado da autenticação.
      *
      * @return mixed
      */
     public function authenticateUser()
     {
-
         $query = 'SELECT * FROM users WHERE email = :email';
 
         $statement = $this->db->prepare($query);
-        $statement->bindValue('email', $this->__get('email'));
+        $statement->bindValue(':email', trim($this->__get('email')));
+
         if (!$statement->execute()) {
             echo 'Erro ao autenticar o usuário';
             echo '<pre>';
@@ -97,17 +100,23 @@ class Users extends Model
             die();
         }
 
-        $userData = $statement->fetch(\PDO::FETCH_ASSOC);
+        $userData = (array) $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        if (password_verify($this->__get('password'), $userData['password'])) {
-            return (array) $userData;
-        } else {
-            return 'Email ou senha inválidos';
+        if(count($userData) == 0){
+            $userValidation[]= 'Email não registrado';
         }
+
+        if (!password_verify(trim($this->__get('password')), @$userData[0]['password'])) {
+            $userValidation[]= 'Senha inválida';
+        }else{
+            $userValidation['userData']= $userData[0];
+        }
+
+        return $userValidation;
     }
 
     /**
-     * Método responsável por recuperar as informações do usuário logado pela session
+     * Método responsável por recuperar as informações do usuário logado pela session.
      *
      * @param string $userID
      * @param string $username

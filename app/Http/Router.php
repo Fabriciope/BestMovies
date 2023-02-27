@@ -35,6 +35,16 @@ class Router extends Bootstrap
             'controller' => 'UserController',
             'action' => 'pageProfile',
         );
+        $routes['authenticate_user'] = array(
+            'route' => '/authenticate-user',
+            'controller' => 'AuthController',
+            'action' => 'authenticateUser',
+        );
+        $routes['logout'] = array(
+            'route' => '/logout',
+            'controller' => 'UserController',
+            'action' => 'logout',
+        );
         $this->setRoutes($routes);
     }
 }
