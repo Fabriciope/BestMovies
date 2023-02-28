@@ -45,6 +45,11 @@ class Router extends Bootstrap
             'controller' => 'UserController',
             'action' => 'logout',
         );
+        $routes['update-name-lastName'] = array(
+            'route' => '/update-name-lastName',
+            'controller' => 'UserController',
+            'action' => 'updateNameLastName',
+        );
         $this->setRoutes($routes);
     }
 }

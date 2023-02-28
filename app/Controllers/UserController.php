@@ -19,9 +19,41 @@ class UserController extends Action
         $user = Container::getModel('Users');
         $userData = $user->retrieveUserData($_SESSION['userID'], $_SESSION['username']);
 
-        // $this->view->userData= $userData;
-        
+        $this->view->msgUpdateError= $this->view->msgUpdateError ?? '';
+        $this->view->msgUpdateSuccess= $this->view->msgUpdateSuccess ?? '';
+
+        $this->view->userData = $userData;
+
         $this->render('user/profile', 'layout1');
+    }
+
+    public function updateNameLastName()
+    {
+        session_start();
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '</pre><br>';
+        // echo '<pre>';
+        // print_r($_SESSION);
+        // echo '</pre>';
+        $user = Container::getModel('Users');
+        $user->__set('id', $_SESSION['userID']);
+        $user->__set('name', $_POST['newName']);
+        $user->__set('lastName', $_POST['newLastName']);
+
+        $update = $user->updateUserData($_SESSION['username']);
+
+        if ($update === 'faiiled') {
+            $this->view->msgUpdateError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
+            $this->pageProfile();
+        } elseif ($update === 'success') {
+            $_SESSION['username'] = trim($user->__get('name'));
+            $this->view->msgUpdateSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
+            // header('location: /perfil');
+            $this->pageProfile();
+        }
+
+        header('location: /perfil');
     }
 
     /**
@@ -29,7 +61,8 @@ class UserController extends Action
      *
      * @return void
      */
-    public function logout(){
+    public function logout()
+    {
         session_start();
         session_destroy();
         header('location: /home');

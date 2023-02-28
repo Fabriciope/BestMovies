@@ -1,5 +1,5 @@
 main{
-    width: 80%;
+    width: 91%;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -19,7 +19,7 @@ section.entrar .center h3{
     margin: 0 auto 20px auto;
     font-size: 3rem;
     text-align: center;
-    border-bottom: 2px solid var( --main-red);
+    border-bottom: 3px solid var( --main-red);
 }
 section.entrar .center .box-input{
     margin-bottom: 15px;
@@ -37,7 +37,7 @@ section.entrar .center .box-input input{
     font-size: 1.7rem;
     font-weight: 500;
     outline: none;
-    border-radius: 7px;
+    border-radius: 5px;
     border: none;
     box-shadow: 0 2px 0 var(--bg-box);
 }
@@ -45,7 +45,7 @@ section.entrar .center .box-input .password{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 7px;
+    border-radius: 5px;
     background: white;
     box-shadow: 0 2px 0 var(--bg-box);
 }
@@ -103,7 +103,7 @@ section.register .center h3{
     margin: 0 auto 20px auto;
     font-size: 3rem;
     text-align: center;
-    border-bottom: 2px solid var( --main-red);
+    border-bottom: 3px solid var( --main-red);
 }
 section.register .center .box-input{
     margin-bottom: 15px;

@@ -29,14 +29,14 @@
                 <ul>
 
                     <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
-
-                        <li class="userNavigation"><a href="#"><i class="fa-solid fa-photo-film"></i>Adicionar filme</a></li>
+                        <li class="userNavigation <?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
+                        <li class="userNavigation"><a href="#"><i class="add-film fa-solid fa-photo-film"></i>Adicionar filme</a></li>
                         <li class="userNavigation"><a href="#">Meus filmes</a></li>
-                        <li class="userNavigation"><a href="/perfil">Olá, <?=$_SESSION['username']?></a></li>
+                        <li class="userNavigation <?php if($this->view->page == 'user/profile')echo'active'?>"><a class="name" href="/perfil">Olá, <?=$_SESSION['username']?><i class="arrow-down fa-solid fa-angle-down"></i></a></li>
 
                     <?php else: ?> 
-
-                        <li><a href="/entrar-registrar">Entrar / Registrar</a></li
+                        <li class="<?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
+                        <li <?php if($this->view->page == 'home/enter-register')echo'active'?>><a href="/entrar-registrar">Entrar / Registrar</a></li>
                        
                     <?php endif; ?>
                 

@@ -11,9 +11,9 @@
                 <div class="box-input">
                     <label for="passwordEnter">Senha:</label>
                     <div class="password">
-                        <input type="password" name="passwordEnter" id="passwordEnter" value="<?=$this->view->data['inputPasswordEnter']?>" required>
-                        <i class="see enter fa-regular fa-eye"></i>
-                        <i class="not-see enter fa-regular fa-eye-slash"></i>
+                        <input type="password" name="passwordEnter" id="password-enter-update" value="<?=$this->view->data['inputPasswordEnter']?>" required>
+                        <i class="see enter-update fa-regular fa-eye"></i>
+                        <i class="not-see enter-update fa-regular fa-eye-slash"></i>
                     </div>
                 </div>
                 <p class="msgError"><?=$this->view->msg['msgErrorE']?></p>
@@ -48,9 +48,9 @@
                 <div class="box-input">
                         <label for="password-Register-CS">Confirmar senha:</label>
                     <div class="password">
-                        <input type="password" name="passwordCS" id="password-Register-CS" minlength="4" placeholder="Confirme sua senha" value="<?=$this->view->data['inputPasswordCS']?>" required>
-                        <i class="see registerCS fa-regular fa-eye"></i>
-                        <i class="not-see registerCS fa-regular fa-eye-slash"></i>
+                        <input type="password" name="passwordCS" id="password-register-updateCS" minlength="4" placeholder="Confirme sua senha" value="<?=$this->view->data['inputPasswordCS']?>" required>
+                        <i class="see register-updateCS fa-regular fa-eye"></i>
+                        <i class="not-see register-updateCS fa-regular fa-eye-slash"></i>
                     </div>
                 </div>
                     <p class="msgError"><?=$this->view->msg['msgErrorR']?></p>

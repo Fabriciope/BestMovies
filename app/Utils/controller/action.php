@@ -54,7 +54,7 @@ abstract class Action
      */
     public static function validateUser()
     {
-        session_start();
+        @session_start();
         if (!isset($_SESSION['userID']) || empty($_SESSION['userID']) || !isset($_SESSION['username']) || empty($_SESSION['username'])) {
             header('location: /home');
         }

@@ -40,7 +40,9 @@ class Users extends Model
             $msgError[] = 'A confirmação das senhas estão incorretas';
         }
 
-        $query = 'SELECT * FROM users WHERE email = :email';
+        $query = 'SELECT *
+                  FROM users
+                  WHERE email = :email';
 
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', $this->__get('email'));
@@ -62,8 +64,8 @@ class Users extends Model
      */
     public function registerUser()
     {
-
-        $query = 'INSERT INTO users (name, lastname, email, password) VALUES (:name, :lastname, :email, :password)';
+        $query = 'INSERT INTO users  (name, lastname, email, password) 
+                              VALUES (:name, :lastname, :email, :password)';
 
         $statement = $this->db->prepare($query);
         $statement->bindValue(':name', ucfirst(trim($this->__get('name'))));
@@ -87,7 +89,9 @@ class Users extends Model
      */
     public function authenticateUser()
     {
-        $query = 'SELECT * FROM users WHERE email = :email';
+        $query = 'SELECT *
+                  FROM users
+                  WHERE email = :email';
 
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', trim($this->__get('email')));
@@ -102,14 +106,14 @@ class Users extends Model
 
         $userData = (array) $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-        if(count($userData) == 0){
-            $userValidation[]= 'Email não registrado';
+        if (count($userData) == 0) {
+            $userValidation[] = 'Email não registrado';
         }
 
         if (!password_verify(trim($this->__get('password')), @$userData[0]['password'])) {
-            $userValidation[]= 'Senha inválida';
-        }else{
-            $userValidation['userData']= $userData[0];
+            $userValidation[] = 'Senha inválida';
+        } else {
+            $userValidation['userData'] = $userData[0];
         }
 
         return $userValidation;
@@ -124,12 +128,44 @@ class Users extends Model
      */
     public function retrieveUserData($userID, $username)
     {
-        $query = 'SELECT * FROM users WHERE id = :id AND name = :name';
+        $query = 'SELECT *
+                  FROM users
+                  WHERE id = :id AND name = :name';
 
         $statement = $this->db->prepare($query);
         $statement->bindValue(':id', $userID);
         $statement->bindValue(':name', $username);
         $statement->execute();
         return (array) $statement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Método responsável por fazer a atualização dos dados do usuário no banco de dados.
+     *
+     * @param string $username
+     * @return void
+     */
+    public function updateUserData(string $username)
+    {
+        $query='UPDATE users
+                SET name = :newName,
+                    lastname = :newLastName
+                WHERE id = :id AND name = :username';
+        $statement= $this->db->prepare($query);
+        $statement->bindValue(':newName', trim($this->__get('name')));
+        $statement->bindValue(':newLastName', trim($this->__geT('lastName')));
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->bindValue(':username', $username);
+        
+        if (!$statement->execute()) {
+            echo '<pre>';
+            print_r($statement->errorInfo());
+            echo '</pre>';
+            // die();
+
+            return 'failed';
+        } else {
+            return 'success';
+        }
     }
 }

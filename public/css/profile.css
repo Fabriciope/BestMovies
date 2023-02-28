@@ -1,0 +1,174 @@
+main{
+    width: 91%;
+    max-width: 1200px;
+    margin: auto;
+} 
+main a.sair{
+    padding: 2px 12px;
+    align-self: right;
+    font-size: 1.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--main-red);
+    border-radius: 5px;
+    border: 2px solid var(--main-red);
+}
+main a.sair:hover{
+    color: black;
+    background: var(--main-red);
+}
+main .container-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.container-main section.left{
+    width: 56%;
+}
+section.left .center{
+    width: 100%;
+}
+section.left .center .profile-image{
+    width: 150px; height: 150px;
+    margin: 20px auto;
+    border-radius: 100%;
+    border: 4px solid var(--main-red);
+    background-position: center;
+    background-size: cover;
+}
+section.left .center .box-file input{
+    display: none;
+}
+section.left .center .box-file label{
+    display: inline-block;
+    padding: 5px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid var(--main-red);
+}
+section.left .center .box-file label span:first-child{
+    display: inline-block;
+    padding: 5px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 5px;
+    color: black;
+    background: var(--main-red);
+}
+section.left .center .box-file label span:nth-child(2){
+    margin-left: 5px;
+    font-size: 1.35rem;
+    color: var(--title-color);
+}
+section.left .center .box-about-you{
+    width: 100%;
+    margin-left: 5px;
+}
+section.left .center .box-about-you label{
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 2rem;
+    color: var(--title-color);
+}
+section.left .center .box-about-you textarea{
+    width: 98%;
+    padding: 10px;
+    font-size: 1.56rem;
+    font-weight: 500;
+    resize: vertical;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 2px 0 var(--bg-box);
+}
+
+
+.container-main section.right{
+    width: 42%;
+}
+section.right .box-inputs{
+    margin-bottom: 15px;
+}
+section.right .center input{
+    width: 100%; height: 30px;
+    padding-left: 13px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 0 var(--bg-box);
+}
+section.right .center h2{
+    font-size: 2.5rem;
+    margin-bottom: 3px;
+    color: var(--title-color);
+}
+section.right .center h3{
+    font-size: 3rem;
+    color: var(--title-color);
+}
+section.right .box-inputs label{
+    display: inline-block;
+    margin-bottom: 3px;
+    margin-left: 5px;
+    font-size: 1.63rem;
+    color: var(--title-color);
+}
+section.right .center p{
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+section.right .center button{
+    width: 100%;
+    padding: 2px 0;
+    margin: 8px auto 15px auto;
+    font-size: 1.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    border: 2px solid var(--main-red);
+    background: var(--main-red);
+    transition: .2s;
+}
+section.right .center button:hover{
+    background: transparent;
+    color: var(--main-red);
+    transition: .2s;
+}
+section.right .center .container-password .password{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 2px 0 var(--bg-box);
+}
+section.right .center .container-password input{
+    box-shadow: none;
+}
+section.right .center .container-password i.see,
+section.right .center .container-password i.not-see{
+    margin-right: 6px;
+    font-size: 1.83rem;
+    cursor: pointer;
+    background: none;
+}
+section.right .center .container-password i.see{
+    display: block;
+}
+section.right .center .container-password i.not-see{
+    display: none;
+}
+
+p#update-error{
+    color: rgb(255, 40, 40);
+}
+p#update-success{
+    font-weight: 600;
+    color: #24f027;
+}
