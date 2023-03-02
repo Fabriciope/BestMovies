@@ -86,7 +86,7 @@ class Users extends Model
     /**
      * Método responsável por fazer a autenticação do usuário com os dados vindo do POST, e retornar um array que indicará o estado da autenticação.
      *
-     * @return mixed
+     * @return array
      */
     public function authenticateUser()
     {
@@ -159,19 +159,19 @@ class Users extends Model
      * Método responsável por fazer a atualização dos dados do usuário no banco de dados.
      *
      * @param string $username
-     * @return void
+     * @return string
      */
     public function updateUserData(string $username)
     {
         $query = 'UPDATE users
                 SET name = :newName,
                     lastname = :newLastName
-                WHERE id = :id AND name = :username';
+                WHERE id = :id AND name = :name';
         $statement = $this->db->prepare($query);
         $statement->bindValue(':newName', trim($this->__get('name')));
         $statement->bindValue(':newLastName', trim($this->__geT('lastName')));
         $statement->bindValue(':id', $this->__get('id'));
-        $statement->bindValue(':username', $username);
+        $statement->bindValue(':name', $username);
 
         if (!$statement->execute()) {
             echo '<pre>';
@@ -185,11 +185,17 @@ class Users extends Model
         }
     }
 
+    /**
+     * Método responsável por fazer a validação dos dados antes de fazer a alteração da senha.
+     *
+     * @param string $newPasswordCS
+     * @return tring
+     */
     public function checkUpdatePassword($newPasswordCS)
     {
-        $msgError= [];
+        $msgError = [];
 
-        if(!$this->__get('password')) {
+        if (!$this->__get('password')) {
             $msgError[] = 'Insira sua nova senha.';
         }
 
@@ -197,19 +203,25 @@ class Users extends Model
             $msgError[] = 'Confirme sua senha.';
         }
 
-        if($this->__get('password') != $newPasswordCS) {
+        if ($this->__get('password') != $newPasswordCS) {
             $msgError[] = 'A confirmação das senhas estão incorretas.';
         }
 
         return $msgError;
     }
+
+    /**
+     * Método responsável por fazer a alteração da senha do usuário no banco de dados.
+     *
+     * @return string
+     */
     public function updatePassword()
     {
-        $query= 'UPDATE users
+        $query = 'UPDATE users
                  SET password = :newPassword
                  WHERE id = :id AND name = :name';
 
-        $statement= $this->db->prepare($query);
+        $statement = $this->db->prepare($query);
         $statement->bindValue(':newPassword', password_hash($this->__get('password'), PASSWORD_DEFAULT));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $this->__get('name'));
@@ -224,7 +236,6 @@ class Users extends Model
         } else {
             return 'success';
         }
-
     }
 
     /**
@@ -233,7 +244,7 @@ class Users extends Model
      * @param string $fileType
      * @param string $temporaryName
      * @param string $oldImage
-     * @return void
+     * @return string
      */
     public function updateProfileImage($fileType, $temporaryName, $oldImage)
     {
@@ -273,6 +284,12 @@ class Users extends Model
         }
     }
 
+    /**
+     * Método responsável por excluir a imagem de perfil do usuário no banco de dados e deixa-lá como null.
+     *
+     * @param string $currentImage
+     * @return string
+     */
     public function deleteProfileImage($currentImage)
     {
         $query = 'UPDATE users
@@ -292,6 +309,34 @@ class Users extends Model
             exit;
         } else {
             @unlink(__DIR__ . './../../public/' . $currentImage);
+            return 'success';
+        }
+    }
+
+    /**
+     * Método responsável fazer a alteração do texto de biográfia do usuário no banco de dados.
+     *
+     * @return string
+     */
+    public function updateAboutYou()
+    {
+        $query = 'UPDATE users
+                  SET bio = :newBio
+                  WHERE id = :id AND name = :name';
+
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':newBio', trim($this->__get('bio')));
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->bindValue(':name', $this->__get('name'));
+
+        if (!$statement->execute()) {
+            echo '<pre>';
+            print_r($statement->errorInfo());
+            echo '</pre>';
+            // die();
+            return 'executionFailure';
+            exit;
+        } else {
             return 'success';
         }
     }

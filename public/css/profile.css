@@ -55,8 +55,14 @@ section.left .center a.delete-profile-image{
     font-weight: 500;
     text-decoration: none;
     border-radius: 5px;
+    color: var(--main-red);
+    border: 2px solid var(--main-red);
+    transition: .2s;
+}
+section.left .center a.delete-profile-image:hover{
     color: black;
     background: var(--main-red);
+    transition: .2s;
 }
 section.left .center .box-file{
     display: flex;
@@ -114,10 +120,11 @@ section.left .center .box-about-you label{
     color: var(--title-color);
 }
 section.left .center .box-about-you textarea{
-    width: 98%;
+    width: 99%;
     padding: 10px;
     font-size: 1.56rem;
     font-weight: 500;
+    text-align: left;
     resize: vertical;
     border-radius: 5px;
     outline: none;
@@ -168,19 +175,6 @@ section.left p{
     margin-bottom: 6px;
     margin-left: 6px;
 }
-section.right .center button{
-    width: 100%;
-    padding: 2px 0;
-    margin: 8px auto 15px auto;
-    font-size: 1.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    border-radius: 7px;
-    border: 2px solid var(--main-red);
-    background: var(--main-red);
-    transition: .2s;
-}
 section.right .center button:hover{
     background: transparent;
     color: var(--main-red);
@@ -210,6 +204,37 @@ section.right .center .container-password i.see{
 section.right .center .container-password i.not-see{
     display: none;
 }
+
+
+section.left .center .box-about-you button,
+section.right .center button{
+    width: 100%;
+    margin: auto;
+    padding: 2px 0;
+    font-size: 1.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    border: 2px solid red;
+    background: var(--main-red);
+    transition: .2s;
+}
+section.left .center .box-about-you button{
+    width: 99%;
+    margin-top: 15px;
+}
+section.right .center button {
+    margin: 8px auto 15px auto;
+}
+section.left .center .box-about-you button:hover,
+section.right .center button:hover{
+    background: transparent;
+    color: var(--main-red);
+    transition: .2s;
+}
+
+
 
 main .container-main .left .center p.error,
 section.right .center p.error,

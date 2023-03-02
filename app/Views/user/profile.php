@@ -21,9 +21,12 @@
                 </div>
                 <p class="error"><?=$this->view->msgUpdateImageError?><?=$this->view->msgDeleteProfileImageError?></p>
                 <p class="success"><?=$this->view->msgUpdateImageSuccess?><?=$this->view->msgDeleteProfileImageSuccess?></p>
-                <form action="/#" class="box-about-you">
+                <form action="/update-about-you" class="box-about-you" method="post">
                     <label for="about-you">Sobre você:</label>
-                    <textarea name="aboutYou" id="about-you" rows="10" placeholder="Conte-nos mais quem é você, sobre quais filmes ou series gosta e mais..."></textarea>
+                    <textarea name="aboutYou" id="about-you" rows="10" placeholder="Conte-nos mais quem é você, sobre quais filmes ou series gosta..."><?=$this->view->userData['bio']?></textarea>
+                    <p class="error"><?=$this->view->msgUpdateAboutYouError?></p>
+                    <p class="success"><?=$this->view->msgUpdateAboutYouSuccess?></p>
+                    <button>Alterar bio</button>
                 </form>
                
             </div>

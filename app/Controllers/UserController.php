@@ -8,7 +8,7 @@ use App\Utils\models\Container;
 class UserController extends Action
 {
     /**
-     * Método responsável por retornar a página de perfil do usuário.
+     * Método responsável por retornar a página de perfil do usuário como todos os dados necessários já renderizados.
      *
      * @return void
      */
@@ -38,6 +38,10 @@ class UserController extends Action
         //msg's delete profile image.
         $this->view->msgDeleteProfileImageError = $this->view->msgDeleteProfileImageError ?? '';
         $this->view->msgDeleteProfileImageSuccess = $this->view->msgDeleteProfileImageSuccess ?? '';
+
+        //msg's update about you.
+        $this->view->msgUpdateAboutYouError = $this->view->msgUpdateAboutYouError ?? '';
+        $this->view->msgUpdateAboutYouSuccess = $this->view->msgUpdateAboutYouSuccess ?? '';
 
         $this->view->userData = $userData;
 
@@ -78,6 +82,11 @@ class UserController extends Action
         header('location: /perfil');
     }
 
+    /**
+     * Método responsável por alterar a senha do usuário.
+     *
+     * @return void
+     */
     public function updatePassword()
     {
         session_start();
@@ -147,6 +156,11 @@ class UserController extends Action
         }
     }
 
+    /**
+     * Método responsável por excluir a imagem de perfil do usuário.
+     *
+     * @return void
+     */
     public function deleteProfileImage()
     {
         session_start();
@@ -166,6 +180,31 @@ class UserController extends Action
             $this->pageProfile();
         } elseif($deleteImage === 'success') {
             $this->view->msgDeleteProfileImageSuccess = 'Imagem excluída com secusso!';
+            $this->pageProfile();
+        }
+    }
+
+    /**
+     * Método responsável por alterar a texto da biográfio do usuário.
+     *
+     * @return void
+     */
+    public function updateAboutYou()
+    {
+        session_start();
+        // echo filter_input(INPUT_POST, "aboutYou");
+        $user= Container::getModel('Users');
+        $user->__set('id', $_SESSION['userID']);
+        $user->__set('name', $_SESSION['username']);
+        $user->__set('bio', filter_input(INPUT_POST, "aboutYou"));
+
+        $updateAboutYou = $user->updateAboutYou();
+
+        if($updateAboutYou === 'executionFailure') {
+            $this->view->msgUpdateAboutYouError = 'Erro ao tentar alterar sua bio, tente novamente mais tarde.';
+            $this->pageProfile();
+        } else {
+            $this->view->msgUpdateAboutYouSuccess = 'bio alterada com sucesso.';
             $this->pageProfile();
         }
     }

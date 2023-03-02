@@ -65,6 +65,11 @@ class Router extends Bootstrap
             'controller' => 'UserController',
             'action' => 'updatePassword',
         );
+        $routes['update-about-you'] = array(
+            'route' => '/update-about-you',
+            'controller' => 'UserController',
+            'action' => 'updateAboutYou',
+        );
         $this->setRoutes($routes);
     }
 }
