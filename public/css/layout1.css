@@ -113,7 +113,7 @@ header .center nav li a.name{
 }
 header .center nav li.userNavigation a i.arrow-down{
     margin-left: 3px;
-    font-size: 1.42rem;
+    font-size: 1.2rem;
 }
 header .center nav ul a{
     font-size: 1.9rem;
@@ -121,6 +121,9 @@ header .center nav ul a{
     text-decoration: none;
     color: var(--title-color);
     transition: .2s;
+}
+header .center nav ul li{
+    margin-left: 12px;
 }
 header .center nav ul a:hover{
     /* text-decoration: underline; */

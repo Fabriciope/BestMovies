@@ -36,7 +36,7 @@
 
                     <?php else: ?> 
                         <li class="<?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
-                        <li <?php if($this->view->page == 'home/enter-register')echo'active'?>><a href="/entrar-registrar">Entrar / Registrar</a></li>
+                        <li class="<?php if($this->view->page == 'home/enter-register')echo'active'?> ER"><a href="/entrar-registrar">Entrar / Registrar</a></li>
                        
                     <?php endif; ?>
                 

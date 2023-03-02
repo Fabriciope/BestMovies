@@ -1,0 +1,39 @@
+sql bestmovies
+
+(criação do banco de dados e das tabelas)
+
+CREATE DATABASE bestmovies;
+
+USE bestmovies;
+
+CREATE TABLE users(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100),
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    image VARCHAR(255),
+    bio TEXT
+);
+
+CREATE TABLE movies(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_user INT,
+    title VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    trailer VARCHAR(150),
+    category VARCHAR(50) NOT NULL,
+    length VARCHAR(50),
+    FOREIGN KEY(id_user) REFERENCES users(id)
+);
+
+CREATE TABLE reviews(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_user INT NOT NULL,
+    id_movie INT NOT NULL,
+    rating INT NOT NULL,
+    review TEXT NOT NULL,
+    FOREIGN KEY(id_user) REFERENCES users(id),
+    FOREIGN KEY(id_movie) REFERENCES movies(id)
+);

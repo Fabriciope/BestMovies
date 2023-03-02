@@ -59,4 +59,4 @@
         </div>
     </section>
 </main>
-<script src="js/scripts.js"></script>
+<script src="js/password.js"></script>

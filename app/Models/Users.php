@@ -101,7 +101,8 @@ class Users extends Model
             echo '<pre>';
             print_r($statement->errorInfo());
             echo '</pre>';
-            die();
+            // die();
+            $userValidation[] = 'Erro ao autenticar o usuário, tente novamente mais tarde!';
         }
 
         $userData = (array) $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -147,16 +148,16 @@ class Users extends Model
      */
     public function updateUserData(string $username)
     {
-        $query='UPDATE users
+        $query = 'UPDATE users
                 SET name = :newName,
                     lastname = :newLastName
                 WHERE id = :id AND name = :username';
-        $statement= $this->db->prepare($query);
+        $statement = $this->db->prepare($query);
         $statement->bindValue(':newName', trim($this->__get('name')));
         $statement->bindValue(':newLastName', trim($this->__geT('lastName')));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':username', $username);
-        
+
         if (!$statement->execute()) {
             echo '<pre>';
             print_r($statement->errorInfo());
@@ -165,6 +166,75 @@ class Users extends Model
 
             return 'failed';
         } else {
+            return 'success';
+        }
+    }
+
+    /**
+     * Método responsável por inserir ou alterar a imagem de perfil do usuário.
+     *
+     * @param string $fileType
+     * @param string $temporaryName
+     * @param string $oldImage
+     * @return void
+     */
+    public function updateProfileImage($fileType, $temporaryName, $oldImage)
+    {
+        $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
+        $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
+        $imageName = 'images/users/' . bin2hex(random_bytes(5)) . $this->__get('image');
+
+        if (in_array($fileExtension, $allowedFiles) && in_array($fileType, $allowedFileTypes)) {
+            $query = 'UPDATE users 
+                      SET image = :image 
+                      WHERE id = :id AND name = :name';
+
+            $statement = $this->db->prepare($query);
+            $statement->bindValue(':id', $this->__get('id'));
+            $statement->bindValue(':name', $this->__get('name'));
+            $statement->bindValue(':image', $imageName);
+
+            if (!$statement->execute()) {
+                echo '<pre>';
+                print_r($statement->errorInfo());
+                echo '</pre>';
+                // die();
+                return 'executionFailure';
+                exit;
+            } else {
+
+                @unlink(__DIR__ . './../../public/' . $oldImage);
+                move_uploaded_file($temporaryName, $imageName);
+
+                return 'success';
+                exit;
+            }
+        } else {
+            return 'unsupportedFile';
+            exit;
+        }
+    }
+
+    public function deleteProfileImage($currentImage)
+    {
+        $query = 'UPDATE users
+                SET image = null
+                WHERE id = :id AND name = :name ';
+
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->bindValue(':name', $this->__get('name'));
+
+        if (!$statement->execute()) {
+            echo '<pre>';
+            print_r($statement->errorInfo());
+            echo '</pre>';
+            // die();
+            return 'executionFailure';
+            exit;
+        } else {
+            @unlink(__DIR__ . './../../public/' . $currentImage);
             return 'success';
         }
     }

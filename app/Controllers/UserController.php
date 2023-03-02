@@ -19,23 +19,35 @@ class UserController extends Action
         $user = Container::getModel('Users');
         $userData = $user->retrieveUserData($_SESSION['userID'], $_SESSION['username']);
 
-        $this->view->msgUpdateError= $this->view->msgUpdateError ?? '';
-        $this->view->msgUpdateSuccess= $this->view->msgUpdateSuccess ?? '';
+        //file or directory names.
+        $this->view->imageFileName= isset($userData['image']) ? substr($userData['image'], 23) : 'nome do arquivo.png';
+        $this->view->imageDirectoryName= $userData['image'] ?? 'images/users/perfil.png';
+
+        //msg's update name or last name.
+        $this->view->msgUpdateNameError = $this->view->msgUpdateNameError ?? '';
+        $this->view->msgUpdateNameSuccess = $this->view->msgUpdateNameSuccess ?? '';
+
+        //msg's update profile image.
+        $this->view->msgUpdateImageError = $this->view->msgUpdateImageError ?? '';
+        $this->view->msgUpdateImageSuccess = $this->view->msgUpdateImageSuccess ?? '';
+
+        //msg's delete profile image.
+        $this->view->msgDeleteProfileImageError = $this->view->msgDeleteProfileImageError ?? '';
+        $this->view->msgDeleteProfileImageSuccess = $this->view->msgDeleteProfileImageSuccess ?? '';
 
         $this->view->userData = $userData;
 
         $this->render('user/profile', 'layout1');
     }
 
+    /**
+     * Método reponsável por alterar os dados de nome e sobrenome do usuário.
+     *
+     * @return void
+     */
     public function updateNameLastName()
     {
         session_start();
-        // echo '<pre>';
-        // print_r($_POST);
-        // echo '</pre><br>';
-        // echo '<pre>';
-        // print_r($_SESSION);
-        // echo '</pre>';
         $user = Container::getModel('Users');
         $user->__set('id', $_SESSION['userID']);
         $user->__set('name', $_POST['newName']);
@@ -44,16 +56,83 @@ class UserController extends Action
         $update = $user->updateUserData($_SESSION['username']);
 
         if ($update === 'faiiled') {
-            $this->view->msgUpdateError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
+            $this->view->msgUpdateNameError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
             $this->pageProfile();
         } elseif ($update === 'success') {
             $_SESSION['username'] = trim($user->__get('name'));
-            $this->view->msgUpdateSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
+            $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
             // header('location: /perfil');
             $this->pageProfile();
         }
 
         header('location: /perfil');
+    }
+
+    /**
+     * Método responsável por alterar a imagem de perfil do usuário.
+     *
+     * @return void
+     */
+    public function updateProfileImage()
+    {
+        if (isset($_FILES['profile-image']) && !empty($_FILES['profile-image']['tmp_name'])) {
+
+            session_start();
+
+            $user = Container::getModel('Users');
+
+            $oldImage= $user->retrieveUserData($_SESSION['userID'], $_SESSION['username'])['image'];
+            $user->__set('id', $_SESSION['userID']);
+            $user->__set('name', $_SESSION['username']);
+            $user->__set('image', $_FILES['profile-image']['name']);
+
+            // $validateImage = $user->validateImage($_FILES['profile-image']['tmp_name']);
+            // echo $validateImage;
+
+            $updateImage = $user->updateProfileImage($_FILES['profile-image']['type'], $_FILES['profile-image']['tmp_name'], $oldImage);
+            
+            switch ($updateImage) {
+                case 'executionFailure':
+                    $this->view->msgUpdateImageError = 'Error ao inserir sua imagem!';
+                    $this->pageProfile();
+                    break;
+                case 'unsupportedFile':
+                    $this->view->msgUpdateImageError = 'Escolha uma imagem .jpeg, .jpg ou .png';
+                    $this->pageProfile();
+                    break;
+                case 'success':
+                    $this->view->imageDirectoryName= $user->__get('image');
+                    $this->view->msgUpdateImageSuccess = 'Sua imagem foi inserida com sucesso!';
+                    $this->pageProfile();
+                    break;
+            }
+        } else {
+            $this->view->msgUpdateImageError = 'Insira uma imagem antes de enviar.';
+            $this->pageProfile();
+        }
+    }
+
+    public function deleteProfileImage()
+    {
+        session_start();
+
+        $user= Container::getModel('Users');
+
+        $user->__set('id', $_SESSION['userID']);
+        $user->__set('name', $_SESSION['username']);
+
+        $userData = $user->retrieveUserData($_SESSION['userID'], $_SESSION['username']);
+        $currentImage = $userData['image'];
+
+        $deleteImage = $user->deleteProfileImage($currentImage);
+
+        if ($deleteImage === 'executionFailure') {
+            $this->view->msgDeleteProfileImageError = 'Erro ao tentar excluir sua imagem, tente novamente mais tarde!';
+            $this->pageProfile();
+        } elseif($deleteImage === 'success') {
+            $this->view->msgDeleteProfileImageSuccess = 'Imagem excluída com secusso!';
+            $this->pageProfile();
+        }
     }
 
     /**

@@ -50,6 +50,16 @@ class Router extends Bootstrap
             'controller' => 'UserController',
             'action' => 'updateNameLastName',
         );
+        $routes['update-profile-image'] = array(
+            'route' => '/update-profile-image',
+            'controller' => 'UserController',
+            'action' => 'updateProfileImage',
+        );
+        $routes['delete-profile-image'] = array(
+            'route' => '/delete-profile-image',
+            'controller' => 'UserController',
+            'action' => 'deleteProfileImage',
+        );
         $this->setRoutes($routes);
     }
 }
