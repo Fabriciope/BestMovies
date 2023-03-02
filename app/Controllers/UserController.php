@@ -98,6 +98,7 @@ class UserController extends Action
         } else {
             $this->view->msgUpdatePasswordSuccess = 'Senha alterada com sucesso.';
             $user->updatePassword();
+            $this->pageProfile();
         }
 
     }

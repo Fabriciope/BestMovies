@@ -22,14 +22,6 @@ main .container-main{
     display: flex;
     justify-content: space-between;
 }
-p.error{
-    font-weight: 600;
-    color: rgb(255, 40, 40);
-}
-p.success{
-    font-weight: 600;
-    color: #24f027;
-}
 .container-main section.left{
     width: 56%;
 }
@@ -166,7 +158,7 @@ section.right .box-inputs label{
     color: var(--title-color);
 }
 section.right .center p,
-section.left p{
+section.left .center p{
     margin-bottom: 10px;
     font-size: 1.3rem;
     font-weight: 500;
@@ -219,11 +211,16 @@ section.right .center .container-password i.not-see{
     display: none;
 }
 
-p#update-error{
+main .container-main .left .center p.error,
+section.right .center p.error,
+main .container-main .right .center .container-password form p.error{
     font-weight: 600;
     color: rgb(255, 40, 40);
 }
-p#update-success{
+main .container-main .left .center p.success,
+section.right .center p.success,
+main .container-main .right .center .container-password form p.success,
+section.right .center p.success{
     font-weight: 600;
     color: #24f027;
 }

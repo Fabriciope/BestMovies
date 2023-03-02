@@ -205,14 +205,14 @@ class Users extends Model
     }
     public function updatePassword()
     {
-        $query= 'UPDATE user
+        $query= 'UPDATE users
                  SET password = :newPassword
                  WHERE id = :id AND name = :name';
 
         $statement= $this->db->prepare($query);
-        $statement->bindValue(':password', password_hash($this->__get('password'), PASSWORD_DEFAULT));
+        $statement->bindValue(':newPassword', password_hash($this->__get('password'), PASSWORD_DEFAULT));
+        $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $this->__get('name'));
-        $statement->bindValue(':newPassword', $this->__get('password'));
 
         if (!$statement->execute()) {
             echo '<pre>';

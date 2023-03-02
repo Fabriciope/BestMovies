@@ -4,28 +4,28 @@
     <div class="container-main">
         <section class="left">
             <div class="center">
-                <div>
-                    <div class="profile-image" style="background-image: url(<?=$this->view->imageDirectoryName?>);">
-                       <img id="image" src="<?=$this->view->imageDirectoryName?>" alt="">
-                    </div>
-                    <p>Escolha uma imagem com as extensões .jpeg, .jpg ou .png.</p>
-                    <div class="container-select-image-or-delete">
-                        <form action="/update-profile-image" class="box-file" method="post" enctype="multipart/form-data">
-                           <input type="file" id="imageFile" name="profile-image">
-                            <label for="imageFile">
-                                <span>Procurar</span><span class="text-file"><?=$this->view->imageFileName?></span>
-                            </label>
-                            <button type="submit">Enviar</button>
-                        </form>
-                        <a class="delete-profile-image" href="/delete-profile-image">Excluir imagem</a>
-                    </div>
-                    <p class="error"><?=$this->view->msgUpdateImageError?><?=$this->view->msgDeleteProfileImageError?></p>
-                    <p class="success"><?=$this->view->msgUpdateImageSuccess?><?=$this->view->msgDeleteProfileImageSuccess?></p>
-                    <form action="/#" class="box-about-you">
-                        <label for="about-you">Sobre você:</label>
-                        <textarea name="aboutYou" id="about-you" rows="10" placeholder="Conte-nos mais quem é você, sobre quais filmes ou series gosta e mais..."></textarea>
-                    </form>
+            
+                <div class="profile-image" style="background-image: url(<?=$this->view->imageDirectoryName?>);">
+                    <img id="image" src="<?=$this->view->imageDirectoryName?>" alt="">
                 </div>
+                <p>Escolha uma imagem com as extensões .jpeg, .jpg ou .png.</p>
+                <div class="container-select-image-or-delete">
+                    <form action="/update-profile-image" class="box-file" method="post" enctype="multipart/form-data">
+                        <input type="file" id="imageFile" name="profile-image">
+                        <label for="imageFile">
+                            <span>Procurar</span><span class="text-file"><?=$this->view->imageFileName?></span>
+                        </label>
+                        <button type="submit">Enviar</button>
+                    </form>
+                    <a class="delete-profile-image" href="/delete-profile-image">Excluir imagem</a>
+                </div>
+                <p class="error"><?=$this->view->msgUpdateImageError?><?=$this->view->msgDeleteProfileImageError?></p>
+                <p class="success"><?=$this->view->msgUpdateImageSuccess?><?=$this->view->msgDeleteProfileImageSuccess?></p>
+                <form action="/#" class="box-about-you">
+                    <label for="about-you">Sobre você:</label>
+                    <textarea name="aboutYou" id="about-you" rows="10" placeholder="Conte-nos mais quem é você, sobre quais filmes ou series gosta e mais..."></textarea>
+                </form>
+               
             </div>
         </section>
         <section class="right">
@@ -51,8 +51,8 @@
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="email" value="<?=$this->view->userData['email']?>" readonly>
                         </div>
-                        <p id="update-error"><?=$this->view->msgUpdateNameError?></p>
-                        <p id="update-success"><?=$this->view->msgUpdateNameSuccess?></p>
+                        <p class="error"><?=$this->view->msgUpdateNameError?></p>
+                        <p class="success"><?=$this->view->msgUpdateNameSuccess?></p>
                         <button type="submit" >Alterar</button>
 
                     </form>
@@ -72,7 +72,7 @@
 
                             <div class="password">
 
-                                <input type="password" name="newPassword" id="password-enter-update" placeholder="Digite sua nova senha" required>
+                                <input type="password" name="newPassword" id="password-enter-update" minlength="4" placeholder="Digite sua nova senha" required>
                                 <i class="see enter-update fa-regular fa-eye"></i>
                                 <i class="not-see enter-update fa-regular fa-eye-slash"></i>
 
