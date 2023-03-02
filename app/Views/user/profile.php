@@ -64,7 +64,7 @@
 
                     <p>Digite a nova senha e confirme, caso queira alterar.</p>
 
-                    <form action="/update-password">
+                    <form action="/update-password" method="post">
 
                         <div class="box-inputs">
 
@@ -72,7 +72,7 @@
 
                             <div class="password">
 
-                                <input type="password" name="passwordEnter" id="password-enter-update" placeholder="Digite sua nova senha" required>
+                                <input type="password" name="newPassword" id="password-enter-update" placeholder="Digite sua nova senha" required>
                                 <i class="see enter-update fa-regular fa-eye"></i>
                                 <i class="not-see enter-update fa-regular fa-eye-slash"></i>
 
@@ -86,13 +86,15 @@
 
                             <div class="password">
 
-                                <input type="password" name="passwordCS" id="password-register-updateCS" minlength="4" placeholder="Confirme sua senha" required>
+                                <input type="password" name="newPasswordCS" id="password-register-updateCS" minlength="4" placeholder="Confirme sua senha" required>
                                 <i class="see register-updateCS fa-regular fa-eye"></i>
                                 <i class="not-see register-updateCS fa-regular fa-eye-slash"></i>
 
                             </div>
 
                         </div>
+                        <p class="error"><?=$this->view->msgUpdatePasswordError?></p>
+                        <p class="success"><?=$this->view->msgUpdatePasswordSuccess?></p>
                         <button type="submit">Alterar senha</button>
 
                     </form>

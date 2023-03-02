@@ -22,6 +22,14 @@ main .container-main{
     display: flex;
     justify-content: space-between;
 }
+p.error{
+    font-weight: 600;
+    color: rgb(255, 40, 40);
+}
+p.success{
+    font-weight: 600;
+    color: #24f027;
+}
 .container-main section.left{
     width: 56%;
 }
@@ -163,14 +171,6 @@ section.left p{
     font-size: 1.3rem;
     font-weight: 500;
     color: var(--text-color);
-}
-section.left p.error{
-    font-weight: 600;
-    color: rgb(255, 40, 40);
-}
-section.left p.success{
-    font-weight: 600;
-    color: #24f027;
 }
 section.left p{
     margin-bottom: 6px;

@@ -79,6 +79,7 @@ class Users extends Model
             print_r($statement->errorInfo());
             echo '</pre>';
             die();
+            // fazer a tratação deste erro de uma forma melhor
         }
     }
 
@@ -140,6 +141,20 @@ class Users extends Model
         return (array) $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function checkUserUpdateData()
+    {
+        $msgError = [];
+
+        if (!$this->__get('name')) {
+            $msgError[] = 'Digite um nome.';
+        }
+
+        if (!$this->__get('lastName')) {
+            $msgError[] = 'Digite um sobrenome.';
+        }
+        return $msgError;
+    }
+
     /**
      * Método responsável por fazer a atualização dos dados do usuário no banco de dados.
      *
@@ -168,6 +183,48 @@ class Users extends Model
         } else {
             return 'success';
         }
+    }
+
+    public function checkUpdatePassword($newPasswordCS)
+    {
+        $msgError= [];
+
+        if(!$this->__get('password')) {
+            $msgError[] = 'Insira sua nova senha.';
+        }
+
+        if (!$newPasswordCS) {
+            $msgError[] = 'Confirme sua senha.';
+        }
+
+        if($this->__get('password') != $newPasswordCS) {
+            $msgError[] = 'A confirmação das senhas estão incorretas.';
+        }
+
+        return $msgError;
+    }
+    public function updatePassword()
+    {
+        $query= 'UPDATE user
+                 SET password = :newPassword
+                 WHERE id = :id AND name = :name';
+
+        $statement= $this->db->prepare($query);
+        $statement->bindValue(':password', password_hash($this->__get('password'), PASSWORD_DEFAULT));
+        $statement->bindValue(':name', $this->__get('name'));
+        $statement->bindValue(':newPassword', $this->__get('password'));
+
+        if (!$statement->execute()) {
+            echo '<pre>';
+            print_r($statement->errorInfo());
+            echo '</pre>';
+            // die();
+
+            return 'failed';
+        } else {
+            return 'success';
+        }
+
     }
 
     /**

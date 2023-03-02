@@ -60,6 +60,11 @@ class Router extends Bootstrap
             'controller' => 'UserController',
             'action' => 'deleteProfileImage',
         );
+        $routes['update-password'] = array(
+            'route' => '/update-password',
+            'controller' => 'UserController',
+            'action' => 'updatePassword',
+        );
         $this->setRoutes($routes);
     }
 }

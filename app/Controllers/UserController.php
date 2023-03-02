@@ -27,6 +27,10 @@ class UserController extends Action
         $this->view->msgUpdateNameError = $this->view->msgUpdateNameError ?? '';
         $this->view->msgUpdateNameSuccess = $this->view->msgUpdateNameSuccess ?? '';
 
+        //msg's update password.
+        $this->view->msgUpdatePasswordError = $this->view->msgUpdatePasswordError ?? '';
+        $this->view->msgUpdatePasswordSuccess = $this->view->msgUpdatePasswordSuccess ?? '';
+
         //msg's update profile image.
         $this->view->msgUpdateImageError = $this->view->msgUpdateImageError ?? '';
         $this->view->msgUpdateImageSuccess = $this->view->msgUpdateImageSuccess ?? '';
@@ -50,22 +54,52 @@ class UserController extends Action
         session_start();
         $user = Container::getModel('Users');
         $user->__set('id', $_SESSION['userID']);
-        $user->__set('name', $_POST['newName']);
-        $user->__set('lastName', $_POST['newLastName']);
+        $user->__set('name', filter_input(INPUT_POST, "newName"));
+        $user->__set('lastName', filter_input(INPUT_POST, "newLastName"));
 
-        $update = $user->updateUserData($_SESSION['username']);
+        $verificationErrorMessage = $user->checkUserUpdateData();
 
-        if ($update === 'faiiled') {
-            $this->view->msgUpdateNameError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
+        if (count($verificationErrorMessage) > 0) {
+            $this->view->msgUpdateNameError= $verificationErrorMessage[0];
             $this->pageProfile();
-        } elseif ($update === 'success') {
-            $_SESSION['username'] = trim($user->__get('name'));
-            $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
-            // header('location: /perfil');
-            $this->pageProfile();
+        } else {
+            $update = $user->updateUserData($_SESSION['username']);
+            if ($update === 'faiiled') {
+                $this->view->msgUpdateNameError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
+                $this->pageProfile();
+            } elseif ($update === 'success') {
+                $_SESSION['username'] = trim($user->__get('name'));
+                $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
+                // header('location: /perfil');
+                $this->pageProfile();
+            }
         }
 
         header('location: /perfil');
+    }
+
+    public function updatePassword()
+    {
+        session_start();
+
+        $user= Container::getModel('Users');
+
+        
+
+        $user->__set('id', $_SESSION['userID']);
+        $user->__set('name', $_SESSION['username']);
+        $user->__set('password', filter_input(INPUT_POST, "newPassword"));
+
+        $verificationErrorMessage = $user->checkUpdatePassword(filter_input(INPUT_POST, "newPasswordCS"));
+
+        if (count($verificationErrorMessage) > 0) {
+            $this->view->msgUpdatePasswordError = $verificationErrorMessage[0];
+            $this->pageProfile();
+        } else {
+            $this->view->msgUpdatePasswordSuccess = 'Senha alterada com sucesso.';
+            $user->updatePassword();
+        }
+
     }
 
     /**
