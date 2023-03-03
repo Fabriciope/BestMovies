@@ -141,7 +141,7 @@ class Users extends Model
         return (array) $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function checkUserUpdateData()
+    public function checkFirstNameAndLastName()
     {
         $msgError = [];
 
@@ -161,14 +161,14 @@ class Users extends Model
      * @param string $username
      * @return string
      */
-    public function updateUserData(string $username)
+    public function updateFirstNameAndLastName(string $username)
     {
         $query = 'UPDATE users
                 SET name = :newName,
                     lastname = :newLastName
                 WHERE id = :id AND name = :name';
         $statement = $this->db->prepare($query);
-        $statement->bindValue(':newName', trim($this->__get('name')));
+        $statement->bindValue(':newName', ucfirst(trim($this->__get('name'))));
         $statement->bindValue(':newLastName', trim($this->__geT('lastName')));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $username);
@@ -251,9 +251,10 @@ class Users extends Model
         $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
         $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
         $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
-        $imageName = 'images/users/' . bin2hex(random_bytes(5)) . $this->__get('image');
 
         if (in_array($fileExtension, $allowedFiles) && in_array($fileType, $allowedFileTypes)) {
+            $imageName = 'images/users/' . bin2hex(random_bytes(5)) . $this->__get('image');
+
             $query = 'UPDATE users 
                       SET image = :image 
                       WHERE id = :id AND name = :name';
@@ -325,7 +326,7 @@ class Users extends Model
                   WHERE id = :id AND name = :name';
 
         $statement = $this->db->prepare($query);
-        $statement->bindValue(':newBio', trim($this->__get('bio')));
+        $statement->bindValue(':newBio', ucfirst(trim($this->__get('bio'))));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $this->__get('name'));
 

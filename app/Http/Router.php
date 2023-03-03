@@ -20,25 +20,29 @@ class Router extends Bootstrap
             'controller' => 'IndexController',
             'action' => 'pageHome',
         );
+
+        //PAGE ENTER_REGISTER
         $routes['page_entrar_registrar'] = array(
-            'route' => '/entrar-registrar',
+            'route' => '/enter-register',
             'controller' => 'IndexController',
             'action' => 'pageEnterRegister',
         );
         $routes['register'] = array(
-            'route' => '/registrar',
+            'route' => '/register',
             'controller' => 'AuthController',
             'action' => 'registerUser',
-        );
-        $routes['page_profile'] = array(
-            'route' => '/perfil',
-            'controller' => 'UserController',
-            'action' => 'pageProfile',
         );
         $routes['authenticate_user'] = array(
             'route' => '/authenticate-user',
             'controller' => 'AuthController',
             'action' => 'authenticateUser',
+        );
+
+        //PAGE PROFILE
+        $routes['page_profile'] = array(
+            'route' => '/profile',
+            'controller' => 'UserController',
+            'action' => 'pageProfile',
         );
         $routes['logout'] = array(
             'route' => '/logout',
@@ -69,6 +73,23 @@ class Router extends Bootstrap
             'route' => '/update-about-you',
             'controller' => 'UserController',
             'action' => 'updateAboutYou',
+        );
+
+
+        $routes['page_register_movie'] = array(
+            'route' => '/page-register-movie',
+            'controller' => 'MoviesController',
+            'action' => 'pageRegisterMovie',
+        );
+        $routes['register_movie'] = array(
+            'route' => '/register-movie',
+            'controller' => 'MoviesController',
+            'action' => 'registerMovie',
+        );
+        $routes['page-my-movies'] = array(
+            'route' => '/page-my-movies',
+            'controller' => 'MoviesController',
+            'action' => 'pageMyMovies',
         );
         $this->setRoutes($routes);
     }

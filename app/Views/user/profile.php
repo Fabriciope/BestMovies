@@ -13,19 +13,19 @@
                     <form action="/update-profile-image" class="box-file" method="post" enctype="multipart/form-data">
                         <input type="file" id="imageFile" name="profile-image">
                         <label for="imageFile">
-                            <span>Procurar</span><span class="text-file"><?=$this->view->imageFileName?></span>
+                            <span>Procurar</span><span><?=$this->view->imageFileName?></span>
                         </label>
                         <button type="submit">Enviar</button>
                     </form>
                     <a class="delete-profile-image" href="/delete-profile-image">Excluir imagem</a>
                 </div>
-                <p class="error"><?=$this->view->msgUpdateImageError?><?=$this->view->msgDeleteProfileImageError?></p>
-                <p class="success"><?=$this->view->msgUpdateImageSuccess?><?=$this->view->msgDeleteProfileImageSuccess?></p>
+                <p class="error"><?=$this->view->msgUpdateImageError??''?><?=$this->view->msgDeleteProfileImageError??''?></p>
+                <p class="success"><?=$this->view->msgUpdateImageSuccess??''?><?=$this->view->msgDeleteProfileImageSuccess??''?></p>
                 <form action="/update-about-you" class="box-about-you" method="post">
                     <label for="about-you">Sobre você:</label>
                     <textarea name="aboutYou" id="about-you" rows="10" placeholder="Conte-nos mais quem é você, sobre quais filmes ou series gosta..."><?=$this->view->userData['bio']?></textarea>
-                    <p class="error"><?=$this->view->msgUpdateAboutYouError?></p>
-                    <p class="success"><?=$this->view->msgUpdateAboutYouSuccess?></p>
+                    <p class="error"><?=$this->view->msgUpdateAboutYouError??''?></p>
+                    <p class="success"><?=$this->view->msgUpdateAboutYouSuccess??''?></p>
                     <button>Alterar bio</button>
                 </form>
                
@@ -54,8 +54,8 @@
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="email" value="<?=$this->view->userData['email']?>" readonly>
                         </div>
-                        <p class="error"><?=$this->view->msgUpdateNameError?></p>
-                        <p class="success"><?=$this->view->msgUpdateNameSuccess?></p>
+                        <p class="error"><?=$this->view->msgUpdateNameError??''?></p>
+                        <p class="success"><?=$this->view->msgUpdateNameSuccess??''?></p>
                         <button type="submit" >Alterar</button>
 
                     </form>
@@ -96,8 +96,8 @@
                             </div>
 
                         </div>
-                        <p class="error"><?=$this->view->msgUpdatePasswordError?></p>
-                        <p class="success"><?=$this->view->msgUpdatePasswordSuccess?></p>
+                        <p class="error"><?=$this->view->msgUpdatePasswordError??''?></p>
+                        <p class="success"><?=$this->view->msgUpdatePasswordSuccess??''?></p>
                         <button type="submit">Alterar senha</button>
 
                     </form>

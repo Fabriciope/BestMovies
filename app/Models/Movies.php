@@ -1,0 +1,95 @@
+<?php
+namespace App\Models;
+
+use App\Utils\models\model;
+
+class Movies extends model
+{
+    protected $id;
+    protected $title;
+    protected $description;
+    protected $image;
+    protected $trailer;
+    protected $category;
+    protected $userID;
+
+    public function checkMovieRegistrationData($hours, $minute, $files):array
+    {
+        $msgError = [];
+        
+        if(!$this->__get('title')) {
+            $msgError[] = 'Insira um título.';
+        }
+        if (!$this->__get('description')) {
+            $msgError[] = 'Insira uma descrição a este filme.';
+        }
+        if (empty($hours) && empty($minute)) {
+            $msgError[] = 'Insira a duração do filme.';
+        }
+        if (!$this->__get('category') || $this->__get('category') == 'Selecione uma categoria') {
+            $msgError[] = 'Selecione uma categoria.';
+        }
+
+        if (!isset($files['movieFile']) || empty($files['movieFile']['tmp_name'])) {
+            $msgError[] = 'Insira uma imagem para este filme.';
+        }
+
+        $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
+        $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
+
+        if (!in_array($fileExtension, $allowedFiles) && !in_array($files['movieFile']['type'], $allowedFileTypes)) {
+            $msgError[] = 'Insira uma imagem do tipo .jpeg, .jpg ou .png.';
+        }
+
+        if (!empty($this->__get('trailer'))) {
+
+            $trailerUrl = $this->__get('trailer');
+            $validateTrailerUrl = filter_var($trailerUrl, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
+            
+            if (!$validateTrailerUrl) {
+
+                $msgError[] = 'Insira um link válido do youTube';
+
+            } else {
+                // $msgError[] = substr($validateTrailerUrl, 0, 32);
+                $youtubeDefaultUrl = 'https://www.youtube.com/watch?v=';
+                $editedUrl = substr($validateTrailerUrl, 0, 32);
+                if ($editedUrl!== $youtubeDefaultUrl) {
+                    $msgError[] = 'Insira um link do youTube';
+                }
+            }
+        }
+        return $msgError;
+    }
+
+    public function registerMovie($temporaryName)
+    {
+        $imageName = 'images/movies/' . bin2hex(random_bytes(5)) . $this->__get('image');
+
+        $query = 'INSERT INTO movies (title, description, image, trailer, category, id_user)
+                              VALUES (:title, :description, :image, :trailer, :category, :id_user)';
+
+        $statement= $this->db->prepare($query);
+        $statement->bindValue(':title', trim($this->__get('title')));
+        $statement->bindValue(':description', trim(ucfirst($this->__get('description'))));
+        $statement->bindValue(':image', $imageName);
+        $statement->bindValue(':trailer', $this->__get('trailer'));
+        $statement->bindValue(':category', $this->__get('category'));
+        $statement->bindValue(':id_user', $this->__get('userID'));
+
+        if (!$statement->execute()) {
+            echo '<pre>';
+            print_r($statement->errorInfo());
+            echo '</pre>';
+            // die();
+            return 'executionFailure';
+            exit;
+        } else {
+            move_uploaded_file($temporaryName, $imageName);
+
+            return 'success';
+            exit;
+        }
+    }
+}

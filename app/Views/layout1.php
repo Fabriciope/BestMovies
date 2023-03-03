@@ -30,13 +30,13 @@
 
                     <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
                         <li class="userNavigation <?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
-                        <li class="userNavigation"><a href="#"><i class="add-film fa-solid fa-photo-film"></i>Adicionar filme</a></li>
+                        <li class="userNavigation"><a href="/page-register-movie"><i class="add-film fa-solid fa-photo-film"></i>Adicionar filme</a></li>
                         <li class="userNavigation"><a href="#">Meus filmes</a></li>
-                        <li class="userNavigation <?php if($this->view->page == 'user/profile')echo'active'?>"><a class="name" href="/perfil">Olá, <?=$_SESSION['username']?><i class="arrow-down fa-solid fa-angle-down"></i></a></li>
+                        <li class="userNavigation <?php if($this->view->page == 'user/profile')echo'active'?>"><a class="name" href="/profile">Olá, <?=$_SESSION['username']?><i class="arrow-down fa-solid fa-angle-down"></i></a></li>
 
                     <?php else: ?> 
                         <li class="<?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
-                        <li class="<?php if($this->view->page == 'home/enter-register')echo'active'?> ER"><a href="/entrar-registrar">Entrar / Registrar</a></li>
+                        <li class="<?php if($this->view->page == 'home/enter-register')echo'active'?> ER"><a href="/enter-register">Entrar / Registrar</a></li>
                        
                     <?php endif; ?>
                 

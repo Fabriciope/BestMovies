@@ -170,7 +170,6 @@ section.register .center button:hover{
     color: var(--main-red);
     transition: .2s;
 }
-.msgSuccess,
 .msgError{
     font-size: 1.5rem;
     font-weight: 600;

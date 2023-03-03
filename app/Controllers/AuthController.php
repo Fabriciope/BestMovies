@@ -51,7 +51,7 @@ class AuthController extends Action
             $_SESSION['userID'] = $userValidation['userData']['id'];
             $_SESSION['username'] = $userValidation['userData']['name'];
 
-            header('location: /perfil?sc');
+            header('location: /profile');
         }
     }
 
@@ -89,7 +89,7 @@ class AuthController extends Action
             session_start();
             $_SESSION['userID'] = $userValidation['userData']['id'];
             $_SESSION['username'] = $userValidation['userData']['name'];
-            header('location: /perfil?');
+            header('location: /profile');
         }
     }
 }

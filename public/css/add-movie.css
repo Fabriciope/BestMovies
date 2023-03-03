@@ -1,0 +1,141 @@
+main{
+    width: 91%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+main .center{
+    width: 40%;
+    margin: 0 auto;
+}
+main .center h2{
+    font-size: 3.7rem;
+    text-align: center;
+    color: var(--title-color);
+}
+main .center p{
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--text-color);
+}
+main .center div.box-inputs{
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+main .center .box-inputs.file{
+    margin-bottom: 3px;
+}
+main .center .box-inputs label{
+    margin-bottom: 6px;
+    font-size: 1.85rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+main .center .box-inputs input{
+    width: 100%; height: 30px;
+    font-size: 1.56rem;
+    font-weight: 400;
+    border-radius: 5px;
+    padding-left: 6px;
+    outline: none;
+    border: none;
+    box-shadow: 0 2px 0 var(--bg-box);
+}
+main .center .box-inputs .lenght{
+    width: 100%;
+    margin-top: 3px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+main .center .box-inputs .lenght .hm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main .center .box-inputs .lenght .hm span{
+    margin-right: 5px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+main .center .box-inputs .lenght .hm input{
+    width: 53px; height: 27px;
+    font-size: 1.58rem;
+    font-weight: 500;
+}
+main .center .box-inputs input[type=file]{
+    display: none;
+}
+main .center .box-inputs label.movie-file{
+    display: inline-block;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid var(--main-red);
+}
+main .center .box-inputs label.movie-file span:first-child{
+    display: inline-block;
+    padding: 5px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 5px;
+    color: black;
+    background: var(--main-red);
+}
+main .center .box-inputs label.movie-file span:nth-child(2){
+    margin-left: 5px;
+    font-size: 1.35rem;
+    color: var(--title-color);
+}
+main .center .box-inputs select {
+    width: 100%; height: 30px;
+    font-size: 1.56rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    color: #1c1c1c;
+    box-shadow: 0 2px 0 var(--bg-box);
+    outline: none;
+}
+main .center .box-inputs select option{
+    padding: 40px 5px;
+    font-weight: 500;
+    color: black;
+}
+main .center .box-inputs textarea{
+    padding: 6px;
+    font-size: 1.56rem;
+    font-weight: 500;
+    outline: none;
+    resize: vertical;
+    border-radius: 5px;
+    border: none;
+}
+main .center button{
+    width: 100%;
+    margin: auto;
+    padding: 2px 0;
+    font-size: 1.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    border: 2px solid var(--main-red);
+    background: var(--main-red);
+    transition: .2s;
+}
+main .center button:hover{
+    background: transparent;
+    color: var(--main-red);
+    transition: .2s;
+}
+main .center p.error{
+    font-weight: 600;
+    color: rgb(255, 40, 40);
+    text-align: left;
+}

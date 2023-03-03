@@ -216,7 +216,7 @@ section.right .center button{
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    border: 2px solid red;
+    border: 2px solid var(--main-red);
     background: var(--main-red);
     transition: .2s;
 }

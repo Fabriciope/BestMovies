@@ -23,26 +23,6 @@ class UserController extends Action
         $this->view->imageFileName= isset($userData['image']) ? substr($userData['image'], 23) : 'nome do arquivo.png';
         $this->view->imageDirectoryName= $userData['image'] ?? 'images/users/perfil.png';
 
-        //msg's update name or last name.
-        $this->view->msgUpdateNameError = $this->view->msgUpdateNameError ?? '';
-        $this->view->msgUpdateNameSuccess = $this->view->msgUpdateNameSuccess ?? '';
-
-        //msg's update password.
-        $this->view->msgUpdatePasswordError = $this->view->msgUpdatePasswordError ?? '';
-        $this->view->msgUpdatePasswordSuccess = $this->view->msgUpdatePasswordSuccess ?? '';
-
-        //msg's update profile image.
-        $this->view->msgUpdateImageError = $this->view->msgUpdateImageError ?? '';
-        $this->view->msgUpdateImageSuccess = $this->view->msgUpdateImageSuccess ?? '';
-
-        //msg's delete profile image.
-        $this->view->msgDeleteProfileImageError = $this->view->msgDeleteProfileImageError ?? '';
-        $this->view->msgDeleteProfileImageSuccess = $this->view->msgDeleteProfileImageSuccess ?? '';
-
-        //msg's update about you.
-        $this->view->msgUpdateAboutYouError = $this->view->msgUpdateAboutYouError ?? '';
-        $this->view->msgUpdateAboutYouSuccess = $this->view->msgUpdateAboutYouSuccess ?? '';
-
         $this->view->userData = $userData;
 
         $this->render('user/profile', 'layout1');
@@ -61,13 +41,13 @@ class UserController extends Action
         $user->__set('name', filter_input(INPUT_POST, "newName"));
         $user->__set('lastName', filter_input(INPUT_POST, "newLastName"));
 
-        $verificationErrorMessage = $user->checkUserUpdateData();
+        $verificationErrorMessage = $user->checkFirstNameAndLastName();
 
         if (count($verificationErrorMessage) > 0) {
             $this->view->msgUpdateNameError= $verificationErrorMessage[0];
             $this->pageProfile();
         } else {
-            $update = $user->updateUserData($_SESSION['username']);
+            $update = $user->updateFirstNameAndLastName($_SESSION['username']);
             if ($update === 'faiiled') {
                 $this->view->msgUpdateNameError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
                 $this->pageProfile();
@@ -129,9 +109,6 @@ class UserController extends Action
             $user->__set('id', $_SESSION['userID']);
             $user->__set('name', $_SESSION['username']);
             $user->__set('image', $_FILES['profile-image']['name']);
-
-            // $validateImage = $user->validateImage($_FILES['profile-image']['tmp_name']);
-            // echo $validateImage;
 
             $updateImage = $user->updateProfileImage($_FILES['profile-image']['type'], $_FILES['profile-image']['tmp_name'], $oldImage);
             
