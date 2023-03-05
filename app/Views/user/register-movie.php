@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/add-movie.css">
+<link rel="stylesheet" href="css/user/register-movie.css">
 <main>
     <div class="center">
         <h2>Adicionar filme</h2>
@@ -27,8 +27,9 @@
                         <?php endif; ?>
                         <option>Selecione uma categoria</option>
                         <option value="Ação">Ação</option>
+                        <option value="Aventura">Aventura</option>
                         <option value="Drama">Drama</option>
-                        <option value="Comédia">Comédia</option>
+                        <!-- <option value="Comédia">Comédia</option> -->
                         <option value="Fantasia">Fantasia</option>
                         <option value="Ficção científica">Ficção científica</option>
                         <option value="Romance">Romance</option>
@@ -38,7 +39,8 @@
                 </div>
                 <div class="box-inputs">
                     <label for="trailer">Trailer</label>
-                    <input type="text" name="trailer" id="trailer" placeholder="Insira o link do youTube" value="<?=$this->view->movieData['inputTrailer']??''?>">
+                    <p class="tutorial">Veja como copiar o link do youtube para inserir abaixo. <a href="">Como copiar o link embed.</a></p>
+                    <input type="text" name="trailer" id="trailer" placeholder="Insira o link embed do youTube" value="<?=$this->view->movieData['inputTrailer']??''?>">
                 </div>
                 <div class="box-inputs">
                     <label for="description">Descrição:</label>
@@ -46,6 +48,10 @@
                 </div>
                 <div class="box-inputs file">
                     <label for="imageFile">Adicionar banner: </label>
+                    <div class="exC">
+                        <p>Insira uma imagen com as dimensões parecidas com um cartaz. Ex: </p>
+                        <img src="images/exemplo-template-cartaz-filme.png" alt="">
+                    </div>
                     <input type="file" name="movieFile" id="imageFile">
                     <label for="imageFile" class="movie-file">
                         <span>Procurar</span><span class="text-file">nome do arquivo.png</span>

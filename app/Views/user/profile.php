@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/profile.css">
+<link rel="stylesheet" href="css/user/profile.css">
 <main>
     <a href="/logout" class="sair">Sair</a>
     <div class="container-main">

@@ -6,12 +6,22 @@ use App\Utils\models\Container;
 
 class MoviesController extends Action
 {
+    /**
+     * Método responsável por retornar a página que faz o registro de um novo filme.
+     *
+     * @return void
+     */
     public function pageRegisterMovie()
     {
         $this->validateUser();
         $this->render('user/register-movie', 'layout1');
     }
 
+    /**
+     * Método responsável por instânciar o model Movies e chamar o método que faz o registro de um novo filme no banco de dados.
+     *
+     * @return void
+     */
     public function registerMovie()
     {
         session_start();
@@ -39,13 +49,13 @@ class MoviesController extends Action
                 'inputTrailer' => $_POST['trailer'] ?? '',
                 'inputDescription' => $_POST['description'] ?? ''
             ];
-            echo 'estamos no erro';
-            print_r($verificationErrorMessage);
+            // echo 'estamos no erro';
+            // print_r($verificationErrorMessage);
             $this->pageRegisterMovie();
         } else {
             $movie->__set('userID', $_SESSION['userID']);
             $movie->__set('image', $_FILES['movieFile']['name']);
-            $movie->__set('lenght', "$hours horas e $minutes minutos");
+            $movie->__set('length', "$hours horas e $minutes minutos");
 
             $registerMovie = $movie->registerMovie($_FILES['movieFile']['tmp_name']);
 
@@ -59,6 +69,11 @@ class MoviesController extends Action
         }
     }
 
+    /**
+     * Método responsável por retornar a página dos filmes dos usuários.
+     *
+     * @return void
+     */
     public function pageMyMovies()
     {
         $this->validateUser();

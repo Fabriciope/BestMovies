@@ -1,5 +1,5 @@
 main{
-    width: 91%;
+    width: 85%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -67,17 +67,41 @@ main .center .box-inputs .lenght .hm input{
     font-size: 1.58rem;
     font-weight: 500;
 }
-main .center .box-inputs input[type=file]{
+main .center .box-inputs p.tutorial{
+    font-size: 1.38rem;
+    font-weight: 500;
+    text-align: left;
+    color: var(--text-color);
+}
+main .center .box-inputs p a{
+    color: var(--main-red);
+}
+main .center .box-inputs.file .exC{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+main .center .box-inputs.file .exC p{
+    width: 300px;
+    font-size: 1.5rem;
+    text-align: left;
+    color: var(--text-color);
+}
+main .center .box-inputs.file .exC img{
+    width: 90px;
+    margin-top: -10px;
+}
+main .center .box-inputs.file input[type=file]{
     display: none;
 }
-main .center .box-inputs label.movie-file{
+main .center .box-inputs.file label.movie-file{
     display: inline-block;
     padding: 7px;
     cursor: pointer;
     border-radius: 5px;
     border: 2px solid var(--main-red);
 }
-main .center .box-inputs label.movie-file span:first-child{
+main .center .box-inputs.file label.movie-file span:first-child{
     display: inline-block;
     padding: 5px;
     font-size: 1.4rem;
@@ -86,7 +110,7 @@ main .center .box-inputs label.movie-file span:first-child{
     color: black;
     background: var(--main-red);
 }
-main .center .box-inputs label.movie-file span:nth-child(2){
+main .center .box-inputs.file label.movie-file span:nth-child(2){
     margin-left: 5px;
     font-size: 1.35rem;
     color: var(--title-color);

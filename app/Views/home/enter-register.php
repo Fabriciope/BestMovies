@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/enter-register.css">
+<link rel="stylesheet" href="css/home/enter-register.css">
 <main>
     <section class="entrar">
         <div class="center">

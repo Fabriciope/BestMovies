@@ -1,2 +1,2 @@
-<link rel="stylesheet" href="css/my-movies.css">
+<link rel="stylesheet" href="css/user/my-movies.css">
 adsads

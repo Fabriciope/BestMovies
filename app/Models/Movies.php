@@ -11,8 +11,17 @@ class Movies extends model
     protected $image;
     protected $trailer;
     protected $category;
+    protected $length;
     protected $userID;
 
+    /**
+     * Método responsável por verificar os dados antes de fazer o registro de u novo filme.
+     *
+     * @param int $hours
+     * @param int $minute
+     * @param array $files
+     * @return array
+     */
     public function checkMovieRegistrationData($hours, $minute, $files):array
     {
         $msgError = [];
@@ -30,18 +39,6 @@ class Movies extends model
             $msgError[] = 'Selecione uma categoria.';
         }
 
-        if (!isset($files['movieFile']) || empty($files['movieFile']['tmp_name'])) {
-            $msgError[] = 'Insira uma imagem para este filme.';
-        }
-
-        $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
-        $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-        $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
-
-        if (!in_array($fileExtension, $allowedFiles) && !in_array($files['movieFile']['type'], $allowedFileTypes)) {
-            $msgError[] = 'Insira uma imagem do tipo .jpeg, .jpg ou .png.';
-        }
-
         if (!empty($this->__get('trailer'))) {
 
             $trailerUrl = $this->__get('trailer');
@@ -53,22 +50,46 @@ class Movies extends model
 
             } else {
                 // $msgError[] = substr($validateTrailerUrl, 0, 32);
-                $youtubeDefaultUrl = 'https://www.youtube.com/watch?v=';
+                $youtubeDefaultUrl = 'https://www.youtube.com/embed/';
                 $editedUrl = substr($validateTrailerUrl, 0, 32);
-                if ($editedUrl!== $youtubeDefaultUrl) {
+                if ($editedUrl !== $youtubeDefaultUrl) {
                     $msgError[] = 'Insira um link do youTube';
                 }
+            }
+        }
+
+        if (!isset($files['movieFile']) || empty($files['movieFile']['tmp_name'])) {
+            $msgError[] = 'Insira uma imagem para este filme.';
+        } else {
+            $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
+            $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
+            if (!in_array($fileExtension, $allowedFiles) && !in_array($files['movieFile']['type'], $allowedFileTypes)) {
+                $msgError[] = 'Insira uma imagem do tipo .jpeg, .jpg ou .png.';
+            }
+    
+            list($width, $height) = getimagesize($files['movieFile']['tmp_name']);
+            
+            if ($width >= $height) {
+                // echo 'largura:' . $width . ' ' . 'altura:'. $height;
+                $msgError[] = 'Insira uma imagens com as recomendações desejadas';
             }
         }
         return $msgError;
     }
 
+    /**
+     * Método responsável por fazer o registro de um novo filme no banco de dados.
+     *
+     * @param string $temporaryName
+     * @return string
+     */
     public function registerMovie($temporaryName)
     {
         $imageName = 'images/movies/' . bin2hex(random_bytes(5)) . $this->__get('image');
 
-        $query = 'INSERT INTO movies (title, description, image, trailer, category, id_user)
-                              VALUES (:title, :description, :image, :trailer, :category, :id_user)';
+        $query = 'INSERT INTO movies (title, description, image, trailer, category, length, id_user)
+                              VALUES (:title, :description, :image, :trailer, :category, :length, :id_user)';
 
         $statement= $this->db->prepare($query);
         $statement->bindValue(':title', trim($this->__get('title')));
@@ -76,6 +97,7 @@ class Movies extends model
         $statement->bindValue(':image', $imageName);
         $statement->bindValue(':trailer', $this->__get('trailer'));
         $statement->bindValue(':category', $this->__get('category'));
+        $statement->bindValue(':length', $this->__get('length'));
         $statement->bindValue(':id_user', $this->__get('userID'));
 
         if (!$statement->execute()) {

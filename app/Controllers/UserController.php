@@ -29,7 +29,7 @@ class UserController extends Action
     }
 
     /**
-     * Método reponsável por alterar os dados de nome e sobrenome do usuário.
+     * Método reponsável por instânciar o model Users e chamar o método que atualiza os dados de nome e sobrenome do usuário.
      *
      * @return void
      */
