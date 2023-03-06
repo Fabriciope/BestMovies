@@ -72,15 +72,7 @@ class Users extends Model
         $statement->bindValue(':lastname', ucfirst(trim($this->__get('lastName'))));
         $statement->bindValue(':email', trim($this->__get('email')));
         $statement->bindValue(':password', password_hash(trim($this->__get('password')), PASSWORD_DEFAULT));
-
-        if (!$statement->execute()) {
-            echo 'Erro ao inserir um novo registro no banco de dados';
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            die();
-            // fazer a tratação deste erro de uma forma melhor
-        }
+        $statement->execute();
     }
 
     /**
@@ -96,15 +88,7 @@ class Users extends Model
 
         $statement = $this->db->prepare($query);
         $statement->bindValue(':email', trim($this->__get('email')));
-
-        if (!$statement->execute()) {
-            echo 'Erro ao autenticar o usuário';
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            // die();
-            $userValidation[] = 'Erro ao autenticar o usuário, tente novamente mais tarde!';
-        }
+        $statement->execute();
 
         $userData = (array) $statement->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -159,7 +143,7 @@ class Users extends Model
      * Método responsável por fazer a atualização dos dados do usuário no banco de dados.
      *
      * @param string $username
-     * @return string
+     * @return void
      */
     public function updateFirstNameAndLastName(string $username)
     {
@@ -172,24 +156,14 @@ class Users extends Model
         $statement->bindValue(':newLastName', trim($this->__geT('lastName')));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $username);
-
-        if (!$statement->execute()) {
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            // die();
-
-            return 'failed';
-        } else {
-            return 'success';
-        }
+        $statement->execute();
     }
 
     /**
      * Método responsável por fazer a validação dos dados antes de fazer a alteração da senha.
      *
      * @param string $newPasswordCS
-     * @return tring
+     * @return array
      */
     public function checkUpdatePassword($newPasswordCS)
     {
@@ -213,7 +187,7 @@ class Users extends Model
     /**
      * Método responsável por fazer a alteração da senha do usuário no banco de dados.
      *
-     * @return string
+     * @return void
      */
     public function updatePassword()
     {
@@ -225,17 +199,7 @@ class Users extends Model
         $statement->bindValue(':newPassword', password_hash($this->__get('password'), PASSWORD_DEFAULT));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $this->__get('name'));
-
-        if (!$statement->execute()) {
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            // die();
-
-            return 'failed';
-        } else {
-            return 'success';
-        }
+        $statement->execute();
     }
 
     /**
@@ -263,22 +227,13 @@ class Users extends Model
             $statement->bindValue(':id', $this->__get('id'));
             $statement->bindValue(':name', $this->__get('name'));
             $statement->bindValue(':image', $imageName);
+            $statement->execute();
 
-            if (!$statement->execute()) {
-                echo '<pre>';
-                print_r($statement->errorInfo());
-                echo '</pre>';
-                // die();
-                return 'executionFailure';
-                exit;
-            } else {
-
-                @unlink(__DIR__ . './../../public/' . $oldImage);
-                move_uploaded_file($temporaryName, $imageName);
-
-                return 'success';
-                exit;
-            }
+            @unlink(__DIR__ . './../../public/' . $oldImage);
+            move_uploaded_file($temporaryName, $imageName);
+            
+            return 'success';
+            exit;
         } else {
             return 'unsupportedFile';
             exit;
@@ -289,7 +244,7 @@ class Users extends Model
      * Método responsável por excluir a imagem de perfil do usuário no banco de dados e deixa-lá como null.
      *
      * @param string $currentImage
-     * @return string
+     * @return void
      */
     public function deleteProfileImage($currentImage)
     {
@@ -300,24 +255,16 @@ class Users extends Model
         $statement = $this->db->prepare($query);
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $this->__get('name'));
+        $statement->execute();
 
-        if (!$statement->execute()) {
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            // die();
-            return 'executionFailure';
-            exit;
-        } else {
-            @unlink(__DIR__ . './../../public/' . $currentImage);
-            return 'success';
-        }
+        @unlink(__DIR__ . './../../public/' . $currentImage);
+        
     }
 
     /**
      * Método responsável fazer a alteração do texto de biográfia do usuário no banco de dados.
      *
-     * @return string
+     * @return void
      */
     public function updateAboutYou()
     {
@@ -329,16 +276,7 @@ class Users extends Model
         $statement->bindValue(':newBio', ucfirst(trim($this->__get('bio'))));
         $statement->bindValue(':id', $this->__get('id'));
         $statement->bindValue(':name', $this->__get('name'));
-
-        if (!$statement->execute()) {
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            // die();
-            return 'executionFailure';
-            exit;
-        } else {
-            return 'success';
-        }
+        $statement->execute();
+        
     }
 }

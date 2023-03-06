@@ -14,6 +14,20 @@ class Movies extends model
     protected $length;
     protected $userID;
 
+
+    public function retrieveRecentMovies()
+    {
+        $query = 'SELECT * 
+                  FROM movies
+                  ORDER BY id desc
+                  LIMIT 12';
+        
+        $statement = $this->db->query($query);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     /**
      * Método responsável por verificar os dados antes de fazer o registro de u novo filme.
      *
@@ -99,19 +113,12 @@ class Movies extends model
         $statement->bindValue(':category', $this->__get('category'));
         $statement->bindValue(':length', $this->__get('length'));
         $statement->bindValue(':id_user', $this->__get('userID'));
+        $statement->execute();
 
-        if (!$statement->execute()) {
-            echo '<pre>';
-            print_r($statement->errorInfo());
-            echo '</pre>';
-            // die();
-            return 'executionFailure';
-            exit;
-        } else {
-            move_uploaded_file($temporaryName, $imageName);
+        move_uploaded_file($temporaryName, $imageName);
 
-            return 'success';
-            exit;
-        }
+        return 'success';
+        exit;
+        
     }
 }

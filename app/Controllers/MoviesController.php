@@ -57,14 +57,9 @@ class MoviesController extends Action
             $movie->__set('image', $_FILES['movieFile']['name']);
             $movie->__set('length', "$hours horas e $minutes minutos");
 
-            $registerMovie = $movie->registerMovie($_FILES['movieFile']['tmp_name']);
+            $movie->registerMovie($_FILES['movieFile']['tmp_name']);
 
-            if ($registerMovie === 'executionFailure') {
-                $this->view->msgErrorRegisterMovie = 'Error ao registrar novo filme, tente novamente mais tarde.';
-                $this->pageRegisterMovie();
-            } else {
-                header('location: /page-my-movies');
-            }
+            header('location: /page-my-movies');
 
         }
     }

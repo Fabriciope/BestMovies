@@ -42,14 +42,56 @@ section.filmes .container{
     font-weight: 500;
     color: var(--text-color);
 }
- .container-films .box-film{
+.filmes .container .container-wrapper{
+    position: relative;
+}
+.filmes .container .wrapper{
+    width: 100%;
+    overflow: hidden;
+}
+.filmes .container .wrapper button.left,
+.filmes .container .wrapper button.right{
+    width: 40px;
+    padding: 0 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border: none;
+}
+.filmes .container .wrapper button.left{
+    left: 0;
+    cursor: pointer;
+    background:  linear-gradient(to left, transparent 0%, black 108%);
+}
+.filmes .container .wrapper button.right{
+    right: 0;
+    cursor: pointer;
+    background:  linear-gradient(to right, transparent 0%, black 108%);
+}
+.filmes .container .wrapper button.left i,
+.filmes .container .wrapper button.right i{
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+.filmes .container .wrapper .container-films{
+    display: flex;
+    gap: 15px;
+}
+
+
+.container-films .box-film{
     width: 280px; height: 430px;
+    flex-shrink: 0;
     background-position: center;
     background-size: cover;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 3px 3px 7px rgb(0, 0, 0, .7);
 }
+
 .container-films .box-film .content{
     width: 100%; height: 100%;
     background: rgb(0,0,0);
@@ -80,15 +122,17 @@ section.filmes .container{
     margin-bottom: 4px;
 }
 .container-films .box-film .center h4{
-    margin-bottom: 11px;
-    font-size: 2.3rem;
+    margin: 0 10px;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 600;
     text-align: center;
     color: var(--title-color);
 }
 .container-films .box-film .center a{
-    width: 94%;
+    width: 90%;
     margin: 0 auto;
-    margin-bottom: 11px;
+    margin-bottom: 13px;
     padding: 4px 0;
     font-size: 2rem;
     font-weight: 600;

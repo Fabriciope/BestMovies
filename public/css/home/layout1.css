@@ -111,6 +111,7 @@ header .container-nav-bottom{
     font-weight: 700;
     text-decoration: none;
     color: var(--bg-box);
+    transition: .2s;
 }
 .center-nav-bottom i.arrow-down{
     margin-right: 3px;
@@ -122,4 +123,5 @@ header .container-nav-bottom{
 .center-nav-bottom nav ul a:hover{
     color: var(--title-color);
     background: var(--bg-box);
+    transition: .2s;
 }

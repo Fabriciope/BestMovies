@@ -48,15 +48,10 @@ class UserController extends Action
             $this->pageProfile();
         } else {
             $update = $user->updateFirstNameAndLastName($_SESSION['username']);
-            if ($update === 'faiiled') {
-                $this->view->msgUpdateNameError = 'Ocorreu algum erro ao atualizar seus dados, tente novamente mais tarde.';
-                $this->pageProfile();
-            } elseif ($update === 'success') {
-                $_SESSION['username'] = trim($user->__get('name'));
-                $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
-                // header('location: /perfil');
-                $this->pageProfile();
-            }
+            $_SESSION['username'] = trim($user->__get('name'));
+            $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
+            // header('location: /perfil');
+            $this->pageProfile();
         }
 
         header('location: /perfil');
@@ -113,10 +108,6 @@ class UserController extends Action
             $updateImage = $user->updateProfileImage($_FILES['profile-image']['type'], $_FILES['profile-image']['tmp_name'], $oldImage);
             
             switch ($updateImage) {
-                case 'executionFailure':
-                    $this->view->msgUpdateImageError = 'Error ao inserir sua imagem!';
-                    $this->pageProfile();
-                    break;
                 case 'unsupportedFile':
                     $this->view->msgUpdateImageError = 'Escolha uma imagem .jpeg, .jpg ou .png';
                     $this->pageProfile();
@@ -150,15 +141,10 @@ class UserController extends Action
         $userData = $user->retrieveUserData($_SESSION['userID'], $_SESSION['username']);
         $currentImage = $userData['image'];
 
-        $deleteImage = $user->deleteProfileImage($currentImage);
+        $user->deleteProfileImage($currentImage);
 
-        if ($deleteImage === 'executionFailure') {
-            $this->view->msgDeleteProfileImageError = 'Erro ao tentar excluir sua imagem, tente novamente mais tarde!';
-            $this->pageProfile();
-        } elseif($deleteImage === 'success') {
-            $this->view->msgDeleteProfileImageSuccess = 'Imagem excluída com secusso!';
-            $this->pageProfile();
-        }
+        $this->view->msgDeleteProfileImageSuccess = 'Imagem excluída com secusso!';
+        $this->pageProfile();
     }
 
     /**
@@ -175,15 +161,10 @@ class UserController extends Action
         $user->__set('name', $_SESSION['username']);
         $user->__set('bio', filter_input(INPUT_POST, "aboutYou"));
 
-        $updateAboutYou = $user->updateAboutYou();
+        $user->updateAboutYou();
 
-        if($updateAboutYou === 'executionFailure') {
-            $this->view->msgUpdateAboutYouError = 'Erro ao tentar alterar sua bio, tente novamente mais tarde.';
-            $this->pageProfile();
-        } else {
-            $this->view->msgUpdateAboutYouSuccess = 'bio alterada com sucesso.';
-            $this->pageProfile();
-        }
+        $this->view->msgUpdateAboutYouSuccess = 'bio alterada com sucesso.';
+        $this->pageProfile();
     }
 
     /**

@@ -37,7 +37,7 @@
 
                         <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
                             <li class="userNavigation <?php if($this->view->page == 'user/profile')echo'active'?>"><a class="name" href="/profile"><i class="arrow-down fa-solid fa-angle-down"></i>Olá, <?=$_SESSION['username']?></a></li>
-                            <li class="userNavigation"><a href="#">Meus filmes</a></li>
+                            <li class="userNavigation"><a href="/page-my-movies">Meus filmes</a></li>
                             <li class="userNavigation"><a href="/page-register-movie">Adicionar filme<i class="add-film fa-solid fa-photo-film"></i></a></li>
                             <li class="userNavigation <?php if($this->view->page == 'home/index')echo'active'?>"><a href="/about-us">Sobre nós</a></li>
                             <li class="userNavigation <?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>

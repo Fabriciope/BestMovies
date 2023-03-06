@@ -17,9 +17,10 @@ class IndexController extends Action
     public function pageHome()
     {
         session_start();
-        // echo '<pre>';
-        // print_r($_SESSION);
-        // echo '</pre>';
+        $movies = Container::getModel('movies');
+        $recentMovies = $movies->retrieveRecentMovies();
+
+        $this->view->recentMovies = $recentMovies;
         $this->render('home/index','layout1');
     }
 
