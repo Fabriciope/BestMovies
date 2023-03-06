@@ -19,10 +19,10 @@ main{
     width: 100%;
 }
 section.filmes.top{
-    margin-top: 430px;
+    margin-top: 360px;
 }
 section.filmes{
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
 }
 section.filmes .container{
@@ -77,8 +77,10 @@ section.filmes .container{
 
 
 .filmes .container .wrapper .container-films{
+    padding-left: 20px;
     display: flex;
-    gap: 15px;
+    gap: 20px;
+    transition: .5s;
 }
 
 
@@ -143,7 +145,7 @@ section.filmes .container{
 .container-films .box-film .center a.avaliar{
     color: #0088ff;
     border: 3px solid #0088ff00;
-    background: #595959;
+    background: rgb(78, 78, 78, .7);
     box-shadow: 1px 2px 0 #0088ff;
     transition: .2s;
 }
@@ -161,6 +163,7 @@ section.filmes .container{
 }
 .container-films .box-film .center a.conhecer:hover{
     color: var(--main-red);
+    box-shadow: 2px 2px 0 var(--main-red);
     background: transparent;
     transition: .2s;
 }

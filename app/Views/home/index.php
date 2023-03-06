@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="css/home/index.css">
 <section class="banners">
-    <div class="banner">
+    <div class="banner" >
      <img src="images/banners/banner-films-action.png" alt="">
     </div>
 </section>
@@ -36,5 +36,6 @@
             </div>
         </div>
     </section>
+    
 </main>
 <script src="js/slides.js"></script>

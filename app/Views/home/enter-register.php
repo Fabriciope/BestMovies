@@ -24,7 +24,7 @@
     <section class="register">
         <div class="center">
             <h3>Criar conta</h3>
-            <form action="/registrar" method="post">
+            <form action="/register" method="post">
                 <div class="box-input">
                     <label for="name">Nome:</label>
                     <input type="text" name="name" id="name" minlength="3" value="<?=$this->view->data['inputName']?>" required>

@@ -30,7 +30,7 @@ header .container-nav-top{
     background: var(--bg-box);
 }
 header .center-nav-top{
-    width: 85%;
+    width: 90%;
     max-width: 1200px;
     padding: 5px 0;
     display: flex;
@@ -87,10 +87,13 @@ header .center-nav-top i.menu{
 
 header .container-nav-bottom{
     width: 100%; height: 30px;
+    position: relative;
+    box-shadow: 0 4px 10px rgb(0, 0, 0, .7);
     background: var(--main-red);
+    z-index: 99;
 }
 .container-nav-bottom .center-nav-bottom{
-    width: 85%; height: 100%;
+    width: 90%; height: 100%;
     margin: 0 auto;
 }
 .center-nav-bottom nav{

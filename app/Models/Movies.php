@@ -19,8 +19,7 @@ class Movies extends model
     {
         $query = 'SELECT * 
                   FROM movies
-                  ORDER BY id desc
-                  LIMIT 12';
+                  ORDER BY id desc';
         
         $statement = $this->db->query($query);
         $statement->execute();
@@ -39,7 +38,17 @@ class Movies extends model
     public function checkMovieRegistrationData($hours, $minute, $files):array
     {
         $msgError = [];
+        $query  = 'SELECT *
+                   FROM movies
+                   WHERE title = :registredMovie';
         
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':registredMovie', $this->__get('title'));
+        $statement->execute();
+
+        if (count($statement->fetchAll()) > 0) {
+            $msgError[] = 'Este filme já foi registrado';
+        }
         if(!$this->__get('title')) {
             $msgError[] = 'Insira um título.';
         }
