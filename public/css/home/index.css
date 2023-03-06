@@ -1,6 +1,7 @@
 section.banners{
     width: 100%;
-    position: relative;
+    margin-top: 70px;
+    margin-bottom: 40px;
     /* background-image: url(../../images/banners/banner-films-action.png); */
 }
 section.banners .banner{
@@ -8,18 +9,15 @@ section.banners .banner{
 }
 section.banners .banner img{
     width: 100%;
-    position: absolute;
-    top: 0;
+    /* position: absolute;
+    top: 70px;
     left: 0;
     right: 0;
-    margin-bottom: 30px;
+    margin-bottom: 30px; */
 }
 
 main{
     width: 100%;
-}
-section.filmes.top{
-    margin-top: 360px;
 }
 section.filmes{
     width: 90%;
@@ -42,12 +40,12 @@ section.filmes .container{
     font-weight: 500;
     color: var(--text-color);
 }
-.filmes .container .container-wrapper{
-    position: relative;
-}
+/* .filmes .container .container-wrapper{
+} */
 .filmes .container .wrapper{
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 .filmes .container .wrapper button.left,
 .filmes .container .wrapper button.right{
