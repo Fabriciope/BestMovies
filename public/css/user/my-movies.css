@@ -1,3 +1,118 @@
-body{
-    background: red;
+
+main{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 190px;
+}
+main section.my-movies{
+    width: 100%;
+}
+.my-movies h3{
+    margin-bottom: 6px;
+    padding-left: 6px;
+    font-size: 3rem;
+    border-left: 4px solid var(--main-red);
+    color: var(--title-color);
+}
+.my-movies p{
+    margin-left: 7px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.my-movies div.add-film{
+    margin-bottom: 20px;
+   display: flex;
+   justify-content: flex-end;
+}
+.my-movies div.add-film i{
+    margin-right: 5px;
+    font-size: 1.8rem;
+}
+.my-movies div.add-film a{
+    padding: 7px 12px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    color: var(--title-color);
+    background: var(--main-red);
+}
+
+
+
+.my-movies table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.my-movies table thead{
+    border-bottom: 1px solid var(--text-color);
+}
+.my-movies table tr th{
+    padding-bottom: 10px;
+    font-size: 2.4rem;
+    text-align: left;
+    color: var(--title-color);
+}
+.my-movies table tr th:last-child{
+    text-align: center;
+}
+.my-movies table tr.data{
+    border-bottom: 1px solid rgb(95, 95, 95);
+}
+.my-movies table tr.data:hover{
+    background: rgb(22, 22, 22);
+}
+.my-movies table tr.data td{
+    padding: 11px 0;
+}
+
+.my-movies table tr.data td.title,
+.my-movies table tr.data td.assessments{
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+.my-movies table tr.data td.title a{
+    margin-left: 5px;
+    text-decoration: none;
+    color: var(--title-color);
+}
+.my-movies table tr.data td.title a:hover{
+    color: var(--main-red);
+    text-decoration: underline;
+}
+.my-movies table tr.data td i.star{
+    margin-right: 5px;
+    font-size: 2.5rem;
+    color: #ffc800;
+}
+.my-movies table tr td.actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 17px;
+}
+.my-movies table tr td.actions a{
+    padding: 6px 12px;
+    font-size: 1.65rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 5px;
+    color: var(--title-color);
+}
+.my-movies table tr.data td.actions a i{
+    margin-right: 4px;
+}
+.my-movies table tr.data td.actions a.edit-movie{
+    background: #0088ff;
+}
+.my-movies table tr.data td.actions a.edit-movie:hover{
+    background: #38a2ff;
+}
+.my-movies table tr.data td.actions a.delete-movie{
+    background: #e30000;
+}
+.my-movies table tr.data td.actions a.delete-movie:hover{
+    background: #f13636;
 }

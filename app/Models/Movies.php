@@ -28,6 +28,25 @@ class Movies extends model
     }
 
     /**
+     * Método responsável por retornar todos os filmes que o usuário já registrou.
+     *
+     * @param int $userID
+     * @return void
+     */
+    public function recoverUserMovies($userID)
+    {
+        $query = 'SELECT *
+                  FROM movies
+                  WHERE id_user = :id_user
+                  ORDER BY id DESC';
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id_user', $userID);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Método responsável por verificar os dados antes de fazer o registro de u novo filme.
      *
      * @param int $hours
@@ -62,6 +81,7 @@ class Movies extends model
             $msgError[] = 'Selecione uma categoria.';
         }
 
+        //Check trailer link.
         if (!empty($this->__get('trailer'))) {
 
             $trailerUrl = $this->__get('trailer');
@@ -74,16 +94,18 @@ class Movies extends model
             } else {
                 // $msgError[] = substr($validateTrailerUrl, 0, 32);
                 $youtubeDefaultUrl = 'https://www.youtube.com/embed/';
-                $editedUrl = substr($validateTrailerUrl, 0, 32);
+                $editedUrl = substr($validateTrailerUrl, 0, 30);
                 if ($editedUrl !== $youtubeDefaultUrl) {
                     $msgError[] = 'Insira um link do youTube';
                 }
             }
         }
 
+        //Check image file.
         if (!isset($files['movieFile']) || empty($files['movieFile']['tmp_name'])) {
             $msgError[] = 'Insira uma imagem para este filme.';
         } else {
+
             $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
             $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
             $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
@@ -97,6 +119,17 @@ class Movies extends model
                 // echo 'largura:' . $width . ' ' . 'altura:'. $height;
                 $msgError[] = 'Insira uma imagens com as recomendações desejadas';
             }
+
+            $emptyField = strpos($files['movieFile']['name'], ' ');
+            if ($emptyField) {
+
+                $currentImage = $files['movieFile']['name'];
+                $newImage = str_replace(' ', '', $currentImage);
+                $this->__set('image', $newImage);
+            } else {
+                $this->__set('image', $_FILES['movieFile']['name']);
+            }
+
         }
         return $msgError;
     }

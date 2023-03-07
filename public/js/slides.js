@@ -5,9 +5,9 @@ const items = document.querySelectorAll('.box-film');
 const controlLeft = document.querySelector('.control-left-films');
 const controlRight = document.querySelector('.control-right-films')
 const containerFilms = document.querySelector('.container-films');
-const itemSize = (items[0].clientWidth + 20) * 2;
+const itemSize = (items[0].clientWidth + 24) * 3;
 const maxItems = items.length;
-const rightSpace = (maxItems/2);
+const rightSpace = (maxItems/3);
 let currentItem = 0;
 
 controlLeft.addEventListener('click', function() {
@@ -25,15 +25,16 @@ controlLeft.addEventListener('click', function() {
     // })
 
     console.log(currentItem);
-    console.log(multiplierLeft);
 })
 
 controlRight.addEventListener('click', function(){
     currentItem += 1; 
-    if (currentItem > rightSpace -1) {
-        currentItem = 0;
-    }
 
+
+    if (currentItem > rightSpace) {
+        currentItem = 0;
+
+    }
     let multiplierRight = itemSize * currentItem;
     containerFilms.style.marginLeft = '-' + multiplierRight + 'px';
 
@@ -43,8 +44,6 @@ controlRight.addEventListener('click', function(){
     // })
 
     console.log(currentItem);
-    console.log(multiplierRight);
 })
 
-console.log(items);
-console.log(itemSize);
+console.log('espaco direita: ' + rightSpace);

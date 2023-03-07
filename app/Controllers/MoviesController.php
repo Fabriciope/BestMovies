@@ -54,12 +54,11 @@ class MoviesController extends Action
             $this->pageRegisterMovie();
         } else {
             $movie->__set('userID', $_SESSION['userID']);
-            $movie->__set('image', $_FILES['movieFile']['name']);
             $movie->__set('length', "$hours horas e $minutes minutos");
 
             $movie->registerMovie($_FILES['movieFile']['tmp_name']);
 
-            header('location: /page-my-movies');
+            header('location: /my-movies');
 
         }
     }
@@ -72,6 +71,11 @@ class MoviesController extends Action
     public function pageMyMovies()
     {
         $this->validateUser();
+
+        $movie = Container::getModel('Movies');
+        $userMovies = $movie->recoverUserMovies($_SESSION['userID']);
+        $this->view->userMovies = $userMovies;
+
         $this->render('user/my-movies', 'layout1');
     }
 }

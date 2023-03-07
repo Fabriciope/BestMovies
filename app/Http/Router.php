@@ -87,7 +87,7 @@ class Router extends Bootstrap
             'action' => 'registerMovie',
         );
         $routes['page-my-movies'] = array(
-            'route' => '/page-my-movies',
+            'route' => '/my-movies',
             'controller' => 'MoviesController',
             'action' => 'pageMyMovies',
         );
