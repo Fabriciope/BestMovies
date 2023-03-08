@@ -21,3 +21,9 @@ main .center{
 .edit-movie .post img{
     height: 100%;
 }
+main .center p.success{
+    padding: 5px;
+    text-align: center;
+    font-weight: 600;
+    color: #24f027;
+}

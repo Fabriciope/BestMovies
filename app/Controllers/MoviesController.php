@@ -63,43 +63,7 @@ class MoviesController extends Action
         }
     }
 
-    public function editMovie()
-    {
-        $this->validateUser();
-
-        $movie = Container::getModel('Movies');
-        $movie->__set('id', filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT));
-        $movie->__set('id_user', $_SESSION['userID']);
-         
-        $checkMovie = $movie->checkMovie();
-
-        if (!$checkMovie) {
-            header('location: /my-movies');
-        }
-
-        $movieData =  $movie->recoverMovie();
-        $this->view->movieData = $movieData;
-        $this->render('movie/edit-movie', 'layout1');
-    }
-
-    public function destroyMovie()
-    {
-        //fazer uma verificação melhor para o usuario não burlar esta funcao pelo inspecionar da página
-        $movie = Container::getModel('movies');
-        $movie->__set('id', filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT));
-
-        $checkMovie = $movie->checkMovie();
-
-        if (!$checkMovie) {
-            header('location: /my-movies');
-        }
-
-        $movie->destroyMovie();
-
-        header('location: /my-movies');
-    }
-
-    /**
+     /**
      * Método responsável por retornar a página dos filmes dos usuários.
      *
      * @return void
@@ -117,6 +81,71 @@ class MoviesController extends Action
 
     public function pageEditMovie()
     {
-        $this->render('movie/editMovie', 'layout1');
+        $this->validateUser();
+
+        $movie = Container::getModel('Movies');
+        $movie->__set('id', filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT));
+        $movie->__set('id_user', $_SESSION['userID']);
+         
+        $checkMovie = $movie->checkMovie();
+
+        if (!$checkMovie) {
+            header('location: /my-movies');
+        }
+
+
+        $movieData =  $movie->recoverMovie();
+        $this->view->movieData = $movieData;
+        $this->render('movie/edit-movie', 'layout1');
     }
+
+    public function editMovie()
+    {
+        $this->validateUser();
+
+        $movie = Container::getModel('Movies');
+
+        $movie->__set('id', filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT));
+        $movie->__set('title', filter_input(INPUT_POST, "title"));
+        $movie->__set('description', filter_input(INPUT_POST, "description"));
+        $movie->__set('trailer', $_POST['trailer']);
+        $movie->__set('category', filter_input(INPUT_POST, "category"));
+
+        $hours = filter_input(INPUT_POST, "hours", FILTER_VALIDATE_INT);
+        $minutes = filter_input(INPUT_POST, "minutes", FILTER_VALIDATE_INT);
+
+        $checkData = $movie->checkMovieUpdateData($hours, $minutes,$_FILES);
+
+        $movieData = $movie->recoverMovie();
+
+        if (count($checkData) > 0) {
+            $this->view->msgErrorEditMovie = $checkData[0];
+            $this->view->movieData = $movieData;
+            $this->render('movie/edit-movie', 'layout1');
+        }
+        $movie->__set('length', "$hours horas e $minutes minutos");
+        
+        $movie->editMovie($movieData['image'], $_FILES['movieEditFile']['tmp_name']);
+        $this->view->msgSeccessUpdateMovie = 'Filme editado com sucesso.';
+        $this->pageEditMovie();
+
+    }
+
+    public function destroyMovie()
+    {
+        //fazer uma verificação melhor para o usuario não burlar esta funcao pelo inspecionar da página
+        $movie = Container::getModel('movies');
+        $movie->__set('id', filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT));
+
+        $checkMovie = $movie->checkMovie();
+
+        if (!$checkMovie) {
+            header('location: /my-movies');
+        }
+        $movieData = $movie->recoverMovie();
+        $movie->destroyMovie($movieData['image']);
+
+        header('location: /my-movies');
+    }
+
 }

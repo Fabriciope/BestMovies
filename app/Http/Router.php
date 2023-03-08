@@ -103,6 +103,11 @@ class Router extends Bootstrap
             'controller' => 'MoviesController',
             'action' => 'destroyMovie',
         );
+        $routes['page-edit-movie'] = array(
+            'route' => '/page-edit-movie',
+            'controller' => 'MoviesController',
+            'action' => 'pageEditMovie',
+        );
         $routes['edit-movie'] = array(
             'route' => '/edit-movie',
             'controller' => 'MoviesController',

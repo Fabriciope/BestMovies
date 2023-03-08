@@ -3,7 +3,8 @@
 <main>
     <section class="edit-movie">
         <div class="center">
-            <form action="/register-movie" method="post" enctype="multipart/form-data">
+           <p class="success"><?=$this->view->msgSeccessUpdateMovie??''?></p>
+            <form action="/edit-movie?id=<?=$this->view->movieData['id']?>" method="post" enctype="multipart/form-data">
                 <div class="box-inputs">
                     <label for="movie-title">Título do filme:</label>
                     <input type="text" name="title" id="movie-title" placeholder="Digite o título do filme" value="<?=$this->view->movieData['title']?>" required>
@@ -52,12 +53,12 @@
                         <p>Insira uma imagen com as dimensões parecidas com um cartaz. Ex: </p>
                         <img src="images/exemplo-template-cartaz-filme.png" alt="">
                     </div>
-                    <input type="file" name="movieFile" id="imageFile">
+                    <input type="file" name="movieEditFile" id="imageFile">
                     <label for="imageFile" class="movie-file">
                         <span>Procurar</span><span class="text-file"><?=substr($this->view->movieData['image'], 24)?></span>
                     </label>
                 </div>
-                <p class="error"><?=$this->view->msgErrorRegisterMovie??''?></p>
+                <p class="error"><?=$this->view->msgErrorEditMovie??''?></p>
                 <button type="submit">Adicionar filme</button>
             </form>
         </div>
@@ -66,3 +67,4 @@
         </div>
     </section>
 </main>
+<script src="js/files.js"></script>
