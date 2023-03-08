@@ -1,0 +1,255 @@
+main{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 120px;
+}
+main section.info-movie{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 27px;
+}
+.info-movie .info{
+    width: 54%;
+}
+.info-movie .info .info-top{
+    margin-bottom: 30px;
+}
+.info-movie .info .info-top .title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: cente;
+}
+.info-movie .info .info-top h2{
+    margin: 0 auto;
+    margin-bottom: 21px;
+    padding-bottom: 8px;
+    display: inline-block;
+    font-size: 4rem;
+    text-align: center;
+    border-bottom: 3px solid var(--main-red);
+    color: var(--title-color);
+}
+.info-movie .info .info-top .infos{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.info-movie .info .info-top .infos div{
+    display: flex;
+    justify-content: center;
+}
+.info-movie .info .info-top .infos div i.star{
+    margin-right: 1px;
+    font-size: 2rem;
+    color: #ffc800;
+}
+.info-movie .info .info-top .infos h5{
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+.info-movie .info .info-top .infos span{
+    margin-left: 7px;
+    font-size: 1.67rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.info-movie .info .info-bottom{
+    width: 100%;
+}
+.info-movie .info .info-bottom .trailer{
+    width: 100%;
+    margin-bottom: 19px;
+    padding-bottom: 56.25%;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.911);
+    overflow: hidden;
+}
+.info-movie .info .info-bottom .trailer p{
+    margin-top: 15px;
+    text-align: center;
+}
+.info-movie .info .info-bottom iframe{
+    width: 100%; height: 100%;
+    position: absolute;
+    border: none;
+}
+.info-movie .info .info-bottom p{
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+
+
+.info-movie .poster{
+    height: 440px;
+    border-radius: 7px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.911);
+    overflow: hidden;
+}
+.info-movie .poster img{
+    height: 100%;
+}
+
+
+section.assessments{
+    width: 100%;
+}
+section.assessments h3{
+    margin-bottom: 5px;
+    padding-left: 6px;
+    font-size: 2.4rem;
+    border-left: 4px solid var(--main-red);
+    color: var(--title-color);
+}
+section.assessments p.subtitle{
+    margin-left: 6px;
+    margin-bottom: 26px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+section.assessments div.comments{
+    margin-bottom: 700px;
+}
+
+section.assessments .comments .box-comment{
+    margin-bottom: 18px;
+}
+
+section.assessments .box-comment .box-image-name-rating{
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.assessments .box-comment .box-image-name-rating .profile-image{
+    width: 50px; height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 30px auto; */
+    border-radius: 100%;
+    background: white;
+    border: 2px solid var(--main-red);
+    overflow: hidden
+}
+
+section.assessments .box-comment .box-image-name-rating .name-rating{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+section.assessments .box-comment .box-image-name-rating .name-rating p{
+    margin-bottom: 5px;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--main-red);
+}
+section.assessments .box-comment .box-image-name-rating .name-rating div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+section.assessments .box-comment .box-image-name-rating .name-rating div i.star{
+    margin-right: 3px;
+    font-size: 2rem;
+    color: #ffc800;
+}
+section.assessments .box-comment .box-image-name-rating .name-rating div span{
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+
+.assessments .box-text-comment h5{
+    margin-bottom: 6px;
+    margin-left: 55px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.assessments .box-text-comment p{
+    margin-left: 56px;
+    font-size: 1.7rem;
+    color: var(--title-color);
+}
+
+
+
+.assessments .add-review{
+    margin-top: 35px;
+}
+.assessments .add-review form div{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.assessments .add-review form label{
+    margin-bottom: 6px;
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+.assessments .add-review form select{
+    width: 250px; height: 30px;
+    padding: 0 40px 0 5px;
+    display: block;
+    font-size: 1.56rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    color: #1c1c1c;
+    box-shadow: 0 2px 0 var(--bg-box);
+    outline: none;
+}
+.assessments .add-review form select option{
+    padding: 40px 5px;
+    font-weight: 500;
+    color: black;
+}
+.assessments .add-review form textarea{
+    width: 100%;
+    max-width: 550px;
+    padding: 7px;
+    font-size: 1.56rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 0 var(--bg-box);
+    resize: vertical;
+    outline: none;
+}
+.assessments .add-review form p.error{
+    font-weight: 600;
+    color: rgb(255, 40, 40);
+    text-align: left;
+}
+.assessments .add-review form button{
+    margin-top: 8px;
+    padding: 10px 14px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    color: black;
+    border: 2px solid var(--main-red);
+    background: var(--main-red);
+    transition: .2s;
+}
+.assessments .add-review form button:hover{
+    background: transparent;
+    color: var(--main-red);
+    transition: .2s;
+}

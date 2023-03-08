@@ -1,0 +1,23 @@
+
+main{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+main section.edit-movie{
+    display: flex;
+    justify-content: center;
+    gap: 23px;
+}
+main .center{
+    margin: 0;
+}
+.edit-movie .post{
+    height: 500px;
+    border-radius: 7px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+}
+.edit-movie .post img{
+    height: 100%;
+}

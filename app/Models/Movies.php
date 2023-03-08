@@ -15,11 +15,17 @@ class Movies extends model
     protected $userID;
 
 
+    /**
+     * Método responsável por retornar os filmes adicionados recentemente.
+     *
+     * @return array
+     */
     public function retrieveRecentMovies()
     {
         $query = 'SELECT * 
                   FROM movies
                   ORDER BY id desc';
+                //LIMIT 19
         
         $statement = $this->db->query($query);
         $statement->execute();
@@ -28,10 +34,52 @@ class Movies extends model
     }
 
     /**
+     * Método responsável por verificar se o id enviado por get existe ou não.
+     *
+     * @return boolean
+     */
+    public function checkIfMovieExists()
+    {
+        $query = 'SELECT *
+                  FROM movies
+                  WHERE id = :id';
+
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->execute();
+        
+        if ($statement->rowCount() == 0) {
+            return false;
+            exit;
+        } else {
+            return true;
+            exit;
+        }
+    }
+
+
+    /**
+     * Método responsável por retornar os dados de um único filme.
+     *
+     * @return array
+     */
+    public function recoverMovie()
+    {
+        $query = 'SELECT *
+                  FROM movies
+                  WHERE id = :id';
+        $statement= $this->db->prepare($query);
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Método responsável por retornar todos os filmes que o usuário já registrou.
      *
      * @param int $userID
-     * @return void
+     * @return array
      */
     public function recoverUserMovies($userID)
     {
@@ -160,7 +208,44 @@ class Movies extends model
         move_uploaded_file($temporaryName, $imageName);
 
         return 'success';
-        exit;
+    }
+
+    public function checkMovie()
+    {
+        $query = 'SELECT id_user
+                  FROM movies
+                  WHERE id = :id AND id_user = :id_user';
+
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->bindValue(':id_user', $this->__get('id_user'));
+        $statement->execute();
+
+        if ($statement->rowCount() > 0) {
+            return true;
+            exit;
+        } else {
+            return false;
+        }
+    }
+
+    public function editMovie()
+    {
+        $query = 'UPDATE ';
+    }
+
+    /**
+     * Mètodo responsável por deletar um filme.
+     *
+     * @return void
+     */
+    public function destroyMovie()
+    {
+        $query = 'DELETE FROM movies
+                  WHERE id = :id';
         
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->execute();
     }
 }

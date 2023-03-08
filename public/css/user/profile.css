@@ -38,8 +38,8 @@ section.left .center .profile-image{
     border-radius: 100%;
     border: 4px solid var(--main-red);
     overflow: hidden;
-    background-position: center;
-    background-size: cover;
+    /* background-position: center;
+    background-size: cover; */
 }
 section.left .center .profile-image img{
     width: 120%;

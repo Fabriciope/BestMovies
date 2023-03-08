@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Utils\controller\Action;
@@ -24,9 +25,9 @@ class MoviesController extends Action
      */
     public function registerMovie()
     {
-        session_start();
+        $this->validateUser();
 
-        $movie= Container::getModel('Movies');
+        $movie = Container::getModel('Movies');
 
         $movie->__set('title', filter_input(INPUT_POST, "title"));
         $movie->__set('description', filter_input(INPUT_POST, "description"));
@@ -59,8 +60,43 @@ class MoviesController extends Action
             $movie->registerMovie($_FILES['movieFile']['tmp_name']);
 
             header('location: /my-movies');
-
         }
+    }
+
+    public function editMovie()
+    {
+        $this->validateUser();
+
+        $movie = Container::getModel('Movies');
+        $movie->__set('id', filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT));
+        $movie->__set('id_user', $_SESSION['userID']);
+         
+        $checkMovie = $movie->checkMovie();
+
+        if (!$checkMovie) {
+            header('location: /my-movies');
+        }
+
+        $movieData =  $movie->recoverMovie();
+        $this->view->movieData = $movieData;
+        $this->render('movie/edit-movie', 'layout1');
+    }
+
+    public function destroyMovie()
+    {
+        //fazer uma verificação melhor para o usuario não burlar esta funcao pelo inspecionar da página
+        $movie = Container::getModel('movies');
+        $movie->__set('id', filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT));
+
+        $checkMovie = $movie->checkMovie();
+
+        if (!$checkMovie) {
+            header('location: /my-movies');
+        }
+
+        $movie->destroyMovie();
+
+        header('location: /my-movies');
     }
 
     /**
@@ -77,5 +113,10 @@ class MoviesController extends Action
         $this->view->userMovies = $userMovies;
 
         $this->render('user/my-movies', 'layout1');
+    }
+
+    public function pageEditMovie()
+    {
+        $this->render('movie/editMovie', 'layout1');
     }
 }

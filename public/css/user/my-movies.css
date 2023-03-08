@@ -93,11 +93,14 @@ main section.my-movies{
     align-items: center;
     gap: 17px;
 }
-.my-movies table tr td.actions a{
+.my-movies table tr td.actions a,
+.my-movies table tr.data td.actions form button.delete-movie{
     padding: 6px 12px;
     font-size: 1.65rem;
     font-weight: 500;
     text-decoration: none;
+    cursor: pointer;
+    border: none;
     border-radius: 5px;
     color: var(--title-color);
 }
@@ -110,9 +113,9 @@ main section.my-movies{
 .my-movies table tr.data td.actions a.edit-movie:hover{
     background: #38a2ff;
 }
-.my-movies table tr.data td.actions a.delete-movie{
+.my-movies table tr.data td.actions form button.delete-movie{
     background: #e30000;
 }
-.my-movies table tr.data td.actions a.delete-movie:hover{
+.my-movies table tr.data td.actions form button.delete-movie:hover{
     background: #f13636;
 }

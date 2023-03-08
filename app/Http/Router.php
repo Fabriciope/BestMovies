@@ -91,6 +91,30 @@ class Router extends Bootstrap
             'controller' => 'MoviesController',
             'action' => 'pageMyMovies',
         );
+        $routes['page-movie'] = array(
+            'route' => '/movie',
+            'controller' => 'ReviewsController',
+            'action' => 'pageMovie',
+        );
+
+
+        $routes['destroy-movie'] = array(
+            'route' => '/destroy-movie',
+            'controller' => 'MoviesController',
+            'action' => 'destroyMovie',
+        );
+        $routes['edit-movie'] = array(
+            'route' => '/edit-movie',
+            'controller' => 'MoviesController',
+            'action' => 'editMovie',
+        );
+
+
+        $routes['register-new-assessments'] = array(
+            'route' => '/register-new-assessments',
+            'controller' => 'ReviewsController',
+            'action' => 'registerNewAssessments',
+        );
         $this->setRoutes($routes);
     }
 }
