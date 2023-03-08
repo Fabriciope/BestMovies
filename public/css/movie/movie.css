@@ -41,6 +41,7 @@ main section.info-movie{
 .info-movie .info .info-top .infos div{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .info-movie .info .info-top .infos div i.star{
     margin-right: 1px;
@@ -117,15 +118,15 @@ section.assessments p.subtitle{
 }
 
 section.assessments div.comments{
-    margin-bottom: 700px;
+    margin-bottom: 60px;
 }
 
 section.assessments .comments .box-comment{
-    margin-bottom: 18px;
+    margin-bottom: 27px;
 }
 
 section.assessments .box-comment .box-image-name-rating{
-    margin-bottom: 12px;
+    margin-bottom: 7px;
     display: flex;
     justify-content: flex-start;
     gap: 15px;
@@ -142,30 +143,37 @@ section.assessments .box-comment .box-image-name-rating{
     border: 2px solid var(--main-red);
     overflow: hidden
 }
-
+.assessments .box-comment .box-image-name-rating .profile-image img{
+    width: 112%;
+}
 section.assessments .box-comment .box-image-name-rating .name-rating{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-section.assessments .box-comment .box-image-name-rating .name-rating p{
+section.assessments .box-comment .box-image-name-rating .name-rating a{
     margin-bottom: 5px;
     font-size: 1.9rem;
     font-weight: 600;
+    text-decoration: none;
     color: var(--main-red);
+}
+section.assessments .box-comment .box-image-name-rating .name-rating a:hover{
+    text-decoration: underline;
 }
 section.assessments .box-comment .box-image-name-rating .name-rating div{
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
 }
 section.assessments .box-comment .box-image-name-rating .name-rating div i.star{
-    margin-right: 3px;
-    font-size: 2rem;
+    margin-right: 4px;
+    font-size: 1.6rem;
     color: #ffc800;
 }
 section.assessments .box-comment .box-image-name-rating .name-rating div span{
-    font-size: 1.7rem;
+    margin-bottom: -2px;
+    font-size: 1.56rem;
     font-weight: 500;
     color: var(--title-color);
 }
@@ -173,14 +181,14 @@ section.assessments .box-comment .box-image-name-rating .name-rating div span{
 .assessments .box-text-comment h5{
     margin-bottom: 6px;
     margin-left: 55px;
-    font-size: 1.6rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--text-color);
 }
 
 .assessments .box-text-comment p{
     margin-left: 56px;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     color: var(--title-color);
 }
 
@@ -231,9 +239,10 @@ section.assessments .box-comment .box-image-name-rating .name-rating div span{
     outline: none;
 }
 .assessments .add-review form p.error{
+    font-size: 1.5rem;
     font-weight: 600;
-    color: rgb(255, 40, 40);
     text-align: left;
+    color: rgb(255, 40, 40);
 }
 .assessments .add-review form button{
     margin-top: 8px;

@@ -42,7 +42,7 @@ section.left .center .profile-image{
     background-size: cover; */
 }
 section.left .center .profile-image img{
-    width: 120%;
+    width: 112%;
     /* transform: scale(50%); */
 }
 section.left .center .container-select-image-or-delete{

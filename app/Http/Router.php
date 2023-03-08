@@ -115,6 +115,13 @@ class Router extends Bootstrap
         );
 
 
+        $routes['page-profile-user'] = array(
+            'route' => '/profile-user',
+            'controller' => 'UserController',
+            'action' => 'pageProfileUser',
+        );
+
+
         $routes['register-new-assessments'] = array(
             'route' => '/register-new-assessments',
             'controller' => 'ReviewsController',

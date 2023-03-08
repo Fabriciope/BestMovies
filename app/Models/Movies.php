@@ -48,7 +48,7 @@ class Movies extends model
         $statement->bindValue(':id', $this->__get('id'));
         $statement->execute();
         
-        if ($statement->rowCount() == 0) {
+        if ($statement->rowCount() === 0) {
             return false;
             exit;
         } else {
@@ -56,7 +56,6 @@ class Movies extends model
             exit;
         }
     }
-
 
     /**
      * Método responsável por retornar os dados de um único filme.
@@ -226,7 +225,6 @@ class Movies extends model
         }
     }
 
- 
     public function checkMovieUpdateData($hours, $minute,$files)
     {
         $msgError = [];

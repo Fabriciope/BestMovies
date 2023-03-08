@@ -25,8 +25,8 @@
                                             <img src="images/estrela.png" alt=""><span>6.7</span>
                                         </div>
                                         <h4><?= $title ?></h4>
-                                        <a class="avaliar" href="">Avaliar</a>
-                                        <a class="conhecer" href="">Conhecer</a>
+                                        <a class="avaliar" href="/movie?id=<?=$id?>&assess">Avaliar</a>
+                                        <a class="conhecer" href="/movie?id=<?=$id?>">Conhecer</a>
                                     </div>
                                 </div>
                             </div>

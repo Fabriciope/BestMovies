@@ -12,6 +12,19 @@ class Reviews extends Model
     protected $rating;
 
 
+    public function retrieveMovieReviews()
+    {
+        $query = 'SELECT *
+                  FROM reviews
+                  WHERE id_movie = :id_movie';
+        
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id_movie', $this->__get('id_movie'));
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     /**
      * Método responsável por verificar se o usuário já fez um comentário naquele filme.
      *
@@ -42,7 +55,7 @@ class Reviews extends Model
      *
      * @return array
      */
-    public function checkAssessmentsRecord()
+    public function checkAssessmentRecord()
     {
         $msgError = [];
 
@@ -59,5 +72,18 @@ class Reviews extends Model
         }
 
         return $msgError;
+    }
+
+    public function assessmentRecord()
+    {
+        $query = 'INSERT INTO reviews (id_user, id_movie, rating, review)
+                               VALUES (:id_user, :id_movie, :rating, :review)';
+        
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id_user', $this->__get('id_user'));
+        $statement->bindValue(':id_movie', $this->__get('id_movie'));
+        $statement->bindValue(':rating', $this->__get('rating'));
+        $statement->bindValue(':review', trim($this->__get('review')));
+        $statement->execute();
     }
 }

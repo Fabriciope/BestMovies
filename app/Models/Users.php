@@ -14,6 +14,20 @@ class Users extends Model
     protected $image;
     protected $bio;
 
+
+    public function retrieveUser()
+    {
+        $query = 'SELECT *
+                  FROM users
+                  WHERE id = :id';
+
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':id', $this->__get('id'));
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_ASSOC);
+    }
+
     /**
      * Método que faz a validação dos dados antes de serem registrados.
      *

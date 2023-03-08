@@ -178,4 +178,32 @@ class UserController extends Action
         session_destroy();
         header('location: /home');
     }
+
+    public function pageProfileUser()
+    {
+        $userID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+        $user = Container::getModel('Users');
+        $user->__set('id', $userID);
+        $userData = $user->retrieveUser();
+
+        if (!$userID || empty($userData)) {
+            header('location: /home');
+        }
+
+        $movie = Container::getModel('Movies');
+
+        $userMovies = $movie->recoverUserMovies($userID);
+
+        $this->view->userMovies = $userMovies;
+        $this->view->userData = $userData;
+        $this->render('user/profile-user', 'layout1');
+
+        // echo '<pre>';
+        // print_r($userData);
+        // echo '</pre>';
+        // echo '<pre><br><br>';
+        // print_r($userMovies);
+        // echo '</pre>';
+    }
 }

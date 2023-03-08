@@ -40,30 +40,39 @@
         <p class="subtitle">Veja o que outras pessoas acharam deste filme.</p>
 
         <div class="comments">
-            <div class="box-comment">
-                <div class="box-image-name-rating">
-                    <div class="profile-image">
-                        <img src="" alt="">
-                    </div>
-                    <div class="name-rating">
-                        <p>nome do usuário</p>
-                        <div>
-                            <i class="star fa-solid fa-star"></i><span>8.4</span>
-                        </div>
-                    </div>
-                </div>
+                <?php if (!empty($this->view->movieReviews)): 
+                        foreach ($this->view->movieReviews as $review):
+                         extract($review)?>
+                            <div class="box-comment">
+                                <div class="box-image-name-rating">
+                                <div class="profile-image">
+                                  <img src="<?=$user['image']??'images/users/perfil.png'?>" alt="">
+                                </div>
+                                <div class="name-rating">
+                                    <a href="/profile-user?id=<?=$user['id']?>">
+                                        <p><?=$user['name']. ' '.$user['lastname']?></p>
+                                    </a>
+                                    <div>
+                                        <i class="star fa-solid fa-star"></i><span><?=$rating?></span>
+                                    </div>
+                                </div>
+                            </div>
                 <div class="box-text-comment">
                     <h5>Comentário: </h5>
-                    <p>dadadaysbdaukdbajdmjbadj hadvnba jdshva jsdhavddadadads</p>
+                    <p><?=$review?></p>
                 </div>
             </div>
+                <?php  endforeach;?>
+                 <?php else: ?>
+                        <p>Este usuário não possui nenhum filme registrado.</p>
+                <?php endif;?>
         </div>
 
         <?php if (!$this->view->checkComment && isset($_SESSION['userID'])): ?>
             <div class="add-review">
                 <h3>Envie sua avaliação</h3>
                 <p class="subtitle">Preencha o formulário com a nota e o comentário sobre o filme</p>
-                <form action="/register-new-assessments" method="post">
+                <form action="/register-new-assessments?id=<?=$this->view->movieData['id']?>&assess" method="post">
                     <div>
                         <input type="hidden" name="id_movie" value="<?=$_GET['id']?>">
                         <label for="rating">Nota do filme: </label>
@@ -86,9 +95,9 @@
                     </div>
                     <div>
                         <label for="comment">Comentário:</label>
-                        <textarea name="comment" id="comment" rows="10"></textarea>
+                        <textarea name="comment" id="comment" minlength="8" rows="10"></textarea>
                     </div>
-                    <p><?=$this->view->msgErrorNewAssessments??''?></p>
+                    <p class="error"><?=$this->view->msgErrorNewAssessment??''?></p>
                     <button type="submit">Enviar avaliação</button>
                 </form>
             </div>
@@ -96,3 +105,4 @@
         <?php endif;?>
     </section>
 </main>
+<script src="js/assess.js"></script>
