@@ -20,7 +20,7 @@
                     extract($movie)?>
                     <tr class="data">
                         <td class="title"><a href="/movie?id=<?=$id?>"><?=$title?></a></td>
-                        <td class="assessments"><i class="star fa-solid fa-star"></i><span>6.4</span></td>
+                        <td class="assessments"><i class="star fa-solid fa-star"></i><span><?=$rating?></span></td>
                         <td class="actions">
                             <a class="edit-movie" href="/page-edit-movie?id=<?=$id?>"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
                             <form action="/destroy-movie" method="post">

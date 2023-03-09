@@ -73,7 +73,18 @@ class MoviesController extends Action
         $this->validateUser();
 
         $movie = Container::getModel('Movies');
-        $userMovies = $movie->recoverUserMovies($_SESSION['userID']);
+        $unratedUseMovies = $movie->recoverUserMovies($_SESSION['userID']);
+
+        $reviews = Container::getModel('Reviews');
+        $userMovies = [];
+        foreach ($unratedUseMovies as $movie) {
+            if ($reviews->calculateRatings($movie['id']) === false){
+                $movie['rating'] = 'Não avaliado';
+            } else {
+                $movie['rating'] = $reviews->calculateRatings($movie['id']);
+            }
+            $userMovies[] = $movie;
+        }
         $this->view->userMovies = $userMovies;
 
         $this->render('user/my-movies', 'layout1');

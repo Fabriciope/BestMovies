@@ -15,7 +15,7 @@
                         <h5>Gênero: </h5><span><?=$this->view->movieData['category']?></span>
                     </div>
                     <div>
-                        <h5>Nota: </h5><span><i class="star fa-solid fa-star"></i> 7.5</span>
+                        <h5>Nota: </h5><span><?=$this->view->movieData['rating']?><i class="star fa-solid fa-star"></i></span>
                     </div>
                 </div>
             </div>
@@ -27,6 +27,7 @@
                         <p>Este filme foi registrado sem trailer</p>
                     <?php endif; ?>
                 </div>
+                <p><?=$this->view->movieData['description']?></p>
             </div>
         </div>
         <div class="poster">
@@ -46,11 +47,11 @@
                             <div class="box-comment">
                                 <div class="box-image-name-rating">
                                 <div class="profile-image">
-                                  <img src="<?=$user['image']??'images/users/perfil.png'?>" alt="">
+                                  <img src="<?=$image??'images/users/perfil.png'?>" alt="">
                                 </div>
                                 <div class="name-rating">
-                                    <a href="/profile-user?id=<?=$user['id']?>">
-                                        <p><?=$user['name']. ' '.$user['lastname']?></p>
+                                    <a href="/profile-user?id=<?=$id?>">
+                                        <p><?=$name. ' '.$lastname?></p>
                                     </a>
                                     <div>
                                         <i class="star fa-solid fa-star"></i><span><?=$rating?></span>
@@ -63,8 +64,8 @@
                 </div>
             </div>
                 <?php  endforeach;?>
-                 <?php else: ?>
-                        <p>Este usuário não possui nenhum filme registrado.</p>
+                <?php else: ?>
+                    <p class="n">Este filme não possui nenhuma avaliação.</p>
                 <?php endif;?>
         </div>
 
@@ -77,8 +78,8 @@
                         <input type="hidden" name="id_movie" value="<?=$_GET['id']?>">
                         <label for="rating">Nota do filme: </label>
                         <select name="rating" id="rating">
-                        <?php if (isset($this->view->assessmentData['inputRating'])): ?>
-                                <option selected><?=$this->view->movieData['inputRating']?></option>
+                        <?php if (isset($this->view->evaluationErrorData['inputRating'])): ?>
+                                <option selected><?=$this->view->evaluationErrorData['inputRating']?></option>
                             <?php endif; ?>
                             <option>Selecione a nota</option>
                             <option value="10">10</option>
@@ -95,7 +96,7 @@
                     </div>
                     <div>
                         <label for="comment">Comentário:</label>
-                        <textarea name="comment" id="comment" minlength="8" rows="10"></textarea>
+                        <textarea name="comment" id="comment" minlength="4" rows="10"><?=$this->view->evaluationErrorData['inputComment']??''?></textarea>
                     </div>
                     <p class="error"><?=$this->view->msgErrorNewAssessment??''?></p>
                     <button type="submit">Enviar avaliação</button>
