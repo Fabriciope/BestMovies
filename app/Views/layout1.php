@@ -21,8 +21,8 @@
                         <img src="/images/logo-bestmovies.png" alt="logo bestmovies">
                     </a>
                 </div>
-                <form action="#">
-                    <input type="search" name="pesquisa" placeholder="Buscar filmes . . .">
+                <form action="/search" method="post">
+                    <input type="search" name="search" placeholder="Buscar filmes . . .">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
                 
@@ -36,16 +36,16 @@
                     <ul>
 
                         <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
-                            <li class="userNavigation <?php if($this->view->page == 'user/profile')echo'active'?>"><a class="name" href="/profile"><i class="arrow-down fa-solid fa-angle-down"></i>Olá, <?=$_SESSION['username']?></a></li>
-                            <li class="userNavigation <?php if($this->view->page == 'user/my-movies')echo'active'?>"><a href="/my-movies">Meus filmes</a></li>
-                            <li class="userNavigation <?php if($this->view->page == 'user/register-movie')echo'active'?>"><a href="/page-register-movie">Adicionar filme<i class="add-film fa-solid fa-photo-film"></i></a></li>
-                            <li class="userNavigation <?php if($this->view->page == 'home/about-us')echo'active'?>"><a href="/about-us">Sobre nós</a></li>
-                            <li class="userNavigation <?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
+                            <li class="userNavigation <?=$this->view->page == 'user/profile'?'active' : ''?>"><a class="name" href="/profile"><i class="arrow-down fa-solid fa-angle-down"></i>Olá, <?=$_SESSION['username']?></a></li>
+                            <li class="userNavigation <?=$this->view->page == 'user/my-movies'?'active' : ''?>"><a href="/my-movies">Meus filmes</a></li>
+                            <li class="userNavigation <?=$this->view->page == 'user/register-movie'?'active' : ''?>"><a href="/page-register-movie">Adicionar filme<i class="add-film fa-solid fa-photo-film"></i></a></li>
+                            <li class="userNavigation <?=$this->view->page == 'home/about-us'? 'active' : ''?>"><a href="/about-us">Sobre nós</a></li>
+                            <li class="userNavigation <?=$this->view->page == 'home/index'||$this->view->page == 'movie/search'? 'active' : ''?>"><a href="/home">Home</a></li>
 
                         <?php else: ?> 
-                            <li class="<?php if($this->view->page == 'home/enter-register')echo'active'?> ER"><a href="/enter-register">Entrar / Registrar</a></li>
-                            <li class="<?php if($this->view->page == 'home/about-us')echo'active'?>"><a href="/about-us">Sobre nós</a></li>
-                            <li class="<?php if($this->view->page == 'home/index')echo'active'?>"><a href="/home">Home</a></li>
+                            <li class="<?=$this->view->page == 'home/enter-register'?'active' : ''?> ER"><a href="/enter-register">Entrar / Registrar</a></li>
+                            <li class="<?=$this->view->page == 'home/about-us'?'active': ''?>"><a href="/about-us">Sobre nós</a></li>
+                            <li class="<?=$this->view->page == 'home/index'?'active' : ''?>"><a href="/home">Home</a></li>
                         
                         <?php endif; ?>
                     

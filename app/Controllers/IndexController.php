@@ -18,7 +18,7 @@ class IndexController extends Action
     {
         session_start();
         $movies = Container::getModel('movies');
-        $moviesWithoutRating = $movies->retrieveRecentMovies();
+        $moviesWithoutRating = $movies->retrieveAllMovies();
 
         $reviews = Container::getModel('Reviews');
 
@@ -26,51 +26,108 @@ class IndexController extends Action
 
         foreach ($moviesWithoutRating as $movie) {
 
-            if ($reviews->calculateRatings($movie['id']) === false){
+            if ($reviews->calculateRatings($movie['id']) === false) {
                 $movie['rating'] = 'Não avaliado';
             } else {
                 $movie['rating'] = $reviews->calculateRatings($movie['id']);
             }
             $allMovies['recentMovies'][] = $movie;
+        }
 
-            switch($movie['category']) {
+        $arrayRatingsAction = [];
+        $arrayRatingsAdventure = [];
+        $bestMovies = [];
+        foreach ($allMovies['recentMovies'] as $movie) {
+
+            switch ($movie['category']) {
                 case 'Ação':
-                    $allMovies['actionMovies'] []= $movie;
-                 break;
-
+                    $arrayRatingsAction[] = $movie['rating'];
+                    $allMovies['actionMovies'][] = $movie;
+                    echo 'categoria: ' . $movie['title'] . '-' . $movie['rating'] . '<br>';
+                    break;
                 case 'Aventura':
+                    $arrayRatingsAdventure[] = $movie['rating'];
                     $allMovies['adventureMovies'][] = $movie;
-                 break;
-
+                    break;
                 case 'Drama':
                     $allMovies['dramaMovies'][] = $movie;
-                 break;
-
+                    break;
                 case 'Fantasia':
                     $allMovies['fantasyMovies'][] = $movie;
-                 break;
-
+                    break;
                 case 'Ficção científica':
                     $allMovies['scienceFictionMovies'][] = $movie;
-                 break;
-
+                    break;
                 case 'Romance':
                     $allMovies['romanceMovies'][] = $movie;
-                 break;
-
+                    break;
                 case 'Terror':
                     $allMovies['horrorMovies'][] = $movie;
-                 break;
-
+                    break;
                 case 'Suspense':
                     $allMovies['thrillers'][] = $movie;
-                 break;
+                    break;
+            }
+            foreach ($arrayRatingsAction as $key) {
+                if ($key === 'Não avaliado') {
+                    $wrongKey = array_search('Não avaliado', $arrayRatingsAction);
+                    unset($arrayRatingsAction[$wrongKey]);
+                }
             }
         }
-        
+
+        $bestActionMovie = array_search(max($arrayRatingsAction), $allMovies['actionMovies']);
+        $bestMovies['action'] = $allMovies['actionMovies'][$bestActionMovie];
+        echo '<pre>';
+        print_r($bestMovies);
+        echo '</pre><br>';
+        // echo $stringRatingsAction . '<br>';
+        echo '<pre>';
+        print_r($arrayRatingsAction);
+        echo '</pre><br>';
+        $this->view->bestMovies = $bestMovies;
         $this->view->allMovies = $allMovies;
 
-        $this->render('home/index','layout1');
+        echo '<pre>';
+        print_r($bestMovies);
+        echo '</pre><br>';
+        echo '<pre>';
+        print_r($allMovies);
+        echo '</pre><br>';
+
+        // $this->render('home/index','layout1');
+    }
+
+    public function search()
+    {
+        session_start();
+
+        $movies = Container::getModel('Movies');
+        $movies->__set('title', filter_input(INPUT_POST, "search"));
+
+        $foundMovies = $movies->search();
+
+        if (count($foundMovies) === 0 || !filter_input(INPUT_POST, "search")) {
+            $this->view->notFound = 'Não encontramos nenhum filme para esta busca, ';
+            $this->view->search = $_POST['search'];
+            $this->render('movie/search', 'layout1');
+        }
+
+        $reviews = Container::getModel('Reviews');
+        $moviesSearchedWithNote = [];
+        foreach ($foundMovies as $movie) {
+
+            if ($reviews->calculateRatings($movie['id']) === false) {
+                $movie['rating'] = 'Não avaliado';
+            } else {
+                $movie['rating'] = $reviews->calculateRatings($movie['id']);
+            }
+            $moviesSearchedWithNote[] = $movie;
+        }
+
+        $this->view->search = $_POST['search'];
+        $this->view->foundMovies = $moviesSearchedWithNote;
+        $this->render('movie/search', 'layout1');
     }
 
     /**
@@ -81,8 +138,8 @@ class IndexController extends Action
     public function pageEnterRegister()
     {
         $this->view->data = [
-            'inputEmailEnter'=> '',
-            'inputPasswordEnter'=> '',
+            'inputEmailEnter' => '',
+            'inputPasswordEnter' => '',
             'inputName' => '',
             'inputLastName' => '',
             'inputEmailRegister' => '',

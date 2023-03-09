@@ -20,6 +20,11 @@ class Router extends Bootstrap
             'controller' => 'IndexController',
             'action' => 'pageHome',
         );
+        $routes['page_search'] = array(
+            'route' => '/search',
+            'controller' => 'IndexController',
+            'action' => 'search',
+        );
 
         //PAGE ENTER_REGISTER
         $routes['page_entrar_registrar'] = array(

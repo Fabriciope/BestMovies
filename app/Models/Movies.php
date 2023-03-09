@@ -20,7 +20,7 @@ class Movies extends model
      *
      * @return array
      */
-    public function retrieveRecentMovies()
+    public function retrieveAllMovies()
     {
         $query = 'SELECT * 
                   FROM movies
@@ -28,6 +28,32 @@ class Movies extends model
                 //LIMIT 19
         
         $statement = $this->db->query($query);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    // public function bestRated($category)
+    // {
+    //     $query = 'SELECT *
+    //               FROM movies
+    //               WHERE category = :category';
+        
+    //     $statement = $this->db->prepare($query);
+    //     $statement->bindValue(':category', $category);
+    //     $statement->execute();
+
+    //     return $statement->fetch(\PDO::FETCH_ASSOC);
+    // }
+
+    public function search()
+    {
+        $query = 'SELECT *
+                  FROM movies
+                  WHERE title LIKE :title';
+
+        $statement = $this->db->prepare($query);
+        $statement->bindValue(':title', '%'.$this->__get('title').'%');
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
