@@ -1,21 +1,52 @@
-section.banners{
+section.banners-wrap{
     width: 100%;
-    margin-top: 70px;
-    margin-bottom: 40px;
-    /* background-image: url(../../images/banners/banner-films-action.png); */
+    /* margin-top: 80px; */
+    margin-bottom: 60px;
     box-shadow: 0 4px 13px black;
+    overflow: hidden;
 }
-section.banners .banner{
+section.banners-wrap button.left,
+section.banners-wrap button.right{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 99;
+}
+section.banners-wrap button.left{
+    left: 0;
+}
+section.banners-wrap button.right{
+    right: 0;
+    border: 3px solid green;
+}
+section.banners-wrap .container-banners{
+    /* width: 100%; */
+    display: flex;
+    margin-left: -200px;
+}
+.banners-wrap .container-banners .box-banner{
     width: 100%;
+    flex-shrink: 0;
+    border: 1px solid red;
 }
-section.banners .banner img{
+.banners-wrap .container-banners .box-banner img{
+   width: 100%;
+    
+}
+.banners-wrap .container-banners .box-banner .box-movie{
+    width: 500px; height: 100%;
+    position: absolute;
+    top: 0;
+    border: 2px solid tomato;
+}
+/* section.banners .banner img{
     width: 100%;
     /* position: absolute;
     top: 70px;
     left: 0;
     right: 0;
-    margin-bottom: 30px; */
-}
+    margin-bottom: 30px; 
+} */
 
 main{
     width: 100%;

@@ -22,10 +22,10 @@ body{
 }
 header{
     width: 100%;
-    position: fixed;
+    /* position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0; */
     /* margin-bottom: 24px; */
     box-shadow: 0 2px 15px rgb(0, 0, 0, .8);
     background: var(--bg-box);

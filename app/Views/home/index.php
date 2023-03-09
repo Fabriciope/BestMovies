@@ -1,8 +1,21 @@
 <link rel="stylesheet" href="css/home/index.css">
-<section class="banners">
-    <div class="banner">
-        <img src="images/banners/banner-films-action.png" alt="">
+<section class="banners-wrap">
+    <button class="control left"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="container-banners">
+        <div class="box-banner">
+          <img src="images/banners/banner-films-action.png" alt="">
+          <div class="box-movie"></div>
+        </div>
+        <div class="box-banner">
+          <img src="images/banners/banner-films-action.png" alt="">
+          <div class="box-movie"></div>
+        </div>
+        <div class="box-banner">
+          <img src="images/banners/banner-films-action.png" alt="">
+          <div class="box-movie"></div>
+        </div>
     </div>
+    <button class="control right"><i class="fa-solid fa-chevron-right"></i></button>
 </section>
 
 <main>
@@ -14,7 +27,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('recent')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button onclick="prev('recent')"  class="left"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films recent">
                         <?php foreach ($this->view->allMovies['recentMovies'] as $movie) :
                             extract($movie) ?>
@@ -32,7 +45,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('recent')" class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button onclick="next('recent')" class="right"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>

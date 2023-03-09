@@ -36,66 +36,166 @@ class IndexController extends Action
 
         $arrayRatingsAction = [];
         $arrayRatingsAdventure = [];
+        $arrayRatingsDrama = [];
+        $arrayRatingsFantasy= [];
+        $arrayRatingsScienceFiction = [];
+        $arrayRatingsRomance = [];
+        $arrayRatingsHorror = [];
         $bestMovies = [];
+        $arrayRatingsThrillers = [];
+        //Refatorar esse foreach para as models.
         foreach ($allMovies['recentMovies'] as $movie) {
 
             switch ($movie['category']) {
                 case 'Ação':
                     $arrayRatingsAction[] = $movie['rating'];
                     $allMovies['actionMovies'][] = $movie;
-                    echo 'categoria: ' . $movie['title'] . '-' . $movie['rating'] . '<br>';
+                    
+                    foreach ($arrayRatingsAction as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsAction);
+                            unset($arrayRatingsAction[$wrongKey]);
+                        }
+                        foreach ($allMovies['actionMovies'] as $actionMovie) {
+                            if (!empty($arrayRatingsAction)) {
+                                if (array_search(max($arrayRatingsAction), $actionMovie)) {
+                                    $bestMovies['action'] = $actionMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Aventura':
                     $arrayRatingsAdventure[] = $movie['rating'];
                     $allMovies['adventureMovies'][] = $movie;
+                    
+                    foreach ($arrayRatingsAdventure as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsAdventure);
+                            unset($arrayRatingsAdventure[$wrongKey]);
+                        }
+                        foreach ($allMovies['adventureMovies'] as $adventureMovie) {
+                            if (!empty($arrayRatingsAdventure)) {
+                                if (array_search(max($arrayRatingsAdventure), $adventureMovie)) {
+                                    $bestMovies['adventure'] = $adventureMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Drama':
+                    $arrayRatingsDrama[] = $movie['rating'];
                     $allMovies['dramaMovies'][] = $movie;
+                    
+                    foreach ($arrayRatingsDrama as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsDrama);
+                            unset($arrayRatingsDrama[$wrongKey]);
+                        }
+                        foreach ($allMovies['dramaMovies'] as $dramaMovie) {
+                            if (!empty($arrayRatingsDrama)) {
+                                if (array_search(max($arrayRatingsDrama), $dramaMovie)) {
+                                    $bestMovies['drama'] = $dramaMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Fantasia':
+                    $arrayRatingsFantasy[] = $movie['rating'];
                     $allMovies['fantasyMovies'][] = $movie;
+                    foreach ($arrayRatingsFantasy as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsFantasy);
+                            unset($arrayRatingsFantasy[$wrongKey]);
+                        }
+                        foreach ($allMovies['fantasyMovies'] as $fantasyMovie) {
+                            if (!empty($arrayRatingsFantasy)) {
+                                if (array_search(max($arrayRatingsFantasy), $fantasyMovie)) {
+                                    $bestMovies['fantasy'] = $fantasyMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Ficção científica':
+                    $arrayRatingsScienceFiction[] = $movie['rating'];
                     $allMovies['scienceFictionMovies'][] = $movie;
+                    
+                    foreach ($arrayRatingsScienceFiction as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsScienceFiction);
+                            unset($arrayRatingsScienceFiction[$wrongKey]);
+                        }
+                        foreach ($allMovies['scienceFictionMovies'] as $scienceFictionMovie) {
+                            if (!empty($arrayRatingsScienceFiction)) {
+                                if (array_search(max($arrayRatingsScienceFiction), $scienceFictionMovie)) {
+                                    $bestMovies['scienceFiction'] = $scienceFictionMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Romance':
+                    $arrayRatingsRomance[] = $movie['rating'];
                     $allMovies['romanceMovies'][] = $movie;
+                    
+                    foreach ($arrayRatingsScienceFiction as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsScienceFiction);
+                            unset($arrayRatingsScienceFiction[$wrongKey]);
+                        }
+                        foreach ($allMovies['romance'] as $romanceMovie) {
+                            if (!empty($arrayRatingsRomance)) {
+                                if (array_search(max($arrayRatingsRomance), $romanceMovie)) {
+                                    $bestMovies['romance'] = $romanceMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Terror':
+                    $arrayRatingHorror[] = $movie['rating'];
                     $allMovies['horrorMovies'][] = $movie;
+                    
+                    foreach ($arrayRatingsHorror as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsHorror);
+                            unset($arrayRatingsHorror[$wrongKey]);
+                        }
+                        foreach ($allMovies['horror'] as $horrorMovie) {
+                            if (!empty($arrayRatingsHorror)) {
+                                if (array_search(max($arrayRatingsHorror), $horrorMovie)) {
+                                    $bestMovies['horror'] = $horrorMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
                 case 'Suspense':
-                    $allMovies['thrillers'][] = $movie;
+                    $arrayRatingThrillers[] = $movie['rating'];
+                    $allMovies['thrillersMovies'][] = $movie;
+                    
+                    foreach ($arrayRatingsThrillers as $key) {
+                        if ($key === 'Não avaliado') {
+                            $wrongKey = array_search('Não avaliado', $arrayRatingsThrillers);
+                            unset($arrayRatingsThrillers[$wrongKey]);
+                        }
+                        foreach ($allMovies['thrillers'] as $thrillersMovie) {
+                            if (!empty($arrayRatingsThrillers)) {
+                                if (array_search(max($arrayRatingsThrillers), $thrillersMovie)) {
+                                    $bestMovies['thrillers'] = $thrillersMovie;
+                                }
+                            }
+                        }
+                    }
                     break;
-            }
-            foreach ($arrayRatingsAction as $key) {
-                if ($key === 'Não avaliado') {
-                    $wrongKey = array_search('Não avaliado', $arrayRatingsAction);
-                    unset($arrayRatingsAction[$wrongKey]);
-                }
             }
         }
 
-        $bestActionMovie = array_search(max($arrayRatingsAction), $allMovies['actionMovies']);
-        $bestMovies['action'] = $allMovies['actionMovies'][$bestActionMovie];
-        echo '<pre>';
-        print_r($bestMovies);
-        echo '</pre><br>';
-        // echo $stringRatingsAction . '<br>';
-        echo '<pre>';
-        print_r($arrayRatingsAction);
-        echo '</pre><br>';
         $this->view->bestMovies = $bestMovies;
         $this->view->allMovies = $allMovies;
-
-        echo '<pre>';
-        print_r($bestMovies);
-        echo '</pre><br>';
-        echo '<pre>';
-        print_r($allMovies);
-        echo '</pre><br>';
-
-        // $this->render('home/index','layout1');
+        $this->render('home/index','layout1');
     }
 
     public function search()

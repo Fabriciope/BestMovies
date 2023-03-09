@@ -36,7 +36,8 @@ class Movies extends model
     // public function bestRated($category)
     // {
     //     $query = 'SELECT *
-    //               FROM movies
+    //               FROM movies as m
+    //               LEFT JOIN re
     //               WHERE category = :category';
         
     //     $statement = $this->db->prepare($query);
@@ -51,11 +52,9 @@ class Movies extends model
         $query = 'SELECT *
                   FROM movies
                   WHERE title LIKE :title';
-
         $statement = $this->db->prepare($query);
         $statement->bindValue(':title', '%'.$this->__get('title').'%');
         $statement->execute();
-
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 

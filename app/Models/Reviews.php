@@ -56,8 +56,6 @@ class Reviews extends Model
         }
 
         return $rating;
-
-        
     }
 
     /**

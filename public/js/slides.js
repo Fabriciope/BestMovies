@@ -1,11 +1,35 @@
-//Slides films
-// const items = document.querySelectorAll('.box-film');
-// const controlLeft = document.querySelector('.control-left-films');
-// const controlRight = document.querySelector('.control-right-films')
-// const containerFilms = document.querySelector('.container-films');
-// const itemSize = (items[0].clientWidth + 24) * 3;
-// const maxItems = items.length;
-// const rightSpace = (maxItems/3);
+const controls = document.querySelectorAll('.control');
+const bannerItems = document.querySelectorAll('.box-banner');
+const containerBanner = document.querySelector('.container-banners');
+const bannerMaxItems = bannerItems.length;
+
+const bannerItemSize = bannerItems[0].clientWidth
+let bannerCurentItem = 0;
+
+controls.forEach((control)=>{
+    control.addEventListener('click', ()=>{
+        const isLeft = control.classList.contains('left')
+        if(isLeft) {
+            bannerCurentItem -= 1;
+            console.log(control)
+        } else {
+            bannerCurentItem += 1;
+        }
+        if (bannerCurentItem >= bannerMaxItems) {
+            bannerCurentItem = 0;
+        }
+        if (bannerCurentItem < 0) {
+            bannerCurentItem = bannerMaxItems -1;
+        }
+
+        bannerItems[bannerCurentItem].scrollIntoView({
+            block : "center",
+            behavior: "smooth"
+        })
+        console.log(bannerCurentItem);
+    })
+})
+
 let currentItem = 0;
 
 function prev(section) {
