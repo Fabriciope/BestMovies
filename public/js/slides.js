@@ -32,6 +32,8 @@ controls.forEach((control)=>{
 
 let currentItem = 0;
 
+// currentItem
+
 function prev(section) {
     const items = document.querySelectorAll('.box-film.' + section);
     const itemSize = (items[0].clientWidth + 24) * 3;
@@ -55,8 +57,8 @@ function next(section) {
     currentItem += 1; 
 
 
-    if (currentItem > rightSpace) {
-        currentItem = 0;
+    if (currentItem > rightSpace-1) {
+        currentItem = rightSpace -2;
 
     }
     let multiplierRight = itemSize * currentItem;

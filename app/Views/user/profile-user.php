@@ -22,7 +22,7 @@
                             <div class="content">
                                 <div class="center">
                                     <div>
-                                        <img src="images/estrela.png" alt=""><span>6.7</span>
+                                        <img src="images/estrela.png" alt=""><span><?=$rating?></span>
                                     </div>
                                     <h4><?= $title ?></h4>
                                     <a class="avaliar" href="/movie?id=<?=$id?>&assess">Avaliar</a>

@@ -1,36 +1,38 @@
-section.banners-wrap{
+/* section.banners-wrap{
     width: 100%;
-    /* margin-top: 80px; */
-    margin-bottom: 60px;
+    position: relative;
     box-shadow: 0 4px 13px black;
     overflow: hidden;
+    border: 3px solid blue;
+    position: relative;
 }
 section.banners-wrap button.left,
 section.banners-wrap button.right{
     position: absolute;
     top: 0;
     bottom: 0;
-    z-index: 99;
+    z-index: 999;
 }
 section.banners-wrap button.left{
     left: 0;
 }
 section.banners-wrap button.right{
     right: 0;
-    border: 3px solid green;
 }
 section.banners-wrap .container-banners{
-    /* width: 100%; */
+    /* width: 100%; 
     display: flex;
     margin-left: -200px;
 }
 .banners-wrap .container-banners .box-banner{
     width: 100%;
+    position: relative;
     flex-shrink: 0;
-    border: 1px solid red;
+    border: 3px solid green;
 }
 .banners-wrap .container-banners .box-banner img{
    width: 100%;
+   flex-shrink: 0;
     
 }
 .banners-wrap .container-banners .box-banner .box-movie{
@@ -38,7 +40,7 @@ section.banners-wrap .container-banners{
     position: absolute;
     top: 0;
     border: 2px solid tomato;
-}
+} */
 /* section.banners .banner img{
     width: 100%;
     /* position: absolute;
@@ -47,6 +49,168 @@ section.banners-wrap .container-banners{
     right: 0;
     margin-bottom: 30px; 
 } */
+
+section.banners{
+    width: 100%;
+    margin-bottom: 40px;
+    position: relative;
+    box-shadow: 0 6px 17px rgb(0, 0, 0, .6);
+}
+section.banners .wrapper{
+    width: 100%;
+    overflow: hidden;
+}
+section.banners button.left,
+section.banners  button.right{
+    padding: 0 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    z-index: 100;
+}
+section.banners  button.left{
+    left: 0;
+}
+section.banners button.right{
+    right: 0;
+}
+section.banners button.left i,
+section.banners  button.right i{
+    font-size: 5.6rem;
+    text-shadow: 5px 2px 0 black;
+    color: rgba(186, 0, 0, .83);
+}
+section.banners button.left i{
+    text-shadow: -5px 2px 0 black;
+}
+section.banners .wrapper .container-banners{
+    display: flex;
+    gap: 3px;
+}
+.banners .wrapper .container-banners .box-banner{
+    width: 100%;
+    position: relative;
+    flex-shrink: 0;
+}
+.banners .wrapper .container-banners .box-banner img.banner{
+    width: 100%;
+    filter: opacity(73%);
+}
+
+
+
+.banners .wrapper .container-banners .box-banner .box-movie{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    inset: 0 0 0 0;
+    right: 15px;
+    z-index: 99;
+}
+.container-banners .box-banner .box-movie .container-infos{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-right: 16px;
+
+}
+.container-banners .box-banner .box-movie .container-infos h2{
+    font-size: 3.6rem;
+    text-shadow: 3px 3px 0 black;
+    color: var(--title-color);
+}
+
+.container-banners .box-banner .box-movie .container-infos .box-info{
+    padding: 19px 33px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 7px;
+    border: 1px solid white;
+    background: rgba(179, 179, 179, .08);
+    backdrop-filter: blur(5px);
+}
+.container-banners .box-banner .box-movie .container-infos .box-info h4{
+    margin-bottom: 6px;
+    font-size: 2.4rem;
+    text-shadow: 2px 2px 0 black;
+    color: var(--title-color);
+}
+.box-banner .box-movie .container-infos .box-info  span{
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--title-color);
+}
+.box-banner .box-movie .container-infos .box-info  i.star{
+    margin-right: 3px;
+    font-size: 1.87rem;
+    color: #ffc800;
+}
+.box-banner .box-movie .container-infos .box-info .box-btns{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+}
+.box-banner .box-movie .container-infos .box-info a{
+    padding: 3px 13px;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.box-banner .box-movie .container-infos .box-info a.avaliar{
+    color: #0088ff;
+    border: 3px solid #0088ff00;
+    background: rgb(78, 78, 78, .8);
+    box-shadow: 1px 1px 0 #0088ff;
+    transition: .2s;
+}
+.box-banner .box-movie .container-infos .box-info a.avaliar:hover{
+    border: 3px solid #0088ff;
+    background: transparent;
+    transition: .2s;
+}
+.box-banner .box-movie .container-infos .box-info a.conhecer{
+    color: var(--bg-site);
+    border: 3px solid var(--main-red);
+    background: var(--main-red);
+    box-shadow: 2px 2px 0 var(--bg-site);
+    transition: .2s;
+}
+.box-banner .box-movie .container-infos .box-info a.conhecer:hover{
+    color: var(--main-red);
+    box-shadow: 2px 2px 0 var(--main-red);
+    background: transparent;
+    transition: .2s;
+}
+
+
+.container-banners .box-banner .box-movie .image{
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 3px 3px 10px rgb(0, 0, 0, .6);
+}
+.container-banners .box-banner .box-movie .image img{
+    height: 100%;
+}
+
+
+
 
 main{
     width: 100%;
@@ -73,6 +237,8 @@ section.filmes .container{
     font-weight: 500;
     color: var(--text-color);
 }
+
+
 /* .filmes .container .container-wrapper{
 } */
 .filmes .container .wrapper{
@@ -80,6 +246,13 @@ section.filmes .container{
     overflow: hidden;
     position: relative;
 }
+.filmes .container .wrapper .container-films{
+    padding-left: 20px;
+    display: flex;
+    gap: 24px;
+    transition: .5s ease-in-out;
+}
+
 .filmes .container .wrapper button.left,
 .filmes .container .wrapper button.right{
     width: 40px;
@@ -105,14 +278,6 @@ section.filmes .container{
     color: rgba(255, 255, 255, 0.5);
 }
 
-
-
-.filmes .container .wrapper .container-films{
-    padding-left: 20px;
-    display: flex;
-    gap: 24px;
-    transition: .5s ease-in-out;
-}
 
 
 .container-films .box-film{

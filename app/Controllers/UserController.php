@@ -195,6 +195,7 @@ class UserController extends Action
 
         $userMovies = $movie->recoverUserMovies($userID);
 
+        $this->view->userMovies['rating'] = 
         $this->view->userMovies = $userMovies;
         $this->view->userData = $userData;
         $this->render('user/profile-user', 'layout1');

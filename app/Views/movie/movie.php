@@ -65,7 +65,7 @@
             </div>
                 <?php  endforeach;?>
                 <?php else: ?>
-                    <p class="n">Este filme não possui nenhuma avaliação.</p>
+                    <p class="n">Este filme não possui nenhuma avaliação, seja o primeiro a avaliá-lo.</p>
                 <?php endif;?>
         </div>
 

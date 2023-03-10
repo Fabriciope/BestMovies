@@ -29,7 +29,7 @@ class IndexController extends Action
             if ($reviews->calculateRatings($movie['id']) === false) {
                 $movie['rating'] = 'Não avaliado';
             } else {
-                $movie['rating'] = $reviews->calculateRatings($movie['id']);
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),2,'.');
             }
             $allMovies['recentMovies'][] = $movie;
         }
@@ -220,7 +220,7 @@ class IndexController extends Action
             if ($reviews->calculateRatings($movie['id']) === false) {
                 $movie['rating'] = 'Não avaliado';
             } else {
-                $movie['rating'] = $reviews->calculateRatings($movie['id']);
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),2,'.') ;
             }
             $moviesSearchedWithNote[] = $movie;
         }
