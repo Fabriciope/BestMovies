@@ -174,7 +174,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('recent')"  class="left"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left recent"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films recent">
                         <?php foreach ($this->view->allMovies['recentMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -192,7 +192,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('recent')" class="right"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right recent"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -205,7 +205,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('action')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left action"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films action">
                         <?php foreach ($this->view->allMovies['actionMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -223,7 +223,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('action')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right action"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -236,7 +236,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('adventure')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left adventure"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films adventure">
                         <?php foreach ($this->view->allMovies['adventureMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -254,7 +254,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('adventure')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right adventure"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -267,7 +267,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('drama')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left drama"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films drama">
                         <?php foreach ($this->view->allMovies['dramaMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -285,7 +285,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('drama')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right drama"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -298,7 +298,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('fantasy')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left fantasy"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films fantasy">
                         <?php foreach ($this->view->allMovies['fantasyMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -316,7 +316,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('fantasy')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right fantasy"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -329,7 +329,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('scienceFiction')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left scienceFiction"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films scienceFiction">
                         <?php foreach ($this->view->allMovies['scienceFictionMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -347,7 +347,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('scienceFiction')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right scienceFiction"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -360,7 +360,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('scienceFiction')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left romance"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films romance">
                         <?php foreach ($this->view->allMovies['romanceMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -378,7 +378,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('romance')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right romance"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -391,7 +391,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('scienceFiction')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left horror"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films horror">
                         <?php foreach ($this->view->allMovies['horrorMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -409,7 +409,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('horror')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right horror"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -422,7 +422,7 @@
             </div>
             <div class="container-wrapper">
                 <div class="wrapper">
-                    <button onclick="prev('thriller')"  class="left control-left-films"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="controlMovies left thriller"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="container-films thriller">
                         <?php foreach ($this->view->allMovies['thrillersMovies'] ?? [] as $movie) :
                             extract($movie) ?>
@@ -440,7 +440,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button onclick="next('thriller')"  class="right control-right-films"><i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="controlMovies right thriller"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
