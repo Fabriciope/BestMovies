@@ -1,13 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d5c56409b7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/home/layout1.css">
+    <link rel="stylesheet" href="/css/layout1.css">
     <title>BestMovies</title>
 </head>
 
@@ -15,19 +13,16 @@
     <header>
         <div class="container-nav-top">
             <div class="center-nav-top">
-            
                 <div class="logo">
                     <a href="/home">
                         <img src="/images/logo-bestmovies.png" alt="logo bestmovies">
                     </a>
                 </div>
                 <form action="/search" method="post">
-                    <input type="search" name="search" placeholder="Buscar filmes . . .">
+                    <input type="search" name="search" value="<?=$this->view->search??''?>" placeholder="Buscar filmes . . .">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
-                
-                    <i class="menu fa-solid fa-bars-staggered"></i>
-               
+                <i class="menu fa-solid fa-bars-staggered"></i>
             </div>
         </div>
         <div class="container-nav-bottom">
@@ -60,7 +55,29 @@
 
     <footer>
         <div class="center">
-                            
+            <div class="logo">
+                <img src="/images/logo-bestmovies.png" alt="logo bestmovies">
+            </div>
+            <div class="copyright">
+                <p class="brand">BestMovies | Site de avaliações de filmes</p>
+                <p class="copyright">©️ 2023 Copyright - Fabrício Pereira Alves</p>
+            </div>
+            <div class="pages">
+                <ul>
+                    <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
+                        <li><a href="/profile">Meu perfil</a></li>
+                        <li><a href="/my-movies">Meus filmes</a></li>
+                        <li><a href="/page-register-movie">Adicionar filme</a></li>
+                        <li><a href="/about-us">Sobre nós</a></li>
+                        <li><a href="/home">Home</a></li>
+                    <?php else: ?> 
+                        <li><a href="/enter-register">Entrar / Registrar</a></li>
+                        <li><a href="/about-us">Sobre nós</a></li>
+                        <li><a href="/home">Home</a></li>
+                    
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
     </footer>
 </body>

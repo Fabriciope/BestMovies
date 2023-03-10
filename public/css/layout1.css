@@ -16,7 +16,7 @@ html{
     font-family: 'Montserrat', sans-serif;
 }
 body{
-    width: 100%; height: 100vh;
+    width: 100%;
     position: relative;
     background: var(--bg-site);
 }
@@ -135,4 +135,48 @@ header .container-nav-bottom{
     color: var(--title-color);
     background: var(--bg-box);
     transition: .2s;
+}
+
+footer{
+    width: 100%;
+    margin-top: 100px;
+    padding: 50px;
+    background: var(--bg-box);
+    box-shadow: 0 -4px 10 rgb(0, 0, 0, .8);
+}
+footer .center{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer .center .logo{
+    width: 140px;
+}
+footer .center .logo img{
+    width: 100%;
+}
+footer .center .copyright p.brand{
+    margin-bottom: 5px;
+    font-size: 1.45rem;
+    text-align: center;
+    color: var(--title-color);
+}
+footer .center .copyright p.copyright{
+    font-size: 1.33rem;
+    text-align: center;
+    color: var(--text-color);
+}
+footer .center .pages ul li{
+    margin: 2px auto;
+    list-style: none;
+}
+footer .center .pages a{
+    width: 100%;
+    display: inline-block;
+    padding: 2px 3px;
+    font-size: 1.36rem;
+    text-align: center;
+    color: var(--title-color);
 }

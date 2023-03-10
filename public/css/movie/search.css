@@ -1,7 +1,6 @@
 main{
     width: 90%;
-    margin: 0 auto;
-    margin-top: 110px;
+    margin: 50px auto 290px auto;
 }
 main section.found-movies{
     width: 100%;

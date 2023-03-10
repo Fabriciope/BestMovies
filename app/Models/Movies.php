@@ -350,8 +350,11 @@ class Movies extends model
      */
     public function destroyMovie($image)
     {
-        $query = 'DELETE FROM movies
-                  WHERE id = :id';
+        $query = 'DELETE FROM reviews
+                  WHERE id_movie = :id;
+                
+                  DELETE FROM movies
+                  WHERE id = :id    ';
         
         $statement = $this->db->prepare($query);
         $statement->bindValue(':id', $this->__get('id'));

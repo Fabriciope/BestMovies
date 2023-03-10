@@ -11,7 +11,6 @@ controls.forEach((control)=>{
         const isLeft = control.classList.contains('left')
         if(isLeft) {
             bannerCurentItem -= 1;
-            console.log(control)
         } else {
             bannerCurentItem += 1;
         }
@@ -21,18 +20,26 @@ controls.forEach((control)=>{
         if (bannerCurentItem < 0) {
             bannerCurentItem = bannerMaxItems -1;
         }
-
         bannerItems[bannerCurentItem].scrollIntoView({
             block : "center",
             behavior: "smooth"
-        })
-        console.log(bannerCurentItem);
+        });
     })
 })
 
-let currentItem = 0;
+// setInterval(function(){
+//     bannerCurentItem++
+//     if (bannerCurentItem >= bannerMaxItems) {
+//         bannerCurentItem = 0;
+//     }
+//     bannerItems[bannerCurentItem].scrollIntoView({
+//         block : "center",
+//         behavior: "smooth"
+//     });
+// }, 3000);
 
-// currentItem
+
+let currentItem = 0;
 
 function prev(section) {
     const items = document.querySelectorAll('.box-film.' + section);
@@ -58,10 +65,9 @@ function next(section) {
 
 
     if (currentItem > rightSpace-1) {
-        currentItem = rightSpace -2;
+        currentItem = rightSpace -1;
 
     }
     let multiplierRight = itemSize * currentItem;
     containerFilms.style.marginLeft = '-' + multiplierRight + 'px';
-    console.log(section);
 }

@@ -44,7 +44,7 @@ class IndexController extends Action
         $bestMovies = [];
         $arrayRatingsThrillers = [];
         //Refatorar esse foreach para as models.
-        foreach ($allMovies['recentMovies'] as $movie) {
+        foreach ($allMovies['recentMovies'] ?? [] as $movie) {
 
             switch ($movie['category']) {
                 case 'Ação':

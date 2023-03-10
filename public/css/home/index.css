@@ -1,60 +1,8 @@
-/* section.banners-wrap{
-    width: 100%;
-    position: relative;
-    box-shadow: 0 4px 13px black;
-    overflow: hidden;
-    border: 3px solid blue;
-    position: relative;
-}
-section.banners-wrap button.left,
-section.banners-wrap button.right{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-}
-section.banners-wrap button.left{
-    left: 0;
-}
-section.banners-wrap button.right{
-    right: 0;
-}
-section.banners-wrap .container-banners{
-    /* width: 100%; 
-    display: flex;
-    margin-left: -200px;
-}
-.banners-wrap .container-banners .box-banner{
-    width: 100%;
-    position: relative;
-    flex-shrink: 0;
-    border: 3px solid green;
-}
-.banners-wrap .container-banners .box-banner img{
-   width: 100%;
-   flex-shrink: 0;
-    
-}
-.banners-wrap .container-banners .box-banner .box-movie{
-    width: 500px; height: 100%;
-    position: absolute;
-    top: 0;
-    border: 2px solid tomato;
-} */
-/* section.banners .banner img{
-    width: 100%;
-    /* position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    margin-bottom: 30px; 
-} */
-
 section.banners{
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 46px;
     position: relative;
-    box-shadow: 0 6px 17px rgb(0, 0, 0, .6);
+    box-shadow: 0 10px 17px rgb(0, 0, 0);
 }
 section.banners .wrapper{
     width: 100%;
@@ -98,7 +46,7 @@ section.banners .wrapper .container-banners{
 }
 .banners .wrapper .container-banners .box-banner img.banner{
     width: 100%;
-    filter: opacity(73%);
+    filter: opacity(86%);
 }
 
 
@@ -214,6 +162,7 @@ section.banners .wrapper .container-banners{
 
 main{
     width: 100%;
+    margin-bottom: 220px;
 }
 section.filmes{
     width: 90%;

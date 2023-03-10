@@ -144,18 +144,21 @@ class MoviesController extends Action
 
     public function destroyMovie()
     {
+        session_start();
         //fazer uma verificação melhor para o usuario não burlar esta funcao pelo inspecionar da página
         $movie = Container::getModel('movies');
         $movie->__set('id', filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT));
+        $movie->__set('id_user', $_SESSION['username']);
 
         $checkMovie = $movie->checkMovie();
+
+    
 
         if (!$checkMovie) {
             header('location: /my-movies');
         }
         $movieData = $movie->recoverMovie();
         $movie->destroyMovie($movieData['image']);
-
         header('location: /my-movies');
     }
 
