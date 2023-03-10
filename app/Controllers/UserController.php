@@ -195,8 +195,18 @@ class UserController extends Action
 
         $userMovies = $movie->recoverUserMovies($userID);
 
-        $this->view->userMovies['rating'] = 
-        $this->view->userMovies = $userMovies;
+        $reviews = Container::getModel('Reviews');
+        $userMoviesWithRating = [];
+        foreach ($userMovies as $movie) {
+            if ($reviews->calculateRatings($movie['id']) === false) {
+                $movie['rating'] = 'Não avaliado';
+            } else {
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),2,'.') ;
+            }
+            $userMoviesWithRating[] = $movie;
+        }
+
+        $this->view->userMovies = $userMoviesWithRating;
         $this->view->userData = $userData;
         $this->render('user/profile-user', 'layout1');
 
