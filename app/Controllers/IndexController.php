@@ -175,6 +175,7 @@ class IndexController extends Action
                 case 'Suspense':
                     $arrayRatingThrillers[] = $movie['rating'];
                     $allMovies['thrillersMovies'][] = $movie;
+                    $allMovies['thrillersMovies']['image'] = 'diretorio';
                     
                     foreach ($arrayRatingsThrillers as $key) {
                         if ($key === 'Não avaliado') {
