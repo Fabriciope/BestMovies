@@ -21,11 +21,11 @@ class Users extends Model
                   FROM users
                   WHERE id = :id';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
 
-        return $statement->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -58,11 +58,11 @@ class Users extends Model
                   FROM users
                   WHERE email = :email';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':email', $this->__get('email'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':email', $this->__get('email'));
+        $stmt->execute();
 
-        $registeredEmail = $statement->fetchAll();
+        $registeredEmail = $stmt->fetchAll();
 
         if (count($registeredEmail) > 0) {
             $msgError[] = 'Este email já está registrado';
@@ -81,12 +81,12 @@ class Users extends Model
         $query = 'INSERT INTO users  (name, lastname, email, password) 
                               VALUES (:name, :lastname, :email, :password)';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':name', ucfirst(trim($this->__get('name'))));
-        $statement->bindValue(':lastname', ucfirst(trim($this->__get('lastName'))));
-        $statement->bindValue(':email', trim($this->__get('email')));
-        $statement->bindValue(':password', password_hash(trim($this->__get('password')), PASSWORD_DEFAULT));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':name', ucfirst(trim($this->__get('name'))));
+        $stmt->bindValue(':lastname', ucfirst(trim($this->__get('lastName'))));
+        $stmt->bindValue(':email', trim($this->__get('email')));
+        $stmt->bindValue(':password', password_hash(trim($this->__get('password')), PASSWORD_DEFAULT));
+        $stmt->execute();
     }
 
     /**
@@ -100,11 +100,11 @@ class Users extends Model
                   FROM users
                   WHERE email = :email';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':email', trim($this->__get('email')));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':email', trim($this->__get('email')));
+        $stmt->execute();
 
-        $userData = (array) $statement->fetchAll(\PDO::FETCH_ASSOC);
+        $userData = (array) $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         if (count($userData) == 0) {
             $userValidation[] = 'Email não registrado';
@@ -132,11 +132,11 @@ class Users extends Model
                   FROM users
                   WHERE id = :id AND name = :name';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', $userID);
-        $statement->bindValue(':name', $username);
-        $statement->execute();
-        return (array) $statement->fetch(\PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $userID);
+        $stmt->bindValue(':name', $username);
+        $stmt->execute();
+        return (array) $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function checkFirstNameAndLastName()
@@ -165,12 +165,12 @@ class Users extends Model
                 SET name = :newName,
                     lastname = :newLastName
                 WHERE id = :id AND name = :name';
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':newName', ucfirst(trim($this->__get('name'))));
-        $statement->bindValue(':newLastName', trim($this->__geT('lastName')));
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->bindValue(':name', $username);
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':newName', ucfirst(trim($this->__get('name'))));
+        $stmt->bindValue(':newLastName', trim($this->__geT('lastName')));
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->bindValue(':name', $username);
+        $stmt->execute();
     }
 
     /**
@@ -209,11 +209,11 @@ class Users extends Model
                  SET password = :newPassword
                  WHERE id = :id AND name = :name';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':newPassword', password_hash($this->__get('password'), PASSWORD_DEFAULT));
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->bindValue(':name', $this->__get('name'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':newPassword', password_hash($this->__get('password'), PASSWORD_DEFAULT));
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->bindValue(':name', $this->__get('name'));
+        $stmt->execute();
     }
 
     /**
@@ -237,11 +237,11 @@ class Users extends Model
                       SET image = :image 
                       WHERE id = :id AND name = :name';
 
-            $statement = $this->db->prepare($query);
-            $statement->bindValue(':id', $this->__get('id'));
-            $statement->bindValue(':name', $this->__get('name'));
-            $statement->bindValue(':image', $imageName);
-            $statement->execute();
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->__get('id'));
+            $stmt->bindValue(':name', $this->__get('name'));
+            $stmt->bindValue(':image', $imageName);
+            $stmt->execute();
 
             @unlink(__DIR__ . './../../public/' . $oldImage);
             move_uploaded_file($temporaryName, $imageName);
@@ -266,10 +266,10 @@ class Users extends Model
                 SET image = null
                 WHERE id = :id AND name = :name ';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->bindValue(':name', $this->__get('name'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->bindValue(':name', $this->__get('name'));
+        $stmt->execute();
 
         @unlink(__DIR__ . './../../public/' . $currentImage);
         
@@ -286,11 +286,11 @@ class Users extends Model
                   SET bio = :newBio
                   WHERE id = :id AND name = :name';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':newBio', ucfirst(trim($this->__get('bio'))));
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->bindValue(':name', $this->__get('name'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':newBio', ucfirst(trim($this->__get('bio'))));
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->bindValue(':name', $this->__get('name'));
+        $stmt->execute();
         
     }
 }

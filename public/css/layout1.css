@@ -20,6 +20,16 @@ body{
     position: relative;
     background: var(--bg-site);
 }
+::-webkit-scrollbar{
+    width: 11px;
+    background: #121212;
+}
+::-webkit-scrollbar-thumb{
+    width: 100%;
+    border-radius: 100px;
+    box-shadow: 0 0 12px 2px rgb(0, 0, 0, .6);
+    background: var(--bg-box);
+}
 header{
     width: 100%;
     position: sticky;
@@ -235,15 +245,23 @@ footer .center .pages a{
     .center-nav-bottom nav ul a{
         width: 100%;
         display: block;
-        padding: 8px 0;
+        padding: 10px 0;
         font-size: 2.5rem;
         text-align: center;
+    }
+    .center-nav-bottom nav ul li.active a{
+        color: var(--title-color);
+        background: var(--main-red);
+    }
+    .center-nav-bottom nav ul a:hover{
+        color: var(--title-color);
+        background: var(--main-red);
     }
     .center-nav-bottom nav ul a i.arrow-down{
         font-size: 2.8rem;
     }
     .center-nav-bottom nav ul.active{
-        height: 205px;
+        height: 230px;
         transition: .2s;
     }
     footer .center{

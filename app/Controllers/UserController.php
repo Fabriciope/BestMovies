@@ -181,6 +181,8 @@ class UserController extends Action
 
     public function pageProfileUser()
     {
+        session_start();
+        
         $userID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
         $user = Container::getModel('Users');

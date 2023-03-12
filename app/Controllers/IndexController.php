@@ -264,19 +264,6 @@ class IndexController extends Action
      */
     public function pageEnterRegister()
     {
-        $this->view->data = [
-            'inputEmailEnter' => '',
-            'inputPasswordEnter' => '',
-            'inputName' => '',
-            'inputLastName' => '',
-            'inputEmailRegister' => '',
-            'inputPasswordRegister' => '',
-            'inputPasswordCS' => '',
-        ];
-        $this->view->msg = [
-            'msgErrorE' => '',
-            'msgErrorR' => '',
-        ];
         $this->render('home/enter-register', 'layout1');
     }
 }

@@ -26,8 +26,6 @@ class AuthController extends Action
         if (count($verificationErrorMessage) > 0) {
 
             $this->view->data = [
-                'inputEmailEnter' => '',
-                'inputPasswordEnter' => '',
                 'inputName' => $_POST['name'] ?? '',
                 'inputLastName' => $_POST['lastName'] ?? '',
                 'inputEmailRegister' => $_POST['emailRegister'] ?? '',
@@ -35,7 +33,6 @@ class AuthController extends Action
                 'inputPasswordCS' => $_POST['passwordCS'] ?? '',
             ];
             $this->view->msg = [
-                'msgErrorE' => '',
                 'msgErrorR' => $verificationErrorMessage[0] ?? '',
             ];
 
@@ -71,17 +68,11 @@ class AuthController extends Action
 
         if (!isset($userValidation['userData'])) {
             $this->view->data = [
-                'inputEmailEnter' => $_POST['emailEnter'],
-                'inputPasswordEnter' => $_POST['passwordEnter'],
-                'inputName' => '',
-                'inputLastName' => '',
-                'inputEmailRegister' => '',
-                'inputPasswordRegister' => '',
-                'inputPasswordCS' => '',
+                'inputEmailEnter' => $_POST['emailEnter'] ?? '',
+                'inputPasswordEnter' => $_POST['passwordEnter'] ?? '',
             ];
             $this->view->msg = [
                 'msgErrorE' => $userValidation[0] ?? '',
-                'msgErrorR' => '',
             ];
             $this->render('home/enter-register', 'layout1');
         } else {

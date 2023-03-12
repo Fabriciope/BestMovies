@@ -27,10 +27,10 @@ class Movies extends model
                   ORDER BY id desc';
                 //LIMIT 19
         
-        $statement = $this->db->query($query);
-        $statement->execute();
+        $stmt = $this->db->query($query);
+        $stmt->execute();
 
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     // public function bestRated($category)
@@ -40,11 +40,11 @@ class Movies extends model
     //               LEFT JOIN re
     //               WHERE category = :category';
         
-    //     $statement = $this->db->prepare($query);
-    //     $statement->bindValue(':category', $category);
-    //     $statement->execute();
+    //     $stmt = $this->db->prepare($query);
+    //     $stmt->bindValue(':category', $category);
+    //     $stmt->execute();
 
-    //     return $statement->fetch(\PDO::FETCH_ASSOC);
+    //     return $stmt->fetch(\PDO::FETCH_ASSOC);
     // }
 
     public function search()
@@ -52,10 +52,10 @@ class Movies extends model
         $query = 'SELECT *
                   FROM movies
                   WHERE title LIKE :title';
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':title', '%'.$this->__get('title').'%');
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':title', '%'.$this->__get('title').'%');
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -69,11 +69,11 @@ class Movies extends model
                   FROM movies
                   WHERE id = :id';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
         
-        if ($statement->rowCount() === 0) {
+        if ($stmt->rowCount() === 0) {
             return false;
             exit;
         } else {
@@ -92,11 +92,11 @@ class Movies extends model
         $query = 'SELECT *
                   FROM movies
                   WHERE id = :id';
-        $statement= $this->db->prepare($query);
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->execute();
+        $stmt= $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
 
-        return $statement->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -111,11 +111,11 @@ class Movies extends model
                   FROM movies
                   WHERE id_user = :id_user
                   ORDER BY id DESC';
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id_user', $userID);
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_user', $userID);
+        $stmt->execute();
 
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -133,11 +133,11 @@ class Movies extends model
                    FROM movies
                    WHERE title = :registredMovie';
         
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':registredMovie', $this->__get('title'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':registredMovie', $this->__get('title'));
+        $stmt->execute();
 
-        if (count($statement->fetchAll()) > 0) {
+        if (count($stmt->fetchAll()) > 0) {
             $msgError[] = 'Este filme já foi registrado';
         }
         if(!$this->__get('title')) {
@@ -218,15 +218,15 @@ class Movies extends model
         $query = 'INSERT INTO movies (title, description, image, trailer, category, length, id_user)
                               VALUES (:title, :description, :image, :trailer, :category, :length, :id_user)';
 
-        $statement= $this->db->prepare($query);
-        $statement->bindValue(':title', trim($this->__get('title')));
-        $statement->bindValue(':description', trim(ucfirst($this->__get('description'))));
-        $statement->bindValue(':image', $imageName);
-        $statement->bindValue(':trailer', $this->__get('trailer'));
-        $statement->bindValue(':category', $this->__get('category'));
-        $statement->bindValue(':length', $this->__get('length'));
-        $statement->bindValue(':id_user', $this->__get('userID'));
-        $statement->execute();
+        $stmt= $this->db->prepare($query);
+        $stmt->bindValue(':title', trim($this->__get('title')));
+        $stmt->bindValue(':description', trim(ucfirst($this->__get('description'))));
+        $stmt->bindValue(':image', $imageName);
+        $stmt->bindValue(':trailer', $this->__get('trailer'));
+        $stmt->bindValue(':category', $this->__get('category'));
+        $stmt->bindValue(':length', $this->__get('length'));
+        $stmt->bindValue(':id_user', $this->__get('userID'));
+        $stmt->execute();
 
         move_uploaded_file($temporaryName, $imageName);
     }
@@ -237,12 +237,12 @@ class Movies extends model
                   FROM movies
                   WHERE id = :id AND id_user = :id_user';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->bindValue(':id_user', $this->__get('id_user'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->bindValue(':id_user', $this->__get('id_user'));
+        $stmt->execute();
 
-        if ($statement->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) {
             return true;
             exit;
         } else {
@@ -327,15 +327,15 @@ class Movies extends model
                   WHERE id = :id';
                     
         $newImage = !empty($this->__get('image')) ? $this->__get('image') : $oldImage;
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', trim($this->__get('id')));
-        $statement->bindValue(':title', trim($this->__get('title')));
-        $statement->bindValue(':description', trim(ucfirst($this->__get('description'))));
-        $statement->bindValue(':image', $newImage);
-        $statement->bindValue(':trailer', $this->__get('trailer'));
-        $statement->bindValue(':category', $this->__get('category'));
-        $statement->bindValue(':length', $this->__get('length'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', trim($this->__get('id')));
+        $stmt->bindValue(':title', trim($this->__get('title')));
+        $stmt->bindValue(':description', trim(ucfirst($this->__get('description'))));
+        $stmt->bindValue(':image', $newImage);
+        $stmt->bindValue(':trailer', $this->__get('trailer'));
+        $stmt->bindValue(':category', $this->__get('category'));
+        $stmt->bindValue(':length', $this->__get('length'));
+        $stmt->execute();
 
         if(!empty($this->__get('image'))) {
             unlink(__DIR__ . './../../public/' . $oldImage);
@@ -356,9 +356,9 @@ class Movies extends model
                   DELETE FROM movies
                   WHERE id = :id    ';
         
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id', $this->__get('id'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->execute();
         unlink(__DIR__ . './../../public/' . $image);
     }
 }

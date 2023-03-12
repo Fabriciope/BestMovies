@@ -2,12 +2,15 @@ main{
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
 }
 section.entrar .center{
     width: 100%;
+    min-width: 320px;
+    max-width: 520px;
+    margin: 0 auto;
     padding: 25px;
 }
 section.entrar .center h3,
@@ -67,14 +70,14 @@ section.entrar .center .box-input .password i.not-see{
     display: none;
 }
 section.entrar .center button{
-    width: 100%;
-    padding: 3px 0;
+    width: 180px;
+    padding: 2px 0;
     margin-top: 10px;
-    font-size: 2.14rem;
+    font-size: 2rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
-    border-radius: 7px;
+    border-radius: 5px;
     border: 3px solid var(--main-red);
     background: var(--main-red);
     transition: .2s;
@@ -85,6 +88,11 @@ section.entrar .center button:hover{
     transition: .2s;
 }
 
+
+
+
+
+
 section.entrar,
 section.register{
     width: 49%;
@@ -92,6 +100,9 @@ section.register{
 
 section.register .center{
     width: 100%;
+    min-width: 320px;
+    max-width: 520px;
+    margin: 0 auto;
     padding: 25px;
 }
 section.register .center h3,
@@ -154,10 +165,10 @@ section.register .center .box-input .password i.not-see{
     display: none;
 }
 section.register .center button{
-    width: 100%;
+    width: 180px;
     padding: 3px 0;
     margin-top: 10px;
-    font-size: 2.14rem;
+    font-size: 2rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -179,4 +190,23 @@ section.register .center button:hover{
 }
 .msgError{
     color: rgb(255, 40, 40);
+}
+
+
+@media (max-width: 800px){
+    main{
+        width: 100%;
+        flex-direction: column;
+    }
+    section.entrar,
+    section.register{
+        width: 100%;
+    }
+    section.entrar .center{
+        margin: 15px auto;
+    }
+    section.entrar .center,
+    section.register .center{
+        padding: 6px;
+    }
 }

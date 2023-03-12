@@ -389,17 +389,17 @@ section.filmes .container{
         margin-bottom: 4px;
     }
     .container-films .box-film .center div span{
-        font-size: 1.45rem;
+        font-size: 1.27rem;
     }
     .container-films .box-film .center h4{
         margin: 0 4px;
         margin-bottom: 10px;
-        font-size: 1.94rem;
+        font-size: 1.76rem;
     }
     .container-films .box-film .center a{
         margin-bottom: 10px;
         padding: 2px 0;
-        font-size: 1.8rem;
+        font-size: 1.73rem;
     }
 }
 @media (max-width: 360px) {

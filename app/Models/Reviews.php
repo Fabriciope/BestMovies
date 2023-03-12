@@ -25,11 +25,11 @@ class Reviews extends Model
                   ON (r.id_user = u.id)
                   WHERE r.id_movie = :id_movie';
         
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id_movie', $this->__get('id_movie'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_movie', $this->__get('id_movie'));
+        $stmt->execute();
 
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function calculateRatings($movieID)
@@ -38,13 +38,13 @@ class Reviews extends Model
                   FROM reviews
                   WHERE id_movie = :id_movie';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id_movie', $movieID);
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_movie', $movieID);
+        $stmt->execute();
 
-        $reviews = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        $reviews = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        if ($statement->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) {
             $rating = 0;
 
             foreach ($reviews as $review) {
@@ -69,12 +69,12 @@ class Reviews extends Model
                   FROM reviews
                   WHERE id_movie = :id_movie AND id_user = :id_user';
 
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id_movie', $this->__get('id_movie'));
-        $statement->bindValue(':id_user', $this->__get('id_user'));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_movie', $this->__get('id_movie'));
+        $stmt->bindValue(':id_user', $this->__get('id_user'));
+        $stmt->execute();
 
-        if ($statement->rowCount() > 0 || $this->__get('id_user') === $movieUserID) {
+        if ($stmt->rowCount() > 0 || $this->__get('id_user') === $movieUserID) {
             return true;
             exit;
         } else {
@@ -117,11 +117,11 @@ class Reviews extends Model
         $query = 'INSERT INTO reviews (id_user, id_movie, rating, review)
                                VALUES (:id_user, :id_movie, :rating, :review)';
         
-        $statement = $this->db->prepare($query);
-        $statement->bindValue(':id_user', $this->__get('id_user'));
-        $statement->bindValue(':id_movie', $this->__get('id_movie'));
-        $statement->bindValue(':rating', $this->__get('rating'));
-        $statement->bindValue(':review', trim($this->__get('review')));
-        $statement->execute();
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id_user', $this->__get('id_user'));
+        $stmt->bindValue(':id_movie', $this->__get('id_movie'));
+        $stmt->bindValue(':rating', $this->__get('rating'));
+        $stmt->bindValue(':review', trim($this->__get('review')));
+        $stmt->execute();
     }
 }
