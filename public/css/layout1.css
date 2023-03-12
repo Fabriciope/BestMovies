@@ -27,7 +27,6 @@ header{
     left: 0;
     right: 0;
     box-shadow: 0 2px 15px rgb(0, 0, 0, .8);
-    background: var(--bg-box);
     z-index: 1000;
 }
 header .container-nav-top{
@@ -41,17 +40,22 @@ header .center-nav-top{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     margin: 0 auto;
 }
 
 header .center-nav-top .logo{
     width: 152px;
 }
-header .center-nav-top  .logo img{
+header .center-nav-top  .logo img.logo-max{
     width: 100%;
 }
+header .center-nav-top  .logo img.logo-min{
+    display: none;
+}
 header .center-nav-top  form{
-    width: 500px; height: 28px;
+    width: 70%; height: 28px;
+    max-width: 500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,8 +88,6 @@ header .center-nav-top  form button{
 }
 header .center-nav-top i.menu{
     display: none;
-    font-size: 3rem;
-    color: var(--title-color);
 }
 
 
@@ -179,4 +181,83 @@ footer .center .pages a{
     font-size: 1.36rem;
     text-align: center;
     color: var(--title-color);
+}
+
+@media (max-width: 955px) {
+    html{
+        font-size: 52%;
+    }
+}
+@media (max-width: 680px) {
+    header .center-nav-top{
+        position: relative;
+    }
+    header .center-nav-top .logo{
+        width: 50px; height: 98%;
+    }
+    header .center-nav-top  .logo img.logo-max{
+        display: none;
+    }
+    header .center-nav-top  .logo img.logo-min{
+        width: 100%;
+
+        display: block;
+    }
+    header .center-nav-top i.menu{
+        display: block;
+        font-size: 3.8rem;
+        cursor: pointer;
+        color: var(--title-color);
+    }
+    header .center-nav-top  form{
+        height: 25px;
+    }
+    header .container-nav-bottom{
+        height: auto;
+        position: absolute;
+        top: 100%;
+    }
+
+    header .container-nav-bottom .center-nav-bottom{
+        width: 100%;
+        display: block;
+        overflow: hidden;
+    }
+    .center-nav-bottom nav ul{
+        width: 100%; height: 0;
+        display: block;
+        overflow: hidden;
+        transition: .2s;
+    }
+    .center-nav-bottom nav ul li{
+        width: 100%;
+    }
+    .center-nav-bottom nav ul a{
+        width: 100%;
+        display: block;
+        padding: 8px 0;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .center-nav-bottom nav ul a i.arrow-down{
+        font-size: 2.8rem;
+    }
+    .center-nav-bottom nav ul.active{
+        height: 205px;
+        transition: .2s;
+    }
+    footer .center{
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    footer .center div{
+        margin-bottom: 20px;
+    }
+    footer .center .logo{
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
 }

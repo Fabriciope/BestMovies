@@ -15,7 +15,8 @@
             <div class="center-nav-top">
                 <div class="logo">
                     <a href="/home">
-                        <img src="/images/logo-bestmovies.png" alt="logo bestmovies">
+                        <img class="logo-max" src="/images/logo-bestmovies.png" alt="logo bestmovies">
+                        <img class="logo-min" src="/images/logo-min.png" alt="">
                     </a>
                 </div>
                 <form action="/search" method="post">
@@ -28,14 +29,14 @@
         <div class="container-nav-bottom">
             <div class="center-nav-bottom">
                 <nav>
-                    <ul>
+                    <ul class="ul-menu">
 
                         <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
                             <li class="userNavigation <?=$this->view->page == 'user/profile'?'active' : ''?>"><a class="name" href="/profile"><i class="arrow-down fa-solid fa-angle-down"></i>Olá, <?=$_SESSION['username']?></a></li>
                             <li class="userNavigation <?=$this->view->page == 'user/my-movies'?'active' : ''?>"><a href="/my-movies">Meus filmes</a></li>
                             <li class="userNavigation <?=$this->view->page == 'user/register-movie'?'active' : ''?>"><a href="/page-register-movie">Adicionar filme<i class="add-film fa-solid fa-photo-film"></i></a></li>
                             <li class="userNavigation <?=$this->view->page == 'home/about-us'? 'active' : ''?>"><a href="/about-us">Sobre nós</a></li>
-                            <li class="userNavigation <?=$this->view->page == 'home/index'||$this->view->page == 'movie/search'? 'active' : ''?>"><a href="/home">Home</a></li>
+                            <li class="userNavigation <?=$this->view->page == 'home/index' ? 'active' : ''?>"><a href="/home">Home</a></li>
 
                         <?php else: ?> 
                             <li class="<?=$this->view->page == 'home/enter-register'?'active' : ''?> ER"><a href="/enter-register">Entrar / Registrar</a></li>
@@ -80,5 +81,6 @@
             </div>
         </div>
     </footer>
+    <script src="js/menu.js"></script>
 </body>
 </html>

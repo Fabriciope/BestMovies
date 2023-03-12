@@ -27,123 +27,206 @@ controlsBanner.forEach((control)=>{
     })
 })
 
-// setInterval(function(){
-//     bannerCurentItem++
-//     if (bannerCurentItem >= bannerMaxItems) {
-//         bannerCurentItem = 0;
-//     }
-//     bannerItems[bannerCurentItem].scrollIntoView({
-//         block : "center",
-//         behavior: "smooth"
-//     });
-// }, 3000);
-
-
-// let currentItem = 0;
-
-// function prev(section) {
-//     const items = document.querySelectorAll('.box-film.' + section);
-//     const itemSize = (items[0].clientWidth + 24) * 3;
-//     const containerFilms = document.querySelector('.container-films.' + section);
-//     currentItem -= 1; 
-//     if (currentItem < 0 ) {
-//         currentItem = 0;
-//     }
-
-//     let multiplierLeft = itemSize * currentItem;
-//     containerFilms.style.marginLeft = '-' + multiplierLeft + 'px';
-//     console.log(currentItem)
-// }
-
-
-// function next(section) {
-//     const items = document.querySelectorAll('.box-film.' + section);
-//     const containerFilms = document.querySelector('.container-films.' + section);
-//     const maxItems = items.length;
-//     const itemSize = (items[0].clientWidth + 24) * 3;
-//     const rightSpace = (maxItems/3);
-//     currentItem += 1; 
-
-
-//     if (currentItem > rightSpace -1) {
-//         currentItem = Math.round(rightSpace);
-
-//     }
-//     let multiplierRight = itemSize * currentItem;
-//     containerFilms.style.marginLeft = '-' + multiplierRight + 'px';
-//     console.log(currentItem)
-//     console.log(Math.round(rightSpace))
-// }
-
-
 currentItemRecent = 0;
+currentItemAction = 0;
+currentItemDrama = 0;
+currentItemThriller = 0;
+currentItemSciencFiction = 0;
+currentItemFantasy = 0;
+currentItemRomance = 0;
+currentItemAdventure = 0;
+currentItemHorror = 0;
 
 
 const controls = document.querySelectorAll('.controlMovies');
-// const containerFilms = document.querySelector('.container-films');
 
-// const maxItems = items.length;
-// let currentItem = 0;
-console.log(controls)
+function slides(section, control){
+    const containerMovies = document.querySelector('.container-films.' + section);
+    const items = document.querySelectorAll('.box-film.' + section);
+    const maxItem = items.length;
+    let gap = document.defaultView.getComputedStyle(containerMovies, null)['gap']
+    gap = gap.slice(0, -2);
+    const itemSize = (items[0].clientWidth + Math.round(gap) ) * 2;
+    const maxSlides = maxItem/2;
+    switch (section){
+        case 'novos':
+            if (control.classList.contains('left')){
+                currentItemRecent -= 1;
+            } else {
+                currentItemRecent += 1;
+            }
+        
+            if (currentItemRecent < 0) {
+                currentItemRecent = 0;
+            }
+            if (currentItemRecent > maxSlides) {
+                currentItemRecent = maxSlides -1;
+            }
+            currentItem = currentItemRecent;
+         break;
+        case 'ação':
+            if (control.classList.contains('left')){
+                currentItemAction -= 1;
+            } else {
+                currentItemAction += 1;
+            }
+        
+            if (currentItemAction < 0) {
+                currentItemAction = 0;
+            }
+            if (currentItemAction > maxSlides) {
+                currentItemAction = 0;
+            }
+            currentItem = currentItemAction;
+         break;
+        case 'aventura':
+            if (control.classList.contains('left')){
+                currentItemAdventure -= 1;
+            } else {
+                currentItemAdventure += 1;
+            }
+        
+            if (currentItemAdventure < 0) {
+                currentItemAdventure = 0;
+            }
+            if (currentItemAdventure > maxSlides) {
+                currentItemAdventure = 0;
+            }
+            currentItem = currentItemAdventure;
+         break;
+        case 'drama':
+            if (control.classList.contains('left')){
+                currentItemDrama -= 1;
+            } else {
+                currentItemDrama += 1;
+            }
+        
+            if (currentItemDrama < 0) {
+                currentItemDrama = 0;
+            }
+            if (currentItemDrama > maxSlides) {
+                currentItemDrama = 0;
+            }
+            currentItem = currentItemDrama;
+         break;
+        case 'ficção científica':
+            if (control.classList.contains('left')){
+                currentItemSciencFiction -= 1;
+            } else {
+                currentItemSciencFiction += 1;
+            }
+        
+            if (currentItemSciencFiction < 0) {
+                currentItemSciencFiction = 0;
+            }
+            if (currentItemSciencFiction > maxSlides) {
+                currentItemSciencFiction = 0;
+            }
+            currentItem = currentItemSciencFiction;
+         break;
+        case 'suspense':
+            if (control.classList.contains('left')){
+                currentItemThriller -= 1;
+            } else {
+                currentItemThriller += 1;
+            }
+        
+            if (currentItemThriller < 0) {
+                currentItemThriller = 0;
+            }
+            if (currentItemThriller > maxSlides) {
+                currentItemThriller = 0;
+            }
+            currentItem = currentItemThriller;
+         break;
+        case 'fantasia':
+            if (control.classList.contains('left')){
+                currentItemFantasy -= 1;
+            } else {
+                currentItemFantasy += 1;
+            }
+        
+            if (currentItemFantasy < 0) {
+                currentItemFantasy = 0;
+            }
+            if (currentItemFantasy > maxSlides) {
+                currentItemFantasy = 0;
+            }
+            currentItem = currentItemFantasy;
+         break;
+        case 'romance':
+            if (control.classList.contains('left')){
+                currentItemRomance -= 1;
+            } else {
+                currentItemRomance += 1;
+            }
+        
+            if (currentItemRomance < 0) {
+                currentItemRomance = 0;
+            }
+            if (currentItemRomance > maxSlides) {
+                currentItemRomance = 0;
+            }
+            currentItem = currentItemRomance;
+         break;
+        case 'terror':
+            if (control.classList.contains('left')){
+                currentItemHorror -= 1;
+            } else {
+                currentItemHorror += 1;
+            }
+        
+            if (currentItemHorror < 0) {
+                currentItemHorror = 0;
+            }
+            if (currentItemHorror > maxSlides) {
+                currentItemHorror = 0;
+            }
+            currentItem = currentItemHorror;
+         break;
+    }
+    let multiplierSlides = itemSize * currentItem;
+    containerMovies.style.marginLeft = '-' + multiplierSlides + 'px';
+}
+
 controls.forEach((control)=>{
     control.addEventListener('click', ()=>{
         let section = control.classList[2];
         switch(section) {
-             case "recent":
-                const itemsRecent = document.querySelectorAll('.box-film.recent');
-                const maxItemRecent = itemsRecent.length;
-                const itemSizeRecent = (itemsRecent[0].clientWidth + 24) * 3;
-                const maxSlidesRecent = maxItemRecent/3;
-    
-                const containerMoviesRecent = document.querySelector('.container-films.recent')
-                if (control.classList.contains('left')){
-                    currentItemRecent -= 1;
-                } else {
-                    currentItemRecent += 1;
-                }
-
-                if (currentItemRecent < 0) {
-                    currentItemRecent = 0;
-                }
-                if (currentItemRecent > maxSlidesRecent) {
-                    currentItemRecent = maxSlidesRecent -1;
-                }
-    
-                let multiplierSlidesRecent = itemSizeRecent * currentItemRecent;
-                containerMoviesRecent.style.marginLeft = '-' + multiplierSlidesRecent + 'px';
-                console.log(currentItemRecent);
-                console.log('max slides:'+maxSlidesRecent)
-            break;
+            case 'novos':
+                slides(section, control);
+             break;
+            case 'ação':
+                slides(section, control);
+             break;
+            case 'aventura':
+                slides(section, control);
+             break;
+            case 'drama':
+                slides(section, control);
+             break;
+            case 'ficção científica':
+                slides(section, control);
+             break;
+            case 'suspense':
+                slides(section, control);
+             break;
+            case 'fantasia':
+                slides(section, control);
+             break;
+            case 'romance':
+                slides(section, control);
+             break;
+            case 'terror':
+                slides(section, control);
+             break;
+                
         }
     })
-
-   
 })
 
-// controlLeft.addEventListener('click', function() {
-//     currentItem -= 1; 
-//     if (currentItem < 0 ) {
-//         currentItem = 0;
-//     }
 
-//     items[currentItem].scrollIntoView({
-//         inline: "center",
-//         behavior: "smooth"
-//     })
 
-//     console.log(currentItem);
-// })
 
-// controlRight.addEventListener('click', function(){
-//     currentItem += 1; 
-//     if (currentItem > maxItems -1) {
-//         currentItem = 0;
-//     }
-//     items[currentItem].scrollIntoView({
-//         inline: "center",
-//         behavior: "smooth"
-//     })
-//     console.log(currentItem);
-// })
 
-// console.log(currentItem);
+

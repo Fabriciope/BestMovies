@@ -86,7 +86,7 @@ class ReviewsController extends Action
         $checkNewAssessment = $reviews->checkAssessmentRecord();
         $checkComment = $reviews->checkComment(filter_input(INPUT_POST, "id_movie"));
         if (count($checkNewAssessment) > 0 || $checkComment) {
-            $this->view->msgErrorNewAssessment = $checkNewAssessment[0];
+            $this->view->msgErrorNewAssessment = $checkNewAssessment[0] ?? '';
             $this->view->evaluationErrorData = [
                 'inputRating' => $_POST['rating'],
                 'inputComment' => $_POST['comment']
