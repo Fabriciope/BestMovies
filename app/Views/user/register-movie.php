@@ -39,7 +39,7 @@
                 </div>
                 <div class="box-inputs">
                     <label for="trailer">Trailer</label>
-                    <p class="tutorial">Veja como copiar o link do youtube para inserir abaixo. <a href="">Como copiar o link embed.</a></p>
+                    <p class="tutorial">Veja como copiar o link do youtube para inserir abaixo. <a href="/tutorial">Como copiar o link embed.</a></p>
                     <input type="text" name="trailer" id="trailer" placeholder="Insira o link embed do youTube" value="<?=$this->view->movieData['inputTrailer']??''?>">
                 </div>
                 <div class="box-inputs">

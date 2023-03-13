@@ -45,7 +45,6 @@ class IndexController extends Action
         $arrayRatingsThrillers = [];
         //Refatorar esse foreach para as models.
         foreach ($allMovies['novos'] ?? [] as $movie) {
-
             switch ($movie['category']) {
                 case 'Ação':
                     $arrayRatingsAction[] = $movie['rating'];
@@ -215,13 +214,6 @@ class IndexController extends Action
         ];
         $this->view->bestMovies = $bestMovies;
         $this->view->allMovies = $reorderAllMovies;
-
-        // echo '<pre>';
-        // print_r($arrayRatingsRomance);
-        // echo '</pre>';
-        // echo '<pre>';
-        // print_r($bestMovies);
-        // echo '</pre>';
         $this->render('home/index', 'layout');
     }
 
@@ -264,6 +256,16 @@ class IndexController extends Action
      */
     public function pageEnterRegister()
     {
+        session_start();
+        if (isset($_SESSION['userID']) || !empty($_SESSION['userID']) || isset($_SESSION['username']) || !empty($_SESSION['username'])) {
+            header('location: /profile');
+        }
         $this->render('home/enter-register', 'layout');
+    }
+
+    public function pageAboutUs()
+    {
+        session_start();
+        $this->render('home/about-us', 'layout');
     }
 }

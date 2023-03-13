@@ -63,6 +63,12 @@ class MoviesController extends Action
         }
     }
 
+    public function pageTutorial()
+    {
+        $this->validateUser();
+        $this->render('movie/tutorial', 'layout');
+    }
+
      /**
      * Método responsável por retornar a página dos filmes dos usuários.
      *

@@ -25,9 +25,14 @@ class Router extends Bootstrap
             'controller' => 'IndexController',
             'action' => 'search',
         );
+        $routes['page_about_us'] = array(
+            'route' => '/about-us',
+            'controller' => 'IndexController',
+            'action' => 'pageAboutUs',
+        );
 
         //PAGE ENTER_REGISTER
-        $routes['page_entrar_registrar'] = array(
+        $routes['page_enter_register'] = array(
             'route' => '/enter-register',
             'controller' => 'IndexController',
             'action' => 'pageEnterRegister',
@@ -85,6 +90,11 @@ class Router extends Bootstrap
             'route' => '/page-register-movie',
             'controller' => 'MoviesController',
             'action' => 'pageRegisterMovie',
+        );
+        $routes['page_tutorial'] = array(
+            'route' => '/tutorial',
+            'controller' => 'MoviesController',
+            'action' => 'pageTutorial',
         );
         $routes['register_movie'] = array(
             'route' => '/register-movie',
