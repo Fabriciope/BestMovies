@@ -2,7 +2,7 @@ main{
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 24px;
 } 
 main a.sair{
     padding: 2px 12px;
@@ -74,7 +74,7 @@ section.left .center .box-file{
 }
 section.left .center .box-file button{
     margin-left: 10px;
-    padding: 10px 14px;
+    padding: 7px 10px;
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
@@ -135,6 +135,10 @@ section.left .center .box-about-you textarea{
 
 .container-main section.right{
     width: 42%;
+}
+
+.container-main section.right .container-name-lastName{
+    margin-bottom: 14px;
 }
 section.right .box-inputs{
     margin-bottom: 15px;
@@ -209,10 +213,8 @@ section.right .center .container-password i.not-see{
 
 section.left .center .box-about-you button,
 section.right .center button{
-    width: 100%;
-    margin: auto;
-    padding: 2px 0;
-    font-size: 1.95rem;
+    padding: 3px 25px;
+    font-size: 1.88rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -222,8 +224,7 @@ section.right .center button{
     transition: .2s;
 }
 section.left .center .box-about-you button{
-    width: 99%;
-    margin-top: 15px;
+    margin-top: 7px;
 }
 section.right .center button {
     margin: 8px auto 15px auto;
@@ -249,4 +250,53 @@ main .container-main .right .center .container-password form p.success,
 section.right .center p.success{
     font-weight: 600;
     color: #24f027;
+}
+
+@media (max-width: 1045px) {
+    main{
+        width: 98%;
+    }
+    .container-main section.left{
+        width: 52%;
+    }
+    .container-main section.right{
+        width: 45%;
+    }
+}
+@media (max-width: 780px) {
+    main .container-main{
+        flex-direction: column;
+    }
+    .container-main section.left{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    section.left .center .profile-image{
+        width: 110px; height: 110px;
+        margin: 9px auto 15px auto;
+        border: 2px solid var(--main-red);
+    }
+    .container-main section.right{
+        width: 100%;
+    }
+}
+@media (max-width: 410px) {
+    html{
+        font-size: 47%;
+    }
+    section.left .center .container-select-image-or-delete{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    section.left .center .box-file{
+        width: 100%;
+        margin-bottom: 8px;
+        justify-content: space-between;
+    }
+    section.left .center .box-file label{
+        border: none;
+    }
+    section.left .center .box-file label span:first-child{
+        padding: 7px  10px;
+    }
 }

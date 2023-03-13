@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="name-rating">
                                     <a href="/profile-user?id=<?=$id?>">
-                                        <p><?=$name. ' '.$lastname?></p>
+                                        <p><?=$name.' '.$lastname?></p>
                                     </a>
                                     <div>
                                         <i class="star fa-solid fa-star"></i><span><?=$rating?></span>
@@ -60,16 +60,22 @@
                             </div>
                 <div class="box-text-comment">
                     <h5>Comentário: </h5>
-                    <p><?=$review?></p>
+                    <p class="review">
+                        <?=$review?>
+                        <?php if (is_array($this->view->userComment) && $this->view->userComment['username'] === $name): ?>
+                            <form action="/delete-review?id=<?=$id_movie?>" method="post">
+                                <button class="delete-review" type="submit" name="reviewID" value="<?=$this->view->userComment['id']?>">Deletar comentário</button>
+                            </form>
+                        <?php endif; ?>
+                    </p>
                 </div>
             </div>
-                <?php  endforeach;?>
-                <?php else: ?>
-                    <p class="n">Este filme não possui nenhuma avaliação, seja o primeiro a avaliá-lo.</p>
-                <?php endif;?>
+            <?php  endforeach; else: ?>
+                <p class="n">Este filme não possui nenhuma avaliação, seja o primeiro a avaliá-lo.</p>
+            <?php endif;?>
         </div>
 
-        <?php if (!$this->view->checkComment && isset($_SESSION['userID'])): ?>
+        <?php if (!$this->view->checkComment && !is_array($this->view->userComment) && isset($_SESSION['userID'])): ?>
             <div class="add-review">
                 <h3>Envie sua avaliação</h3>
                 <p class="subtitle">Preencha o formulário com a nota e o comentário sobre o filme</p>

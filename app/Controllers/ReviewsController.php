@@ -22,10 +22,8 @@ class ReviewsController extends Action
         $movie = Container::getModel('Movies');
         $movie->__set('id', $movieID);
 
-        $checkMovie = $movie->checkIfMovieExists();
-        if (!$movieID || !$checkMovie) {
-            echo $movieID;
-            echo $checkMovie;
+        // $checkMovie = $movie->checkIfMovieExists();
+        if (!$movieID || !$movie->checkIfMovieExists()) {
             header('location: /home?');
         }
 
@@ -35,35 +33,23 @@ class ReviewsController extends Action
 
         $movieData = $movie->recoverMovie();
 
-        $movieUserID = (int) $movieData['id_user'];
-        $checkComment = $reviews->checkComment($movieUserID);
-        $this->view->checkComment = $checkComment ? true : false;
+        $userComment = $reviews->userComment();
+        if ( is_array($userComment)) {
+            $userComment['username'] = $_SESSION['username'];
+        }
+        $this->view->userComment = $userComment;
 
+        // $movieUserID = (int) $movieData['id_user'];
+        $checkComment = $reviews->__get('id_user') === (int) $movieData['id_user'];
+        $this->view->checkComment = $checkComment;
 
         $movieReviews = $reviews->retrieveMovieReviews();
-
-        //forma alternativa de se recuperar as avaliações dos filmes com os dados do usuarios.
-        // $reviewsWithoutUser = $reviews->retrieveMovieReviews();
-
-        // $reviewsWithUser = [];
-        // $user = Container::getModel('Users');
-        // foreach ($reviewsWithoutUser as $review) {
-
-        //     $user->__set('id', $review['id_user']);
-        //     $userData = $user->retrieveUser();
-
-        //     $review['user'] = $userData;
-        //     $reviewsWithUser[] = $review;
-        // }
-
-        // echo '<pre>';
-        // print_r($movieReviews);
-        // echo '</pre>';
-
         $this->view->movieReviews = $movieReviews;
 
         $this->view->movieData = $movieData;
-        $this->view->movieData['rating'] = $reviews->calculateRatings($movieID) ? number_format($reviews->CalculateRatings($movieID),2,'.') : 'Não avaliado';
+        $this->view->movieData['rating'] = $reviews->calculateRatings($movieID) ? number_format($reviews->calculateRatings($movieID),2,'.') : 'Não avaliado';
+
+        // print_r($userComment);
         $this->render('movie/movie', 'layout1');
     }
 
@@ -84,8 +70,8 @@ class ReviewsController extends Action
         $reviews->__set('rating', filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT));
 
         $checkNewAssessment = $reviews->checkAssessmentRecord();
-        $checkComment = $reviews->checkComment(filter_input(INPUT_POST, "id_movie"));
-        if (count($checkNewAssessment) > 0 || $checkComment) {
+        $userComment = $reviews->userComment(filter_input(INPUT_POST, "id_movie"));
+        if (count($checkNewAssessment) > 0 || $userComment) {
             $this->view->msgErrorNewAssessment = $checkNewAssessment[0] ?? '';
             $this->view->evaluationErrorData = [
                 'inputRating' => $_POST['rating'],
@@ -96,5 +82,22 @@ class ReviewsController extends Action
         }
         $reviews->assessmentRecord();
         $this->pageMovie();
+    }
+
+    public function deleteReview()
+    {
+        session_start();
+
+        $reviews = Container::getModel('Reviews');
+        $reviews->__set('id', filter_input(INPUT_POST, "reviewID", FILTER_VALIDATE_INT));
+        $reviews->__set('id_user', $_SESSION['userID']);
+
+        if (!$reviews->checkIdToDelete()) {
+            header('location: /movie?id=' . $_GET['id']);
+            exit;
+        }
+         
+        $reviews->deleteReview();
+        header('location: /movie?id=' . $_GET['id']);
     }
 }

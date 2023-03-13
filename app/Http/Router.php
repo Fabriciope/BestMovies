@@ -132,6 +132,12 @@ class Router extends Bootstrap
             'controller' => 'ReviewsController',
             'action' => 'registerNewAssessments',
         );
+        $routes['delete-review'] = array(
+            'route' => '/delete-review',
+            'controller' => 'ReviewsController',
+            'action' => 'deleteReview',
+        );
+
         $this->setRoutes($routes);
     }
 }

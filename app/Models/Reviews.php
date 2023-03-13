@@ -19,7 +19,7 @@ class Reviews extends Model
      */
     public function retrieveMovieReviews()
     {
-        $query = 'SELECT u.id, u.name, u.lastname, u.image, r.rating, r.review
+        $query = 'SELECT u.id, u.name, u.lastname, u.image, r.rating, r.review, r.id_movie
                   FROM reviews as r
                   LEFT JOIN users as u
                   ON (r.id_user = u.id)
@@ -32,6 +32,12 @@ class Reviews extends Model
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Método responsável por calcular a nota de um determinado filme.
+     *
+     * @param string $movieID
+     * @return mixed
+     */
     public function calculateRatings($movieID)
     {
         $query = 'SELECT rating
@@ -61,9 +67,9 @@ class Reviews extends Model
     /**
      * Método responsável por verificar se o usuário já fez um comentário naquele filme.
      *
-     * @return bool
+     * @return mixed
      */
-    public function checkComment(int $movieUserID):bool
+    public function userComment()
     {
         $query = 'SELECT *
                   FROM reviews
@@ -74,8 +80,8 @@ class Reviews extends Model
         $stmt->bindValue(':id_user', $this->__get('id_user'));
         $stmt->execute();
 
-        if ($stmt->rowCount() > 0 || $this->__get('id_user') === $movieUserID) {
-            return true;
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
             exit;
         } else {
             return false;
@@ -122,6 +128,35 @@ class Reviews extends Model
         $stmt->bindValue(':id_movie', $this->__get('id_movie'));
         $stmt->bindValue(':rating', $this->__get('rating'));
         $stmt->bindValue(':review', trim($this->__get('review')));
+        $stmt->execute();
+    }
+
+    public function checkIdToDelete()
+    {
+        $query = 'SELECT *
+                  FROM reviews
+                  WHERE id = :id AND id_user = :id_user';
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('id'));
+        $stmt->bindValue(':id_user', $this->__get('id_user'));
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return true;
+            exit;
+        } else{
+            return false;
+        }
+    }
+
+    public function deleteReview()
+    {
+        $query = 'DELETE FROM reviews
+                  WHERE id = :reviewID';
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':reviewID', $this->__get('id'));
         $stmt->execute();
     }
 }

@@ -22,9 +22,10 @@
                         <td class="title"><a href="/movie?id=<?=$id?>"><?=$title?></a></td>
                         <td class="assessments"><i class="star fa-solid fa-star"></i><span><?=$rating?></span></td>
                         <td class="actions">
-                            <a class="edit-movie" href="/page-edit-movie?id=<?=$id?>"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                            <a class="edit-movie" href="/page-edit-movie?id=<?=$id?>"><i class="fa-solid fa-pen-to-square"></i><span>Editar</span></a>
                             <form action="/destroy-movie" method="post">
-                             <button class="delete-movie" type="submit" name="id" value="<?=$id?>">Deletar</button>
+                             <button class="delete-movie" type="submit" name="id" value="<?=$id?>">
+                             <i class="delete fa-solid fa-trash-can"></i><span>Deletar</span></button>
                             </form>
                         </td>
                     </tr>

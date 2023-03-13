@@ -1,3 +1,6 @@
+//REFATORAR
+
+
 const btnSeeEnter= document.querySelector('i.see.enter-update');
 const btnNotSeeEnter= document.querySelector('.not-see.enter-update');
 const inputPasswordEnter= document.getElementById('password-enter-update');

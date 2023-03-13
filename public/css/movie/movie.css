@@ -1,7 +1,8 @@
 main{
     width: 90%;
+    min-width: 1115px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 main section.info-movie{
     margin-bottom: 60px;
@@ -11,7 +12,7 @@ main section.info-movie{
     gap: 27px;
 }
 .info-movie .info{
-    width: 54%;
+    width: 57%;
 }
 .info-movie .info .info-top{
     margin-bottom: 30px;
@@ -25,7 +26,7 @@ main section.info-movie{
 .info-movie .info .info-top h2{
     margin: 0 auto;
     margin-bottom: 21px;
-    padding-bottom: 4px;
+    padding: 5px 10px;
     display: inline-block;
     font-size: 4rem;
     text-align: center;
@@ -37,6 +38,7 @@ main section.info-movie{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 7px;
 }
 .info-movie .info .info-top .infos div{
     display: flex;
@@ -44,18 +46,18 @@ main section.info-movie{
     align-items: center;
 }
 .info-movie .info .info-top .infos div i.star{
-    margin-right: 1px;
-    font-size: 2rem;
+    margin-left: 3px;
+    font-size: 1.84rem;
     color: #ffc800;
 }
 .info-movie .info .info-top .infos h5{
-    font-size: 1.8rem;
+    font-size: 1.67rem;
     font-weight: 500;
     color: var(--title-color);
 }
 .info-movie .info .info-top .infos span{
     margin-left: 7px;
-    font-size: 1.67rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-color);
 }
@@ -90,18 +92,20 @@ main section.info-movie{
 
 
 .info-movie .poster{
-    height: 440px;
+    width: 40%;
+    max-width: 400px;
     border-radius: 7px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.911);
     overflow: hidden;
 }
 .info-movie .poster img{
-    height: 100%;
+    width: 100%;
 }
 
 
 section.assessments{
     width: 100%;
+    padding: 3px;
 }
 section.assessments h3{
     margin-bottom: 5px;
@@ -119,7 +123,18 @@ section.assessments p.subtitle{
 }
 
 section.assessments div.comments{
+    max-width: 77%;
     margin-bottom: 100px;
+}
+form button.delete-review{
+    margin-top: 3px;
+    padding: 4px 6px;
+    float: right;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgb(255, 40, 40);
 }
 section.assessments div.comments p.n{
     font-size: 1.8rem;
@@ -200,6 +215,7 @@ section.assessments .box-comment .box-image-name-rating .name-rating div span{
 
 .assessments .add-review{
     width: 50%;
+    min-width: 450px;
     max-width: 600px;
     margin: 0 auto;
     margin-top: 35px;
@@ -273,4 +289,76 @@ section.assessments .box-comment .box-image-name-rating .name-rating div span{
     background: transparent;
     color: var(--main-red);
     transition: .2s;
+}
+@media (max-width: 1145px) {
+    main{
+        min-width: 98%;
+    }
+    main section.info-movie{
+        /* flex-direction: column; */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .info-movie .info .info-top .infos div{
+        flex-direction: column;
+    }
+    /* .info-movie .info .info-bottom .trailer{
+        display: none;
+    } */
+}
+@media (max-width: 690px) {
+    main section.info-movie {
+        margin-bottom: 25px;
+    }
+    .info-movie .info{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .info-movie .info .info-top{
+        margin-bottom: 15px;
+    }
+    .info-movie .poster{
+        width: 80%;
+        margin: 0 auto;
+        display: none;
+    }
+    .info-movie .info .info-bottom .trailer{
+        width: 94%;
+        margin: 0 auto;
+        margin-bottom: 7px;
+    }
+    .info-movie .info .info-bottom p {
+        padding: 5px;
+    }
+
+    main section.info-movie{
+        flex-direction: column;
+    }
+    .assessments .box-comment .box-image-name-rating .profile-image{
+        width: 40px; height: 40px;
+    }
+    section.assessments .box-comment .box-image-name-rating{
+        margin-bottom: 4px;
+        gap: 5px;
+    }
+    section.assessments div.comments{
+        max-width: 100%;
+    }
+    .assessments .box-text-comment h5{
+        margin-bottom: 3px;
+        margin-left: 40px;
+    }
+    
+    .assessments .box-text-comment p{
+        margin-left: 43px;
+        font-size: 1.6rem;
+        color: var(--title-color);
+    }
+    .assessments .add-review{
+        width: 100%;
+        min-width: 100%;
+        margin-top: 15px;
+        padding: 7px;
+    }
+
 }

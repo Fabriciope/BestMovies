@@ -15,22 +15,23 @@ main section.my-movies{
 }
 .my-movies p{
     margin-left: 7px;
+    margin-bottom: 13px;
     font-size: 1.7rem;
     font-weight: 500;
     color: var(--text-color);
 }
 .my-movies div.add-film{
-    margin-bottom: 20px;
+   margin-bottom: 30px;
    display: flex;
    justify-content: flex-end;
 }
 .my-movies div.add-film i{
     margin-right: 5px;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
 }
 .my-movies div.add-film a{
-    padding: 7px 12px;
-    font-size: 1.9rem;
+    padding: 8px 12px;
+    font-size: 1.8rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: 5px;
@@ -42,6 +43,7 @@ main section.my-movies{
 
 .my-movies table{
     width: 100%;
+    min-width: 415px;
     border-collapse: collapse;
 }
 .my-movies table thead{
@@ -94,8 +96,8 @@ main section.my-movies{
 }
 .my-movies table tr td.actions a,
 .my-movies table tr.data td.actions form button.delete-movie{
-    padding: 6px 12px;
-    font-size: 1.65rem;
+    padding: 4px 9px;
+    font-size: 1.57rem;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
@@ -115,6 +117,41 @@ main section.my-movies{
 .my-movies table tr.data td.actions form button.delete-movie{
     background: #e30000;
 }
+.my-movies table tr.data td.actions form button i.delete{
+    display: none;
+}
 .my-movies table tr.data td.actions form button.delete-movie:hover{
     background: #f13636;
+}
+
+@media (max-width: 630px) {
+    main{
+        width: 98%;
+    }
+    .my-movies table tr td.actions a span,
+    .my-movies table tr.data td.actions form button.delete-movie span{
+        display: none;
+    }
+    .my-movies table tr td.actions{
+        gap: 6px;
+    }
+    .my-movies table tr.data td.actions a.edit-movie,
+    .my-movies table tr.data td.actions form button.delete-movie{
+        font-size: 2.6rem;
+        background: none;
+
+    }
+    .my-movies table tr.data td.actions a i{
+        margin: 0;
+        color: #0088ff;
+    }
+    .my-movies table tr.data td.actions form button i.delete{
+        display: block;
+        color: #e30000;
+    }
+    .my-movies table tr.data td.actions a.edit-movie:hover,
+    .my-movies table tr.data td.actions form button.delete-movie:hover{
+        background: var(--bg-box);
+    }
+
 }

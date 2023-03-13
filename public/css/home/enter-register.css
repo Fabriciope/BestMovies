@@ -71,7 +71,7 @@ section.entrar .center .box-input .password i.not-see{
 }
 section.entrar .center button{
     width: 180px;
-    padding: 2px 0;
+    padding: 3px 0;
     margin-top: 10px;
     font-size: 2rem;
     font-weight: 600;
@@ -208,5 +208,8 @@ section.register .center button:hover{
     section.entrar .center,
     section.register .center{
         padding: 6px;
+    }
+    section.entrar .center .box-input{
+        margin-bottom: 8px;
     }
 }

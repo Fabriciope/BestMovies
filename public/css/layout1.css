@@ -200,6 +200,7 @@ footer .center .pages a{
 }
 @media (max-width: 680px) {
     header .center-nav-top{
+        width: 98%;
         position: relative;
     }
     header .center-nav-top .logo{
@@ -272,10 +273,13 @@ footer .center .pages a{
         align-items: center;
     }
     footer .center div{
-        margin-bottom: 20px;
+        margin-bottom: 33px;
     }
     footer .center .logo{
         margin: 0 auto;
         margin-bottom: 20px;
+    }
+    footer .center div ul li{
+        padding: 7px 0;
     }
 }
