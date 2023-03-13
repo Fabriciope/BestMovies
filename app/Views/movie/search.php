@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="css/movie/search.css">
-
 <main>
     <section class="found-movies">
         <h2>Você está buscando por: <?=$this->view->search?></h2>

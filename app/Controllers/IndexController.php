@@ -222,7 +222,7 @@ class IndexController extends Action
         // echo '<pre>';
         // print_r($bestMovies);
         // echo '</pre>';
-        $this->render('home/index', 'layout1');
+        $this->render('home/index', 'layout');
     }
 
     public function search()
@@ -237,7 +237,7 @@ class IndexController extends Action
         if (count($foundMovies) === 0 || !filter_input(INPUT_POST, "search")) {
             $this->view->notFound = 'Não encontramos nenhum filme para esta busca, ';
             $this->view->search = $_POST['search'];
-            $this->render('movie/search', 'layout1');
+            $this->render('movie/search', 'layout');
         }
 
         $reviews = Container::getModel('Reviews');
@@ -254,7 +254,7 @@ class IndexController extends Action
 
         $this->view->search = $_POST['search'];
         $this->view->foundMovies = $moviesSearchedWithNote;
-        $this->render('movie/search', 'layout1');
+        $this->render('movie/search', 'layout');
     }
 
     /**
@@ -264,6 +264,6 @@ class IndexController extends Action
      */
     public function pageEnterRegister()
     {
-        $this->render('home/enter-register', 'layout1');
+        $this->render('home/enter-register', 'layout');
     }
 }

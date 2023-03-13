@@ -15,7 +15,7 @@ class MoviesController extends Action
     public function pageRegisterMovie()
     {
         $this->validateUser();
-        $this->render('user/register-movie', 'layout1');
+        $this->render('user/register-movie', 'layout');
     }
 
     /**
@@ -87,7 +87,7 @@ class MoviesController extends Action
         }
         $this->view->userMovies = $userMovies;
 
-        $this->render('user/my-movies', 'layout1');
+        $this->render('user/my-movies', 'layout');
     }
 
     public function pageEditMovie()
@@ -107,7 +107,7 @@ class MoviesController extends Action
 
         $movieData =  $movie->recoverMovie();
         $this->view->movieData = $movieData;
-        $this->render('movie/edit-movie', 'layout1');
+        $this->render('movie/edit-movie', 'layout');
     }
 
     public function editMovie()
@@ -132,7 +132,7 @@ class MoviesController extends Action
         if (count($checkData) > 0) {
             $this->view->msgErrorEditMovie = $checkData[0];
             $this->view->movieData = $movieData;
-            $this->render('movie/edit-movie', 'layout1');
+            $this->render('movie/edit-movie', 'layout');
         }
         $movie->__set('length', "$hours horas e $minutes minutos");
         
@@ -145,14 +145,11 @@ class MoviesController extends Action
     public function destroyMovie()
     {
         session_start();
-        //fazer uma verificação melhor para o usuario não burlar esta funcao pelo inspecionar da página
         $movie = Container::getModel('movies');
         $movie->__set('id', filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT));
         $movie->__set('id_user', $_SESSION['username']);
 
         $checkMovie = $movie->checkMovie();
-
-    
 
         if (!$checkMovie) {
             header('location: /my-movies');

@@ -25,7 +25,7 @@ class UserController extends Action
 
         $this->view->userData = $userData;
 
-        $this->render('user/profile', 'layout1');
+        $this->render('user/profile', 'layout');
     }
 
     /**
@@ -210,7 +210,7 @@ class UserController extends Action
 
         $this->view->userMovies = $userMoviesWithRating;
         $this->view->userData = $userData;
-        $this->render('user/profile-user', 'layout1');
+        $this->render('user/profile-user', 'layout');
 
         // echo '<pre>';
         // print_r($userData);

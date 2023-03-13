@@ -353,6 +353,9 @@ section.filmes .container{
     section.banners  button.right i{
         font-size: 4rem;
     }
+    .container-films .box-film:hover .center a{
+        margin-bottom: 12px;
+    }
     .container-banners .box-banner .box-movie .container-infos{
         margin-right: 6px;
     }

@@ -36,7 +36,7 @@ class AuthController extends Action
                 'msgErrorR' => $verificationErrorMessage[0] ?? '',
             ];
 
-            $this->render('home/enter-register', 'layout1');
+            $this->render('home/enter-register', 'layout');
         } else {
 
             $user->registerUser();
@@ -74,7 +74,7 @@ class AuthController extends Action
             $this->view->msg = [
                 'msgErrorE' => $userValidation[0] ?? '',
             ];
-            $this->render('home/enter-register', 'layout1');
+            $this->render('home/enter-register', 'layout');
         } else {
 
             session_start();

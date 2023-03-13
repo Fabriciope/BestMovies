@@ -1,15 +1,19 @@
 <link rel="stylesheet" href="css/user/profile-user.css">
 <main>
     <section class="profile">
-        <div class="name">
-            <h2><?=$this->view->userData['name'].' '.$this->view->userData['lastname']?></h2>
-        </div>
+
         <div class="image">
             <img src="<?=$this->view->userData['image']??'images/users/perfil.png'?>" alt="">
         </div>
-        <div class="about">
-            <h4>Sobre o <?=$this->view->userData['name']?>:</h4>
-            <p><?=$this->view->userData['bio']??'Este usuário não possui uma biográfia'?></p>
+       
+        <div class="container-about">
+            
+            <h2><?=$this->view->userData['name'].' '.$this->view->userData['lastname']?></h2>
+            
+            <div class="about">
+                <h4>Sobre o <?=$this->view->userData['name']?>:</h4>
+                <p><?=$this->view->userData['bio']??'Este usuário não possui uma biográfia'?></p>
+            </div>
         </div>
     </section>
     <section class="user-movies">
@@ -34,8 +38,6 @@
             <?php else: ?>
                 <p>Este usuário não possui nenhum filme registrado.</p>
             <?php endif;?>
-
-
         </div>
     </section>
 </main>

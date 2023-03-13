@@ -1,7 +1,8 @@
 main{
     width: 90%;
-    margin: 50px auto 60px auto;
+    margin: 20px auto 60px auto;
 }
+/*
 main section.profile{
     width: 60%;
     max-width: 800px;
@@ -47,7 +48,49 @@ section.profile .about p{
     font-weight: 500;
     text-align: center;
     color: var(--title-color);
+} */
+
+section.profile{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 13px;
 }
+.profile .image{
+    width: 120px; height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    overflow: hidden;
+    border: 3px solid var(--main-red);
+}
+.profile .image img{
+    width: 108%;
+}
+.profile .container-about h2{
+    margin: 0 auto;
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 2rem;
+    border-bottom: 3px solid var(--main-red);
+    color: var(--title-color);
+}
+.profile .about h4{
+    margin-bottom: 3px;
+    font-size: 1.6rem;
+    text-align: left;
+    color: var(--text-color);
+}
+.profile .about p{
+    max-width: 500px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: left;
+    color: var(--title-color);
+} 
+
+
 
 section.user-movies{
     width: 100%;
@@ -157,4 +200,46 @@ section.user-movies h3{
     box-shadow: 2px 2px 0 var(--main-red);
     background: transparent;
     transition: .2s;
+}
+
+
+@media (max-width: 710px) {
+    main{
+        width: 98%;
+        /* margin-top: ; */
+    }
+    section.profile{
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+    }
+    .profile .container-about h2{
+        width: 100%;
+        margin: 0 auto 10px auto;
+        font-size: 2.2rem;
+        text-align: center;
+        border: none;
+    }
+    .profile .about h4{
+        width: 100%;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    .profile .about p{
+        width: 100%;
+        font-size: 1.73rem;
+        text-align: center;
+    }
+    .container-movies {
+        gap: 10px;
+    }
+    .container-movies .box-film{
+        width: 160px; height: 270px;
+    }
+}
+@media (max-width: 350px) {
+    .container-movies .box-film{
+        width: 190px; height: 300px;
+        margin: 0 auto;
+    }
 }

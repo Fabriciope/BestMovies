@@ -50,7 +50,7 @@ class ReviewsController extends Action
         $this->view->movieData['rating'] = $reviews->calculateRatings($movieID) ? number_format($reviews->calculateRatings($movieID),2,'.') : 'Não avaliado';
 
         // print_r($userComment);
-        $this->render('movie/movie', 'layout1');
+        $this->render('movie/movie', 'layout');
     }
 
     /**
