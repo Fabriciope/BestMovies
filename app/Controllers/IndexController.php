@@ -222,13 +222,13 @@ class IndexController extends Action
         session_start();
 
         $movies = Container::getModel('Movies');
-        $movies->__set('title', filter_input(INPUT_POST, "search"));
+        $movies->__set('title', filter_input(INPUT_GET, "search"));
 
         $foundMovies = $movies->search();
 
-        if (count($foundMovies) === 0 || !filter_input(INPUT_POST, "search")) {
+        if (count($foundMovies) === 0 || !filter_input(INPUT_GET, "search")) {
             $this->view->notFound = 'Não encontramos nenhum filme para esta busca, ';
-            $this->view->search = $_POST['search'];
+            $this->view->search = $_GET['search'];
             $this->render('movie/search', 'layout');
         }
 
@@ -244,7 +244,7 @@ class IndexController extends Action
             $moviesSearchedWithNote[] = $movie;
         }
 
-        $this->view->search = $_POST['search'];
+        $this->view->search = $_GET['search'];
         $this->view->foundMovies = $moviesSearchedWithNote;
         $this->render('movie/search', 'layout');
     }

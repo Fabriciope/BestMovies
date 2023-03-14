@@ -37,7 +37,6 @@ currentItemRomance = 0;
 currentItemAdventure = 0;
 currentItemHorror = 0;
 
-
 const controls = document.querySelectorAll('.controlMovies');
 
 function slides(section, control){

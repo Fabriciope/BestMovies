@@ -47,7 +47,7 @@ class UserController extends Action
             $this->view->msgUpdateNameError= $verificationErrorMessage[0];
             $this->pageProfile();
         } else {
-            $update = $user->updateFirstNameAndLastName($_SESSION['username']);
+            $user->updateFirstNameAndLastName($_SESSION['username']);
             $_SESSION['username'] = trim($user->__get('name'));
             $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
             // header('location: /perfil');

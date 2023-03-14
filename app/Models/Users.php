@@ -15,6 +15,11 @@ class Users extends Model
     protected $bio;
 
 
+    /**
+     * Mètodo responsável por retornar os dados de uma determinado usuário.
+     *
+     * @return array
+     */
     public function retrieveUser()
     {
         $query = 'SELECT *

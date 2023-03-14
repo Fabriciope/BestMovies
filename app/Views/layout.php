@@ -19,7 +19,7 @@
                         <img class="logo-min" src="/images/logo-min.png" alt="">
                     </a>
                 </div>
-                <form action="/search" method="post">
+                <form action="/search" method="get">
                     <input type="search" name="search" value="<?=$this->view->search??''?>" placeholder="Buscar filmes . . .">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
