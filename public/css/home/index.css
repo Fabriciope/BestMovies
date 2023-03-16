@@ -82,12 +82,14 @@ section.banners .wrapper .container-banners{
 }
 
 .container-banners .box-banner .box-movie .container-infos .box-info{
+    max-width: 500px;
     margin-bottom: 12px;
     padding: 10px 23px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    text-align: center;
     border-radius: 7px;
     border: 1px solid white;
     background: rgba(179, 179, 179, .08);
@@ -96,6 +98,7 @@ section.banners .wrapper .container-banners{
 .container-banners .box-banner .box-movie .container-infos .box-info h4{
     margin-bottom: 6px;
     font-size: 2.4rem;
+    text-align: center;
     text-shadow: 2px 2px 0 black;
     color: var(--title-color);
 }
@@ -327,6 +330,7 @@ section.filmes .container{
 @media (max-width: 955px) {
     .container-banners .box-banner .box-movie .container-infos h2{
         margin-top: 5px;
+        font-size: 3rem;
     }
     .container-banners .box-banner .box-movie .container-infos .box-info{
         padding: 4px 12px;
@@ -361,7 +365,7 @@ section.filmes .container{
     }
     .container-banners .box-banner .box-movie .container-infos h2{
         margin-top: 12px;
-        font-size: max(15px, 2vw);
+        font-size: max(18px, 2vw);
     }
     .container-banners .box-banner .box-movie .container-infos .box-info{
         display: none;
@@ -372,6 +376,7 @@ section.filmes .container{
     .container-banners .box-banner .box-movie .image{
         margin-right: 20px;
         flex-shrink: 0;
+        border-radius: 3px;
     }
 
 
@@ -381,6 +386,9 @@ section.filmes .container{
     }
     .filmes .container .container-text-section{
         margin-left: 7px;
+    }
+    .filmes .container .container-text-section h3{
+        font-size: 2.42rem;
     }
     .container-films .box-film{
         width: 140px; height: 240px;
@@ -394,10 +402,13 @@ section.filmes .container{
     .container-films .box-film .center div span{
         font-size: 1.27rem;
     }
+    .container-films .box-film .center div span i.star{
+        font-size: 1.6rem;
+    }
     .container-films .box-film .center h4{
         margin: 0 4px;
         margin-bottom: 10px;
-        font-size: 1.76rem;
+        font-size: 1.5rem;
     }
     .container-films .box-film .center a{
         margin-bottom: 10px;

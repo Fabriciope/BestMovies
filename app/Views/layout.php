@@ -30,7 +30,6 @@
             <div class="center-nav-bottom">
                 <nav>
                     <ul class="ul-menu">
-
                         <?php if (isset($_SESSION) && !empty($_SESSION['userID']) && !empty($_SESSION['username'])):  ?>
                             <li class="userNavigation <?=$this->view->page == 'user/profile'?'active' : ''?>"><a class="name" href="/profile"><i class="arrow-down fa-solid fa-angle-down"></i>Olá, <?=$_SESSION['username']?></a></li>
                             <li class="userNavigation <?=$this->view->page == 'user/my-movies'?'active' : ''?>"><a href="/my-movies">Meus filmes</a></li>

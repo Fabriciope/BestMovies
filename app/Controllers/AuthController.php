@@ -21,6 +21,8 @@ class AuthController extends Action
         $user->__set('email', filter_input(INPUT_POST, "emailRegister", FILTER_VALIDATE_EMAIL));
         $user->__set('password', filter_input(INPUT_POST, "passwordRegister"));
 
+
+
         $verificationErrorMessage = $user->checkUserData(filter_input(INPUT_POST, "passwordCS"));
 
         if (count($verificationErrorMessage) > 0) {

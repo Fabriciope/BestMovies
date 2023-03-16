@@ -99,6 +99,9 @@ header .center-nav-top  form button{
 header .center-nav-top i.menu{
     display: none;
 }
+/* header .center-nav-top i.x{
+    display: none;
+} */
 
 
 
@@ -264,7 +267,12 @@ footer .center .pages a{
     .center-nav-bottom nav ul.active{
         height: 230px;
         transition: .2s;
+        z-index: 99;
     }
+    /* .center-nav-bottom nav ul.active i.x{
+        display: block;
+        font-size: 2rem;
+    } */
     footer .center{
         width: 90%;
         margin: 0 auto;
