@@ -47,7 +47,7 @@ class ReviewsController extends Action
         $this->view->movieReviews = $movieReviews;
 
         $this->view->movieData = $movieData;
-        $this->view->movieData['rating'] = $reviews->calculateRatings($movieID) ? number_format($reviews->calculateRatings($movieID),2,'.') : 'Não avaliado';
+        $this->view->movieData['rating'] = $reviews->calculateRatings($movieID) ? number_format($reviews->calculateRatings($movieID),1,'.') : 'Não avaliado';
 
         // print_r($userComment);
         $this->render('movie/movie', 'layout');
@@ -74,8 +74,8 @@ class ReviewsController extends Action
         if (count($checkNewAssessment) > 0 || $userComment) {
             $this->view->msgErrorNewAssessment = $checkNewAssessment[0] ?? '';
             $this->view->evaluationErrorData = [
-                'inputRating' => $_POST['rating'],
-                'inputComment' => $_POST['comment']
+                'inputRating' => $_POST['rating'] ?? '',
+                'inputComment' => $_POST['comment'] ?? ''
             ];
             $this->pageMovie();
             exit;

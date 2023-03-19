@@ -15,7 +15,7 @@
                         <h5>Gênero: </h5><span><?=$this->view->movieData['category']?></span>
                     </div>
                     <div>
-                        <h5>Nota: </h5><span><?=$this->view->movieData['rating']?><i class="star fa-solid fa-star"></i></span>
+                        <h5>Nota: </h5><span><?=$this->view->movieData['rating'] != 0 ? $this->view->movieData['rating'] : 'Não avaliado'?><i class="star fa-solid fa-star"></i></span>
                     </div>
                 </div>
             </div>

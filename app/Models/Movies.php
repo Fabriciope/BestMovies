@@ -213,6 +213,7 @@ class Movies extends model
      */
     public function registerMovie($temporaryName)
     {
+        
         $imageName = 'images/movies/' . bin2hex(random_bytes(5)) . $this->__get('image');
 
         $query = 'INSERT INTO movies (title, description, image, trailer, category, length, id_user)

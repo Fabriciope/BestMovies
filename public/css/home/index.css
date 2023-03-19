@@ -353,6 +353,10 @@ section.filmes .container{
     section.banners{
         margin-bottom: 19px;
     }
+    section.banners button.left,
+    section.banners  button.right{
+        padding: 0 6px;
+    }
     section.banners button.left i,
     section.banners  button.right i{
         font-size: 4rem;
@@ -374,7 +378,7 @@ section.filmes .container{
         line-height: 106%;
     }
     .container-banners .box-banner .box-movie .image{
-        margin-right: 20px;
+        margin-right: 3px;
         flex-shrink: 0;
         border-radius: 3px;
     }

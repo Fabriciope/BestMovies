@@ -65,11 +65,8 @@ class UserController extends Action
     public function updatePassword()
     {
         session_start();
-
         $user= Container::getModel('Users');
-
         
-
         $user->__set('id', $_SESSION['userID']);
         $user->__set('name', $_SESSION['username']);
         $user->__set('password', filter_input(INPUT_POST, "newPassword"));
@@ -203,7 +200,7 @@ class UserController extends Action
             if ($reviews->calculateRatings($movie['id']) === false) {
                 $movie['rating'] = 'Não avaliado';
             } else {
-                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),2,'.') ;
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),1,'.') ;
             }
             $userMoviesWithRating[] = $movie;
         }

@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Utils\controller\Action;
 use App\Utils\models\Container;
 
-// define('URL', 'http://' . $_SERVER['SERVER_NAME']);
 
 class IndexController extends Action
 {
@@ -19,199 +18,48 @@ class IndexController extends Action
         session_start();
         $movies = Container::getModel('movies');
         $moviesWithoutRating = $movies->retrieveAllMovies();
-
         $reviews = Container::getModel('Reviews');
-
         $allMovies = [];
 
         foreach ($moviesWithoutRating as $movie) {
-
             if ($reviews->calculateRatings($movie['id']) === false) {
-                $movie['rating'] = 'Não avaliado';
+                $movie['rating'] = 0;
             } else {
-                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']), 2, '.');
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']), 1, '.');
             }
-            $allMovies['novos'][] = $movie;
+            $allMovies['Novos'][] = $movie;
         }
 
-        $arrayRatingsAction = [];
-        $arrayRatingsAdventure = [];
-        $arrayRatingsDrama = [];
-        $arrayRatingsFantasy = [];
-        $arrayRatingsScienceFiction = [];
-        $arrayRatingsRomance = [];
-        $arrayRatingsHorror = [];
         $bestMovies = [];
-        $arrayRatingsThrillers = [];
-        //Refatorar esse foreach para as models.
-        foreach ($allMovies['novos'] ?? [] as $movie) {
-            switch ($movie['category']) {
-                case 'Ação':
-                    $arrayRatingsAction[] = $movie['rating'];
-                    $allMovies['ação'][] = $movie;
+        foreach ($allMovies['Novos'] ?? [] as $movie) {
 
-                    foreach ($arrayRatingsAction as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsAction);
-                            unset($arrayRatingsAction[$wrongKey]);
-                        }
-                        foreach ($allMovies['ação'] as $actionMovie) {
-                            if (!empty($arrayRatingsAction)) {
-                                if (array_search(max($arrayRatingsAction), $actionMovie)) {
-                                    $bestMovies['ação'] = $actionMovie;
-                                    $bestMovies['ação']['imageBanner'] = 'images/banners/banner-films-action.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Aventura':
-                    $arrayRatingsAdventure[] = $movie['rating'];
-                    $allMovies['aventura'][] = $movie;
+            $category = $movie['category'];
+            $allMovies[$category][] = $movie;
+        }
 
-                    foreach ($arrayRatingsAdventure as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsAdventure);
-                            unset($arrayRatingsAdventure[$wrongKey]);
-                        }
-                        foreach ($allMovies['aventura'] as $adventureMovie) {
-                            if (!empty($arrayRatingsAdventure)) {
-                                if (array_search(max($arrayRatingsAdventure), $adventureMovie)) {
-                                    $bestMovies['aventura'] = $adventureMovie;
-                                    $bestMovies['aventura']['imageBanner'] = 'images/banners/banner-films-adventure.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Drama':
-                    $arrayRatingsDrama[] = $movie['rating'];
-                    $allMovies['drama'][] = $movie;
-
-                    foreach ($arrayRatingsDrama as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsDrama);
-                            unset($arrayRatingsDrama[$wrongKey]);
-                        }
-                        foreach ($allMovies['drama'] as $dramaMovie) {
-                            if (!empty($arrayRatingsDrama)) {
-                                if (array_search(max($arrayRatingsDrama), $dramaMovie)) {
-                                    $bestMovies['drama'] = $dramaMovie;
-                                    $bestMovies['drama']['imageBanner'] = 'images/banners/banner-films-drama.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Fantasia':
-                    $arrayRatingsFantasy[] = $movie['rating'];
-                    $allMovies['fantasia'][] = $movie;
-                    foreach ($arrayRatingsFantasy as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsFantasy);
-                            unset($arrayRatingsFantasy[$wrongKey]);
-                        }
-                        foreach ($allMovies['fantasia'] as $fantasyMovie) {
-                            if (!empty($arrayRatingsFantasy)) {
-                                if (array_search(max($arrayRatingsFantasy), $fantasyMovie)) {
-                                    $bestMovies['fantasia'] = $fantasyMovie;
-                                    $bestMovies['fantasia']['imageBanner'] = 'images/banners/banner-films-fantasy.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Ficção científica':
-                    $arrayRatingsScienceFiction[] = $movie['rating'];
-                    $allMovies['ficção científica'][] = $movie;
-
-                    foreach ($arrayRatingsScienceFiction as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsScienceFiction);
-                            unset($arrayRatingsScienceFiction[$wrongKey]);
-                        }
-                        foreach ($allMovies['ficção científica'] as $scienceFictionMovie) {
-                            if (!empty($arrayRatingsScienceFiction)) {
-                                if (array_search(max($arrayRatingsScienceFiction), $scienceFictionMovie)) {
-                                    $bestMovies['ficção científica'] = $scienceFictionMovie;
-                                    $bestMovies['ficção científica']['imageBanner'] = 'images/banners/banner-films-science-fiction.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Romance':
-                    $arrayRatingsRomance[] = $movie['rating'];
-                    $allMovies['romance'][] = $movie;
-
-                    foreach ($arrayRatingsScienceFiction as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsScienceFiction);
-                            unset($arrayRatingsScienceFiction[$wrongKey]);
-                        }
-                        foreach ($allMovies['romance'] as $romanceMovie) {
-                            if (!empty($arrayRatingsRomance)) {
-                                if (array_search(max($arrayRatingsRomance), $romanceMovie)) {
-                                    $bestMovies['romance'] = $romanceMovie;
-                                    $bestMovies['romance']['imageBanner'] = 'images/banners/banner-films-romance.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Terror':
-                    $arrayRatingHorror[] = $movie['rating'];
-                    $allMovies['terror'][] = $movie;
-
-                    foreach ($arrayRatingsHorror as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsHorror);
-                            unset($arrayRatingsHorror[$wrongKey]);
-                        }
-                        foreach ($allMovies['terror'] as $horrorMovie) {
-                            if (!empty($arrayRatingsHorror)) {
-                                if (array_search(max($arrayRatingsHorror), $horrorMovie)) {
-                                    $bestMovies['terror'] = $horrorMovie;
-                                    $bestMovies['terror']['imageBanner'] = 'images/banners/banner-films-horror.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case 'Suspense':
-                    $arrayRatingThrillers[] = $movie['rating'];
-                    $allMovies['suspense'][] = $movie;
-
-                    foreach ($arrayRatingsThrillers as $key) {
-                        if ($key === 'Não avaliado') {
-                            $wrongKey = array_search('Não avaliado', $arrayRatingsThrillers);
-                            unset($arrayRatingsThrillers[$wrongKey]);
-                        }
-                        foreach ($allMovies['suspense'] as $thrillersMovie) {
-                            if (!empty($arrayRatingsThrillers)) {
-                                if (array_search(max($arrayRatingsThrillers), $thrillersMovie)) {
-                                    $bestMovies['suspense'] = $thrillersMovie;
-                                    $bestMovies['suspense']['imageBanner'] = 'images/banners/banner-films-thrillers.png';
-                                }
-                            }
-                        }
-                    }
-                    break;
-            }
+        foreach ($allMovies as $category => $movies) {
+            uasort($movies, function ($a, $b){
+                if ($a['rating'] === $b['rating']) return 0;
+                return $a['rating'] < $b['rating'] ? 1 : -1;
+             });
+             $bestMovies[$category] = $movies[array_key_first($movies)];
+             $imageName = strtolower(str_replace(' ', '-', $category));
+             $bestMovies[$category]['imageBanner'] = 'images/banners/banner-' . $imageName . '.png';
+             if ($bestMovies[$category]['rating'] === 0 || $category === 'Novos'){
+                unset($bestMovies[$category]);
+             }
         }
         $reorderAllMovies = [
-            'novos' => $allMovies['novos'],
-            'ação' => $allMovies['ação'],
-            'drama' => $allMovies['drama'],
-            'fantasia' => $allMovies['fantasia'],
-            'aventura' => $allMovies['aventura'],
-            'suspense' => $allMovies['suspense'],
-            'romance' => $allMovies['romance'],
-            'ficção científica' => $allMovies['ficção científica'],
-            'terror' => $allMovies['terror'],
-
-
-        ];
+            'novos' => $allMovies['Novos'],
+            'ação' => $allMovies['Ação'],
+            'drama' => $allMovies['Drama'],
+            'fantasia' => $allMovies['Fantasia'],
+            'aventura' => $allMovies['Aventura'],
+            'suspense' => $allMovies['Suspense'],
+            'romance' => $allMovies['Romance'],
+            'ficção científica' => $allMovies['Ficção científica'],
+            'terror' => $allMovies['Terror'],
+            ];
         $this->view->bestMovies = $bestMovies;
         $this->view->allMovies = $reorderAllMovies;
         $this->render('home/index', 'layout');
@@ -239,7 +87,7 @@ class IndexController extends Action
             if ($reviews->calculateRatings($movie['id']) === false) {
                 $movie['rating'] = 'Não avaliado';
             } else {
-                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']), 2, '.');
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']), 1, '.');
             }
             $moviesSearchedWithNote[] = $movie;
         }

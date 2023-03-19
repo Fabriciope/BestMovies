@@ -87,7 +87,7 @@ class MoviesController extends Action
             if ($reviews->calculateRatings($movie['id']) === false){
                 $movie['rating'] = 'Não avaliado';
             } else {
-                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),2,'.');
+                $movie['rating'] = number_format($reviews->calculateRatings($movie['id']),1,'.');
             }
             $userMovies[] = $movie;
         }

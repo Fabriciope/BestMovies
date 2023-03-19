@@ -26,7 +26,7 @@
                             <div class="content">
                                 <div class="center">
                                     <div>
-                                        <img src="images/estrela.png" alt=""><span><?=$rating?></span>
+                                        <span><i class="star fa-solid fa-star"></i><?=$rating != 0 ? $rating : 'Não avaliado'?></span>
                                     </div>
                                     <h4><?= $title ?></h4>
                                     <a class="avaliar" href="/movie?id=<?=$id?>&assess">Avaliar</a>

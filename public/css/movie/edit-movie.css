@@ -1,7 +1,7 @@
 main{
     width: 90%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 main section.edit-movie{
     display: flex;

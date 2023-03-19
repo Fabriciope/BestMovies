@@ -59,7 +59,7 @@
                     </label>
                 </div>
                 <p class="error"><?=$this->view->msgErrorEditMovie??''?></p>
-                <button type="submit">Adicionar filme</button>
+                <button type="submit">Editar filme</button>
             </form>
         </div>
         <div class="post">

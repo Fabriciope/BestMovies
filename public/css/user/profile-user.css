@@ -140,10 +140,27 @@ section.user-movies h3{
     justify-content: flex-end;
     margin: 0 auto;
 }
-.container-movies .box-film .center div{
+/* .container-movies .box-film .center div{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+} */
+.container-movies .box-film .center div{
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.container-movies .box-film .center div span i.star{
+    margin: 0 2px 0 12px;
+    font-size: 1.7rem;
+    color: #ffc800;
+}
+.container-movies .box-film .center div span{
+    margin-left: 3px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
 }
 .container-movies .box-film .center div span{
     margin-left: 3px;
