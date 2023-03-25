@@ -218,6 +218,7 @@ section.filmes .container{
     top: 0;
     bottom: 0;
     border: none;
+    outline: none;
 }
 .filmes .container .wrapper button.left{
     left: 0;

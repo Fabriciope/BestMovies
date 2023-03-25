@@ -86,7 +86,6 @@ class Reviews extends Model
         } else {
             return false;
         }
-
     }
 
     /**
@@ -122,7 +121,7 @@ class Reviews extends Model
     {
         $query = 'INSERT INTO reviews (id_user, id_movie, rating, review)
                                VALUES (:id_user, :id_movie, :rating, :review)';
-        
+
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':id_user', $this->__get('id_user'));
         $stmt->bindValue(':id_movie', $this->__get('id_movie'));

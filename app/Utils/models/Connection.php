@@ -13,11 +13,12 @@ class Connection
     public static function getDB()
     {
         $host = 'localhost';
+        $port = 3306;
         $dbName = 'bestmovies';
         $user = 'root';
-        $pass = '';
+        $pass = 'blablabla';
         try {
-            $conn = new \PDO("mysql:host=$host;dbname=$dbName;charset=utf8", $user, $pass);
+            $conn = new \PDO("mysql:host=$host;port=$port;dbname=$dbName;charset=utf8", $user, $pass);
             return $conn;
             // Habilitar erros PDO
             $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

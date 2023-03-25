@@ -18,13 +18,13 @@ CREATE TABLE users(
 
 CREATE TABLE movies(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    id_user INT,
+    id_user INT NOT NULL,
     title VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
     image VARCHAR(255) NOT NULL,
     trailer VARCHAR(150),
     category VARCHAR(50) NOT NULL,
-    length VARCHAR(50),
+    length VARCHAR(50) NOT NULL,
     FOREIGN KEY(id_user) REFERENCES users(id)
 );
 

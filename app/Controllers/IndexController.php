@@ -31,10 +31,11 @@ class IndexController extends Action
         }
 
         $bestMovies = [];
+
         foreach ($allMovies['Novos'] ?? [] as $movie) {
 
-            $category = $movie['category'];
-            $allMovies[$category][] = $movie;
+            $category = $movie['category'] ?? '';
+            $allMovies[$category][] = $movie ??  [];
         }
 
         foreach ($allMovies as $category => $movies) {
@@ -50,18 +51,21 @@ class IndexController extends Action
              }
         }
         $reorderAllMovies = [
-            'novos' => $allMovies['Novos'],
-            'ação' => $allMovies['Ação'],
-            'drama' => $allMovies['Drama'],
-            'fantasia' => $allMovies['Fantasia'],
-            'aventura' => $allMovies['Aventura'],
-            'suspense' => $allMovies['Suspense'],
-            'romance' => $allMovies['Romance'],
-            'ficção científica' => $allMovies['Ficção científica'],
-            'terror' => $allMovies['Terror'],
+            'novos' => $allMovies['Novos'] ?? [],
+            'ação' => $allMovies['Ação'] ?? [],
+            'drama' => $allMovies['Drama'] ?? [],
+            'fantasia' => $allMovies['Fantasia'] ?? [],
+            'aventura' => $allMovies['Aventura'] ?? [],
+            'suspense' => $allMovies['Suspense'] ?? [],
+            'romance' => $allMovies['Romance'] ?? [],
+            'ficção científica' => $allMovies['Ficção científica'] ?? [],
+            'terror' => $allMovies['Terror'] ?? [],
             ];
         $this->view->bestMovies = $bestMovies;
         $this->view->allMovies = $reorderAllMovies;
+        // echo '<pre>';
+        // print_r($reorderAllMovies);
+        // echo '</pre>';
         $this->render('home/index', 'layout');
     }
 
