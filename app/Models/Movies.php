@@ -177,7 +177,7 @@ class Movies extends model
         if (isset($files['movieFile']) && !empty($files['movieFile']['tmp_name'])) {
             $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
             $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-            $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
+            @$fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
             if (!in_array($fileExtension, $allowedFiles) && !in_array($files['movieFile']['type'], $allowedFileTypes)) {
                 $msgError[] = 'Insira uma imagem do tipo .jpeg, .jpg ou .png.';
             }

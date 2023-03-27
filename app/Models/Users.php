@@ -115,7 +115,7 @@ class Users extends Model
             $userValidation[] = 'Email não registrado';
         }
 
-        if (!password_verify(trim($this->__get('password')), @$userData[0]['password'])) {
+        if (@!password_verify(trim($this->__get('password')), @$userData[0]['password'])) {
             $userValidation[] = 'Senha inválida';
         } else {
             $userValidation['userData'] = $userData[0];
