@@ -1,6 +1,6 @@
 # ***Projeto*** - BestMovies 🎬
 
-![img-readme](https://user-images.githubusercontent.com/79289410/228327388-2e9ee377-dd7e-423c-955f-a94288dafa5b.png)
+![img-readme](https://user-images.githubusercontent.com/79289410/228351460-19fbb035-f3d2-4742-9847-7284d2a40c97.png)
 
 ## Tópicos
 - <a href="#funcionalidades">⚙️ Funcionalidades <a>
@@ -36,3 +36,5 @@
   |--------|--------|
   |**Página principal (home)**|**Header:** mostra o campo de busca, para perquisar por filmes, e também as páginas disponíveis para o usuário navegar<br>**Banner:** exibi o filme com a melhor avaliação de cada categoria (gênero).<br>**Filmes:** exibi as sessões dos filmes separadamente como recentemente publicados na comunidade ou listados de acordo com sua categoria.|
   |**Página - Entrar / Registrar| Nesta página o usuário vai poder entrar em sua conta caso já tenho registro, caso contrário fazer o cadastro inserindo nome, sobrenome, email e senha.|
+|**Perfil do usário**| Esta é a página de perfil do usuário logado no site. Aqui ele pode inserir ou editar a sua foto de perfil, bio, nome, sobrenome e senha.|
+|**Dashboard**| Nesta página o usuário terá acesso à todos os filmes que ele já publicou na comunidade, podendo editar os dados registrados ou excluir o filme.|
