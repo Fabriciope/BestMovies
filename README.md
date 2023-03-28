@@ -6,6 +6,8 @@
 - <a href="#funcionalidades">⚙️ Funcionalidades <a>
 - <a href="#páginas">📺 Páginas do site<a>
 - <a href="#tecnologias">👨‍💻 Técnologias utilizadas <a>
+
+---
   
 ## Funcionalidades
   - **Login e registro de usuários:** <br>
@@ -29,11 +31,8 @@
   
   ## Páginas
   >⚠️ Para visualizar as imagens de cada página separadamente, clique aqui! 👈.
-
-OpenMoji 13.1
-
-OpenMoji 13.1.
   
   | Página | Função |
   |--------|--------|
-  |**Página principal (home)**|
+  |**Página principal (home)**|**Header:** mostra o campo de busca, para perquisar por filmes, e também as páginas disponíveis para o usuário navegar<br>**Banner:** exibi o filme com a melhor avaliação de cada categoria (gênero).<br>**Filmes:** exibi as sessões dos filmes separadamente como recentemente publicados na comunidade ou listados de acordo com sua categoria.|
+  |**Página - Entrar / Registrar| Nesta página o usuário vai poder entrar em sua conta caso já tenho registro, caso contrário fazer o cadastro inserindo nome, sobrenome, email e senha.|
