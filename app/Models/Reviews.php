@@ -21,8 +21,7 @@ class Reviews extends Model
     {
         $query = 'SELECT u.id, u.name, u.lastname, u.image, r.rating, r.review, r.id_movie
                   FROM reviews as r
-                  LEFT JOIN users as u
-                  ON (r.id_user = u.id)
+                  LEFT JOIN users as u ON (r.id_user = u.id)
                   WHERE r.id_movie = :id_movie';
         
         $stmt = $this->db->prepare($query);

@@ -181,7 +181,7 @@ class Users extends Model
     /**
      * Método responsável por fazer a validação dos dados antes de fazer a alteração da senha.
      *
-     * @param string $newPasswordCS
+     * @param string $newPasswordCS  
      * @return array
      */
     public function checkUpdatePassword($newPasswordCS)

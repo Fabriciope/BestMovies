@@ -108,7 +108,7 @@ function slides(section, control){
             }
             currentItem = currentItemDrama;
          break;
-        case 'ficção científica':
+        case 'ficção':
             if (control.classList.contains('left')){
                 currentItemSciencFiction -= 1;
             } else {
@@ -204,7 +204,7 @@ controls.forEach((control)=>{
             case 'drama':
                 slides(section, control);
              break;
-            case 'ficção científica':
+            case 'ficção':
                 slides(section, control);
              break;
             case 'suspense':
