@@ -32,11 +32,11 @@
   ---
   
   ## Páginas
-  >⚠️ Para visualizar as imagens de cada página separadamente, clique aqui! 👈.
+  >⚠️ Para visualizar as imagens de cada página separadamente, [clique aqui!](https://github.com/Fabriciope/BestMovies/tree/main/imgs-paginas) 👈.
   
 | Página | Funcinalidade |
 |--------|---------------|
-|**Página principal (home)**|**Header:** mostra o campo de busca, para perquisar por filmes, e também as páginas disponíveis para o usuário navegar<br>**Banner:** exibi o filme com a melhor avaliação de cada categoria (gênero).<br>**Filmes:** exibi as sessões dos filmes separadamente, como recentemente publicados na comunidade ou listados de acordo com sua categoria (gênero).|
+|**Página principal (home)**|**Header:** mostra o campo de busca, para perquisar por filmes, e também as páginas disponíveis para o usuário navegar<br>**Banner:** exibi o filme com a melhor avaliação de cada categoria (gênero).<br>**Filmes:** exibi as sessões dos filmes separadamente, como recentemente publicados na comunidade ou listados de acordo com sua categoria (gênero). [Ver página](https://github.com/Fabriciope/BestMovies/tree/main/imgs-paginas/home)|
 |**Página de pesquisa**| Ao inserir o nome de algum filme que o usuário queira procurar no site no campo de busca, ele será direcionado à esta página com todos os resultados de sua pesquisa.|
 |**Sobre nós**| Nesta página terá um breve texto contando um pouco mais sobre a nossa plataforma.|
 |**Página do filme**| Ao clicar em avaliar ou conhecer, em algum filme, ele virá para esta página onde verá informações do filme como título, duração, categoria (gênero), trailer, cartaz, a nota atual e o mais importânte que são as avaliações daquele filme, nesta sessão estará listado todos os comentários com as notas que cada usuário avaliou. Caso o usuário não esteja logado em sua conta, se tenha sido ele que inseriu aquele filme na plataforma ou se ele já avaliou aquele filme, ele não poderá inserir um novo comentário, e se caso já fez um comentário, ele pode deleta-lo.|
