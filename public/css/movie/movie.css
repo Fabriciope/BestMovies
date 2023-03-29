@@ -319,6 +319,10 @@ section.assessments .box-comment .box-image-name-rating .name-rating div span{
     .info-movie .info .info-top{
         margin-bottom: 15px;
     }
+    .info-movie .info .info-top h2{
+        text-align: left;
+        border-bottom: none;
+    }
     .info-movie .poster{
         width: 80%;
         margin: 0 auto;

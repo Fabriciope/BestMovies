@@ -40,7 +40,7 @@
     <img src="images/tutorial/img2.png" alt=""><br>
     <h3>Passo 4:</h3>
     <p>Selecione e copie apenas o link de incorporação (ou "embed") dentro do código. O link de incorporação deve começar com "https://www.youtube.com/embed/". Certifique-se de copiar todo o link que está entra as aspas.</p><br>
+    <img src="images/tutorial/img3.png" alt=""><br>
     <p>Para copiar o link pressione o botão esquerdo do mouse e selecione o endereço inteiro, sem as aspas, e SEM retirar o dedo do mouse pressione CTRL + C para Copiar o link. É importante manter o botão do mouse pressionado para que não selecione o conteúdo inteiro.</p>
-    <img src="images/tutorial/img3" alt=""><br>
     <p>Agora pronto! É só voltar à página  de adicionar um novo file, e colar o link copiado</p>
 </main>

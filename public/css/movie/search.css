@@ -1,6 +1,6 @@
 main{
     width: 90%;
-    margin: 20px auto 300px auto;
+    margin: 20px auto 400px auto;
 }
 main section.found-movies{
     width: 100%;
@@ -30,14 +30,10 @@ main section.found-movies a.back{
     color: #006eff;
 }
 
-
-
-
-
-
 .container-found-movies{
     width: 100%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 23px;
 }

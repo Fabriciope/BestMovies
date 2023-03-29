@@ -1,7 +1,7 @@
 main{
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 5px auto 280px auto;
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
@@ -87,11 +87,6 @@ section.entrar .center button:hover{
     color: var(--main-red);
     transition: .2s;
 }
-
-
-
-
-
 
 section.entrar,
 section.register{
@@ -195,7 +190,7 @@ section.register .center button:hover{
 
 @media (max-width: 800px){
     main{
-        width: 100%;
+        width: 94%;
         flex-direction: column;
     }
     section.entrar,
@@ -211,5 +206,9 @@ section.register .center button:hover{
     }
     section.entrar .center .box-input{
         margin-bottom: 8px;
+    }
+    section.entrar .center .box-input input,
+    section.register .center .box-input input{
+        height: 35px;
     }
 }

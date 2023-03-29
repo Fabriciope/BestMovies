@@ -1,7 +1,7 @@
 <style>
     main{
         width: 90%;
-        margin: 23px auto;
+        margin: 23px auto 270px auto;
     }
     h2{
         margin-bottom: 9px;

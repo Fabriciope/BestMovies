@@ -1,7 +1,7 @@
 main{
     width: 90%;
     max-width: 1200px;
-    margin: auto;
+    margin: 24px auto 150px auto;
     margin-top: 24px;
 } 
 main a.sair{
@@ -213,7 +213,7 @@ section.right .center .container-password i.not-see{
 
 section.left .center .box-about-you button,
 section.right .center button{
-    padding: 3px 25px;
+    padding: 4px 25px;
     font-size: 1.88rem;
     font-weight: 600;
     cursor: pointer;
@@ -267,8 +267,15 @@ section.right .center p.success{
     main .container-main{
         flex-direction: column;
     }
+    main a.sair{
+        margin-left: 5px;
+    }
+    section.right .center input{
+        height: 36px;
+    }
     .container-main section.left{
-        width: 100%;
+        width: 96%;
+        margin: auto;
         margin-bottom: 30px;
     }
     section.left .center .profile-image{
@@ -277,7 +284,8 @@ section.right .center p.success{
         border: 2px solid var(--main-red);
     }
     .container-main section.right{
-        width: 100%;
+        width: 96%;
+        margin: auto;
     }
 }
 @media (max-width: 410px) {
