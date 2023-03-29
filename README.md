@@ -5,7 +5,7 @@
 ## Índices
 - <a href="#funcionalidades">⚙️ Funcionalidades <a>
 - <a href="#páginas">📺 Páginas do site<a>
-- <a href="#técnologias">👨‍💻 Técnologias utilizadas <a>
+- <a href="#técnologias-utilizadas">👨‍💻 Técnologias utilizadas <a>
 
 ---
   
@@ -50,7 +50,7 @@
   
   ---
 
-## Técnologias
+## Técnologias utilizadas
 ### Front-End
 - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
@@ -63,4 +63,10 @@
 - [Composer](https://getcomposer.org)
 
 #### Como foi desenvolvolvido
- Todo o sistema desse projeto foi desenvolvido usando o padrão de arquitetura MVC (Model, View, Controller), utilizando linguagem orientada a objeto (POO). Neste padrão foi possível desenvolver uma aplicação onde todos os os componentes, diretórios, entidades e arquivos estejam estruturadas de forma organizada, possibilitando assim um código limpo, coeso e de fácil leitura. Caso este projeto seja escalável ou por algum motivo, seja necessário a implantação de uma nova funcionalidade, isso será possível, pois este padrão de arquitetura nos permite que isto seja feito com mais facilidade, como isso o nosso projeto/código fica mais fácil de dar manutenção e sem risco de futuros problemas, pois a aplicação irá durar muito mais tempo e também será muito mais segura. E agora tendo en vista todos esses pontos, foram estes os motivos que me levaram a escolha de desenvolver esse projeto desta maneira.
+  Todo o sistema desse projeto foi desenvolvido usando o padrão de arquitetura MVC (Model, View, Controller), utilizando linguagem orientada a objeto (POO). Neste padrão foi possível desenvolver uma aplicação onde todos os componentes, diretórios, entidades, classes e arquivos estejam estruturadas de forma organizada, possibilitando assim um código limpo, coeso e de fácil leitura. Caso este projeto seja escalável ou por algum motivo, seja necessário a implantação de uma nova funcionalidade, isso será possível, pois este padrão de arquitetura nos permite que isto seja feito facilmente e de modo organizado, como isso o nosso projeto/código fica mais fácil de dar manutenção e sem risco de futuros problemas, pois a aplicação irá durar muito mais tempo e também será muito mais segura. 
+  E agora levando em consideração todas as informações apresentados acima, foram estes os motivos que me levaram a escolha de desenvolver esse projeto desta maneira.
+
+  --- 
+  <br>
+  
+  ### Contato: <a href="mailto:fabricioalvespa@gmail.com"> fabricioalvespa@gmail.com <a>
