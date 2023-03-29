@@ -20,7 +20,7 @@
   - **Registro de filmes:** <br>
    O usuário que estivar logado em sua conta poderá registrar filmes na comunidade (site), para que outras pessoas avaliem, inserindo título, duração, categoria (gênero), trailer, descrição e uma imagem de cartaz.
   
-  - **Dashboard:** <br>
+  - **Edição e exclusão de filmes:** <br>
    O usuário terá uma página com todos os filmes que ele já registrou, podendo editar os dados de exibição ou excluir o filme.
   
   - **Avaliação de filmes:** <br>
@@ -62,7 +62,7 @@
 - [MySQL](https://www.mysql.com)
 - [Composer](https://getcomposer.org)
 
-#### Como foi desenvolvolvido
+#### Como o projeto foi desenvolvido ?💻
   Todo o sistema desse projeto foi desenvolvido usando o padrão de arquitetura MVC (Model, View, Controller), utilizando linguagem orientada a objeto (POO). Neste padrão foi possível desenvolver uma aplicação onde todos os componentes, diretórios, entidades, classes e arquivos estejam estruturadas de forma organizada, possibilitando assim um código limpo, coeso e de fácil leitura. Caso este projeto seja escalável ou por algum motivo, seja necessário a implantação de uma nova funcionalidade, isso será possível, pois este padrão de arquitetura nos permite que isto seja feito facilmente e de modo organizado, como isso o nosso projeto/código fica mais fácil de dar manutenção e sem risco de futuros problemas, pois a aplicação irá durar muito mais tempo e também será muito mais segura. 
   E agora levando em consideração todas as informações apresentados acima, foram estes os motivos que me levaram a escolha de desenvolver esse projeto desta maneira.
 
