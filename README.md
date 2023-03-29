@@ -5,7 +5,7 @@
 ## Tópicos
 - <a href="#funcionalidades">⚙️ Funcionalidades <a>
 - <a href="#páginas">📺 Páginas do site<a>
-- <a href="#tecnologias">👨‍💻 Técnologias utilizadas <a>
+- <a href="#técnologias">👨‍💻 Técnologias utilizadas <a>
 
 ---
   
@@ -45,4 +45,18 @@
 |**Tutorial para o link embed**| Para inserir o link de um trailer ao registrar um novo filme, este link deverá ser copiado em um lugar específico do vídeo na página do YouTube, nesta página terá o passo a passo de como este link deve ser copiado|
 |**Dashboard**| Nesta página o usuário terá acesso à todos os filmes que ele já publicou na comunidade, podendo editar os dados registrados ou excluir o filme.|
 |**Editar filme**| Caso o usuário ao registrar um filme perceba que inseriu alguma informação errada ou queira atualizar os dados, nesta página ele vai poder editar as informações e salva-las|
-  
+
+## Técnologias
+### Front-End
+- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Font Awesome](https://fontawesome.com)
+
+### Back-End
+- [PHP](https://www.php.net)
+- [MySQL](https://www.mysql.com)
+- [Composer](https://getcomposer.org)
+
+#### Como foi desenvolvolvido
+ Todo o sistema desse projeto foi desenvolvido usando o padrão de arquitetura MVC (Model, View, Controller), utilizando linguagem orientada a objeto (POO). Neste padrão foi possível desenvolver uma aplicação onde todos os os componentes, diretórios, entidades e arquivos estejam estruturadas de forma organizada, possibilitando assim um código limpo, coeso e de fácil leitura. Caso este projeto seja escalável ou por algum motivo, seja necessário a implantação de uma nova funcionalidade, isso será possível, pois este padrão de arquitetura nos permite que isto seja feito mais facilmente, como isso o nosso projto/código fica mais fácil de dar manutenção e sem risco de futuros problemas, pois a aplicação irá durar muito mais tempo e também será muito mais segura. Por isto eu escolhi desenvolver esse projeto desta maneira.
