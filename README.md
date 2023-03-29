@@ -24,7 +24,7 @@
    O usuário te´ra uma página com todos os filmes que ele já registrou, podendo editar os dados de exibição ou excluir o filme.
   
   - **Avaliação de filmes:** <br>
-   Permite que o usuário faça comentários e deem notas em filmes jpa registrados na comunidade. OBS: ele só poderá fazer isto se ele estiver logado em sua conta ou se não tenha sido ele que registrou o filme avaliado.
+   Permite que o usuário faça comentários e deem notas em filmes já registrados na comunidade. Ele só poderá fazer isto se estiver logado em sua conta, não tenha sido ele que registrou o filme ou ainda não tenha comentado naquele filme, caso já tenha avaliado, ele poder deletar seu comentário.
   
   - **Pesquisa de filme:** <br>
    Permite que o usuário pesquise por filmes específicos, buscando pelo seu nome, e visualizar todos os registros encontrados.
@@ -37,7 +37,7 @@
   |**Página principal (home)**|**Header:** mostra o campo de busca, para perquisar por filmes, e também as páginas disponíveis para o usuário navegar<br>**Banner:** exibi o filme com a melhor avaliação de cada categoria (gênero).<br>**Filmes:** exibi as sessões dos filmes separadamente como recentemente publicados na comunidade ou listados de acordo com sua categoria.|
   |**Página de pesquisa**| Ao inserir o nome de algum filme que o usuário queira procurar no site no campo de busca, ele será direcionado à esta página com todos os resultados de sua pesquisa|
   |**Sobre nós**| Nesta página terá um breve texto contando um pouco sobre a nossa plataforma|
-  |**Página do filme**| Ao clicar em avaliar ou conhecer em algum filme, ele virá para esta página onde verá informações do filme como título, duração, categoria (gênero), trailer, cartaz e o mais importânte que são as avaliações daquele filme, nesta sessão estará listado todos os comentários com as notas que cada usuário avaliou. Caso o usuário não esteja logado em sua conta, se tenha sido ele que inseriu aquele filme na plataforma ou ele já avalioou aquele filme, ele não poderá inserir um novo comentário, e se caso já comentou naquele filme, ele pode deletar seu comentário.|
+  |**Página do filme**| Ao clicar em avaliar ou conhecer em algum filme, ele virá para esta página onde verá informações do filme como título, duração, categoria (gênero), trailer, cartaz e o mais importânte que são as avaliações daquele filme, nesta sessão estará listado todos os comentários com as notas que cada usuário avaliou. Caso o usuário não esteja logado em sua conta, se tenha sido ele que inseriu aquele filme na plataforma ou ele já avaliou aquele filme, ele não poderá inserir um novo comentário, e se caso já comentou naquele filme, ele pode deletar seu comentário.|
   |**Página - Entrar / Registrar**| Nesta página o usuário vai poder entrar em sua conta caso já tenho registro, caso contrário fazer o cadastro inserindo nome, sobrenome, email e senha.|
 |**Perfil do usário**| Esta é a página de perfil do usuário logado no site. Aqui ele pode inserir ou editar a sua foto de perfil, bio, nome, sobrenome e senha.|
 |**Registrar filme**| O usuário logado em sua conta vai poder publicar filmes na comunidade inserindo informações do filmes como título, duração, categoria (gênero), trailer, descrição e uma imagem de cartaz|
