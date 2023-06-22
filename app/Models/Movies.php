@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Utils\models\model;
@@ -22,40 +23,33 @@ class Movies extends model
      */
     public function retrieveAllMovies()
     {
-        $query = 'SELECT * 
-                  FROM movies
-                  ORDER BY id desc';
-                //LIMIT 19
-        
-        $stmt = $this->db->query($query);
-        $stmt->execute();
+        try {
+            $query = 'SELECT * 
+            FROM movies
+            ORDER BY id desc';
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $stmt = $this->db->query($query);
+            $stmt->execute();
+
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
-
-    // public function bestRated($category)
-    // {
-    //     $query = 'SELECT *
-    //               FROM movies as m
-    //               LEFT JOIN re
-    //               WHERE category = :category';
-        
-    //     $stmt = $this->db->prepare($query);
-    //     $stmt->bindValue(':category', $category);
-    //     $stmt->execute();
-
-    //     return $stmt->fetch(\PDO::FETCH_ASSOC);
-    // }
 
     public function search()
     {
-        $query = 'SELECT *
-                  FROM movies
-                  WHERE title LIKE :title';
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':title', '%'.$this->__get('title').'%');
-        $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        try {
+            $query = 'SELECT *
+                      FROM movies
+                      WHERE title LIKE :title';
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':title', '%' . $this->title . '%');
+            $stmt->execute();
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -65,20 +59,24 @@ class Movies extends model
      */
     public function checkIfMovieExists()
     {
-        $query = 'SELECT *
-                  FROM movies
-                  WHERE id = :id';
+        try {
+            $query = 'SELECT *
+                      FROM movies
+                      WHERE id = :id';
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->execute();
-        
-        if ($stmt->rowCount() === 0) {
-            return false;
-            exit;
-        } else {
-            return true;
-            exit;
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->execute();
+
+            if ($stmt->rowCount() === 0) {
+                return false;
+                exit;
+            } else {
+                return true;
+                exit;
+            }
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
         }
     }
 
@@ -89,14 +87,18 @@ class Movies extends model
      */
     public function recoverMovie()
     {
-        $query = 'SELECT *
-                  FROM movies
-                  WHERE id = :id';
-        $stmt= $this->db->prepare($query);
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->execute();
+        try {
+            $query = 'SELECT *
+                      FROM movies
+                      WHERE id = :id';
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->execute();
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -107,15 +109,19 @@ class Movies extends model
      */
     public function recoverUserMovies($userID)
     {
-        $query = 'SELECT *
-                  FROM movies
-                  WHERE id_user = :id_user
-                  ORDER BY id DESC';
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id_user', $userID);
-        $stmt->execute();
+        try {
+            $query = 'SELECT *
+                      FROM movies
+                      WHERE id_user = :id_user
+                      ORDER BY id DESC';
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id_user', $userID);
+            $stmt->execute();
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -126,43 +132,42 @@ class Movies extends model
      * @param array $files
      * @return array
      */
-    public function checkMovieRegistrationData($hours, $minute, $files):array
+    public function checkMovieRegistrationData($hours, $minute, $files): array
     {
         $msgError = [];
         $query  = 'SELECT *
                    FROM movies
                    WHERE title = :registredMovie';
-        
+
         $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':registredMovie', $this->__get('title'));
+        $stmt->bindValue(':registredMovie', $this->title);
         $stmt->execute();
 
         if (count($stmt->fetchAll()) > 0) {
             $msgError[] = 'Este filme já foi registrado';
         }
-        if(!$this->__get('title')) {
+        if (!$this->title) {
             $msgError[] = 'Insira um título.';
         }
-        if (!$this->__get('description')) {
+        if (!$this->description) {
             $msgError[] = 'Insira uma descrição a este filme.';
         }
         if (empty($hours) && empty($minute)) {
             $msgError[] = 'Insira a duração do filme.';
         }
-        if (!$this->__get('category') || $this->__get('category') == 'Selecione uma categoria') {
+        if (!$this->category || $this->category == 'Selecione uma categoria') {
             $msgError[] = 'Selecione uma categoria.';
         }
 
         //Check trailer link.
-        if (!empty($this->__get('trailer'))) {
+        if (!empty($this->trailer)) {
 
-            $trailerUrl = $this->__get('trailer');
+            $trailerUrl = $this->trailer;
             $validateTrailerUrl = filter_var($trailerUrl, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
-            
+
             if (!$validateTrailerUrl) {
 
                 $msgError[] = 'Insira um link válido do youTube';
-
             } else {
                 // $msgError[] = substr($validateTrailerUrl, 0, 32);
                 $youtubeDefaultUrl = 'https://www.youtube.com/embed/';
@@ -177,15 +182,14 @@ class Movies extends model
         if (isset($files['movieFile']) && !empty($files['movieFile']['tmp_name'])) {
             $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
             $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-            @$fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
+            @$fileExtension = pathInfo($this->image, PATHINFO_EXTENSION);
             if (!in_array($fileExtension, $allowedFiles) && !in_array($files['movieFile']['type'], $allowedFileTypes)) {
                 $msgError[] = 'Insira uma imagem do tipo .jpeg, .jpg ou .png.';
             }
-    
+
             list($width, $height) = getimagesize($files['movieFile']['tmp_name']);
-            
+
             if ($width >= $height) {
-                // echo 'largura:' . $width . ' ' . 'altura:'. $height;
                 $msgError[] = 'Insira uma imagens com as recomendações desejadas';
             }
 
@@ -200,7 +204,6 @@ class Movies extends model
             }
         } else {
             $msgError[] = 'Insira uma imagem para este filme.';
-
         }
         return $msgError;
     }
@@ -213,70 +216,76 @@ class Movies extends model
      */
     public function registerMovie($temporaryName)
     {
-        
-        $imageName = 'images/movies/' . bin2hex(random_bytes(5)) . $this->__get('image');
+        try {
+            $imageName = 'images/movies/' . bin2hex(random_bytes(5)) . $this->image;
 
-        $query = 'INSERT INTO movies (title, description, image, trailer, category, length, id_user)
-                              VALUES (:title, :description, :image, :trailer, :category, :length, :id_user)';
+            $query = 'INSERT INTO movies (title, description, image, trailer, category, length, id_user)
+                                  VALUES (:title, :description, :image, :trailer, :category, :length, :id_user)';
 
-        $stmt= $this->db->prepare($query);
-        $stmt->bindValue(':title', trim($this->__get('title')));
-        $stmt->bindValue(':description', trim(ucfirst($this->__get('description'))));
-        $stmt->bindValue(':image', $imageName);
-        $stmt->bindValue(':trailer', $this->__get('trailer'));
-        $stmt->bindValue(':category', $this->__get('category'));
-        $stmt->bindValue(':length', $this->__get('length'));
-        $stmt->bindValue(':id_user', $this->__get('userID'));
-        $stmt->execute();
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':title', trim($this->title));
+            $stmt->bindValue(':description', trim(ucfirst($this->description)));
+            $stmt->bindValue(':image', $imageName);
+            $stmt->bindValue(':trailer', $this->trailer);
+            $stmt->bindValue(':category', $this->category);
+            $stmt->bindValue(':length', $this->length);
+            $stmt->bindValue(':id_user', $this->userID);
+            $stmt->execute();
 
-        move_uploaded_file($temporaryName, $imageName);
+            move_uploaded_file($temporaryName, $imageName);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     public function checkMovie()
     {
-        $query = 'SELECT id_user
-                  FROM movies
-                  WHERE id = :id AND id_user = :id_user';
+        try {
+            $query = 'SELECT id_user
+                      FROM movies
+                      WHERE id = :id AND id_user = :id_user';
 
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->bindValue(':id_user', $this->__get('id_user'));
-        $stmt->execute();
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->bindValue(':id_user', $this->id_user);
+            $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            return true;
-            exit;
-        } else {
-            return false;
+            if ($stmt->rowCount() > 0) {
+                return true;
+                exit;
+            } else {
+                return false;
+            }
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
         }
     }
 
-    public function checkMovieUpdateData($hours, $minute,$files)
+    public function checkMovieUpdateData($hours, $minute, $files)
     {
         $msgError = [];
 
-        if(!$this->__get('title')) {
+        if (!$this->title) {
             $msgError[] = 'Insira um título.';
         }
-        if (!$this->__get('description')) {
+        if (!$this->description) {
             $msgError[] = 'Insira uma descrição a este filme.';
         }
         if (empty($hours) && empty($minute)) {
             $msgError[] = 'Insira a duração do filme.';
         }
-        if (!$this->__get('category') || $this->__get('category') == 'Selecione uma categoria') {
+        if (!$this->category || $this->category == 'Selecione uma categoria') {
             $msgError[] = 'Selecione uma categoria.';
         }
 
-        if (!empty($this->__get('trailer'))) {
+        if (!empty($this->trailer)) {
 
-            $trailerUrl = $this->__get('trailer');
+            $trailerUrl = $this->trailer;
             $validateTrailerUrl = filter_var($trailerUrl, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
-            
+
             if (!$validateTrailerUrl) {
 
                 $msgError[] = 'Insira um link válido do youTube';
-
             } else {
                 // $msgError[] = substr($validateTrailerUrl, 0, 32);
                 $youtubeDefaultUrl = 'https://www.youtube.com/embed/';
@@ -289,13 +298,13 @@ class Movies extends model
         if (isset($files['movieEditFile']) && !empty($files['movieEditFile']['tmp_name'])) {
             $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
             $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-            $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
+            $fileExtension = pathInfo($this->image, PATHINFO_EXTENSION);
             if (!in_array($fileExtension, $allowedFiles) && !in_array($files['movieEditFile']['type'], $allowedFileTypes)) {
                 $msgError[] = 'Insira uma imagem do tipo .jpeg, .jpg ou .png.';
             }
-    
+
             list($width, $height) = getimagesize($files['movieEditFile']['tmp_name']);
-            
+
             if ($width >= $height) {
                 // echo 'largura:' . $width . ' ' . 'altura:'. $height;
                 $msgError[] = 'Insira uma imagens com as recomendações desejadas';
@@ -316,31 +325,35 @@ class Movies extends model
         return $msgError;
     }
 
-    public function editMovie($oldImage,$temporaryName)
+    public function editMovie($oldImage, $temporaryName)
     {
-        $query = 'UPDATE movies
-                  SET title = :title,
-                      description = :description,
-                      image = :image,
-                      trailer = :trailer,
-                      category = :category,
-                      length = :length
-                  WHERE id = :id';
-                    
-        $newImage = !empty($this->__get('image')) ? $this->__get('image') : $oldImage;
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', trim($this->__get('id')));
-        $stmt->bindValue(':title', trim($this->__get('title')));
-        $stmt->bindValue(':description', trim(ucfirst($this->__get('description'))));
-        $stmt->bindValue(':image', $newImage);
-        $stmt->bindValue(':trailer', $this->__get('trailer'));
-        $stmt->bindValue(':category', $this->__get('category'));
-        $stmt->bindValue(':length', $this->__get('length'));
-        $stmt->execute();
+        try {
+            $query = 'UPDATE movies
+                      SET title = :title,
+                          description = :description,
+                          image = :image,
+                          trailer = :trailer,
+                          category = :category,
+                          length = :length
+                      WHERE id = :id';
 
-        if(!empty($this->__get('image'))) {
-            unlink(__DIR__ . './../../public/' . $oldImage);
-            move_uploaded_file($temporaryName, $this->__get('image'));
+            $newImage = !empty($this->image) ? $this->image : $oldImage;
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', trim($this->id));
+            $stmt->bindValue(':title', trim($this->title));
+            $stmt->bindValue(':description', trim(ucfirst($this->description)));
+            $stmt->bindValue(':image', $newImage);
+            $stmt->bindValue(':trailer', $this->trailer);
+            $stmt->bindValue(':category', $this->category);
+            $stmt->bindValue(':length', $this->length);
+            $stmt->execute();
+
+            if (!empty($this->image)) {
+                unlink(__DIR__ . './../../public/' . $oldImage);
+                move_uploaded_file($temporaryName, $this->image);
+            }
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
         }
     }
 
@@ -351,15 +364,19 @@ class Movies extends model
      */
     public function destroyMovie($image)
     {
-        $query = 'DELETE FROM reviews
-                  WHERE id_movie = :id;
-                
-                  DELETE FROM movies
-                  WHERE id = :id    ';
-        
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->execute();
-        unlink(__DIR__ . './../../public/' . $image);
+        try {
+            $query = 'DELETE FROM reviews
+                      WHERE id_movie = :id;
+                    
+                      DELETE FROM movies
+                      WHERE id = :id    ';
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->execute();
+            unlink(__DIR__ . './../../public/' . $image);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 }

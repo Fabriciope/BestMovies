@@ -8,7 +8,7 @@ class Container
 {
 
     /**
-     * Método responsável por instânciar algum model e fazer a conexão com o banco de dados.
+     * Método responsável por instanciar algum model e fazer a conexão com o banco de dados.
      *
      * @param string $model
      * @return obj

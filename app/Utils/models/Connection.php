@@ -16,7 +16,7 @@ class Connection
         $port = 3306;
         $dbName = 'bestmovies';
         $user = 'root';
-        $pass = 'blablabla';
+        $pass = '';
         try {
             $conn = new \PDO("mysql:host=$host;port=$port;dbname=$dbName;charset=utf8", $user, $pass);
             return $conn;
@@ -24,7 +24,7 @@ class Connection
             $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         } catch (\PDOException $e) {
-            echo 'erro ao conectar com o banco de dados.Erro: ' . $e->getMessage();
+            echo 'erro ao conectar com o banco de dados. Erro: ' . $e->getMessage();
         }
     }
 }

@@ -22,15 +22,19 @@ class Users extends Model
      */
     public function retrieveUser()
     {
-        $query = 'SELECT *
-                  FROM users
-                  WHERE id = :id';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->execute();
-
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        try {
+            $query = 'SELECT *
+                      FROM users
+                      WHERE id = :id';
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->execute();
+    
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -43,19 +47,19 @@ class Users extends Model
     {
         $msgError = [];
 
-        if (!$this->__get('name')) {
+        if (!$this->name) {
             $msgError[] = 'Digite o seu nome';
         }
-        if (!$this->__get('lastName')) {
+        if (!$this->lastName) {
             $msgError[] = 'Digite o seu sobrenome';
         }
-        if (!$this->__get('email')) {
+        if (!$this->email) {
             $msgError[] = 'Digite seu email corretamente';
         }
-        if (!$this->__get('password')) {
+        if (!$this->password) {
             $msgError[] = 'Digite sua senha corretamente';
         }
-        if ($this->__get('password') != $passwordCS) {
+        if ($this->password != $passwordCS) {
             $msgError[] = 'A confirmação das senhas estão incorretas';
         }
 
@@ -64,7 +68,7 @@ class Users extends Model
                   WHERE email = :email';
 
         $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':email', $this->__get('email'));
+        $stmt->bindValue(':email', $this->email);
         $stmt->execute();
 
         $registeredEmail = $stmt->fetchAll();
@@ -83,15 +87,19 @@ class Users extends Model
      */
     public function registerUser()
     {
-        $query = 'INSERT INTO users  (name, lastname, email, password) 
-                              VALUES (:name, :lastname, :email, :password)';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':name', ucfirst(trim($this->__get('name'))));
-        $stmt->bindValue(':lastname', ucfirst(trim($this->__get('lastName'))));
-        $stmt->bindValue(':email', trim($this->__get('email')));
-        $stmt->bindValue(':password', password_hash(trim($this->__get('password')), PASSWORD_DEFAULT));
-        $stmt->execute();
+        try {
+            $query = 'INSERT INTO users  (name, lastname, email, password) 
+                                  VALUES (:name, :lastname, :email, :password)';
+        
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':name', ucfirst(trim($this->name)));
+            $stmt->bindValue(':lastname', ucfirst(trim($this->lastName)));
+            $stmt->bindValue(':email', trim($this->email));
+            $stmt->bindValue(':password', password_hash(trim($this->password), PASSWORD_DEFAULT));
+            $stmt->execute();
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -101,27 +109,31 @@ class Users extends Model
      */
     public function authenticateUser()
     {
-        $query = 'SELECT *
-                  FROM users
-                  WHERE email = :email';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':email', trim($this->__get('email')));
-        $stmt->execute();
-
-        $userData = (array) $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        if (count($userData) == 0) {
-            $userValidation[] = 'Email não registrado';
+        try {
+            $query = 'SELECT *
+                      FROM users
+                      WHERE email = :email';
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':email', trim($this->email));
+            $stmt->execute();
+    
+            $userData = (array) $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    
+            if (count($userData) == 0) {
+                $userValidation[] = 'Email não registrado';
+            }
+    
+            if (@!password_verify(trim($this->password), @$userData[0]['password'])) {
+                $userValidation[] = 'Senha inválida';
+            } else {
+                $userValidation['userData'] = $userData[0];
+            }
+    
+            return $userValidation;
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
         }
-
-        if (@!password_verify(trim($this->__get('password')), @$userData[0]['password'])) {
-            $userValidation[] = 'Senha inválida';
-        } else {
-            $userValidation['userData'] = $userData[0];
-        }
-
-        return $userValidation;
     }
 
     /**
@@ -133,26 +145,30 @@ class Users extends Model
      */
     public function retrieveUserData($userID, $username)
     {
-        $query = 'SELECT *
-                  FROM users
-                  WHERE id = :id AND name = :name';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $userID);
-        $stmt->bindValue(':name', $username);
-        $stmt->execute();
-        return (array) $stmt->fetch(\PDO::FETCH_ASSOC);
+        try {
+            $query = 'SELECT *
+                      FROM users
+                      WHERE id = :id AND name = :name';
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $userID);
+            $stmt->bindValue(':name', $username);
+            $stmt->execute();
+            return (array) $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     public function checkFirstNameAndLastName()
     {
         $msgError = [];
 
-        if (!$this->__get('name')) {
+        if (!$this->name) {
             $msgError[] = 'Digite um nome.';
         }
 
-        if (!$this->__get('lastName')) {
+        if (!$this->lastName) {
             $msgError[] = 'Digite um sobrenome.';
         }
         return $msgError;
@@ -166,16 +182,20 @@ class Users extends Model
      */
     public function updateFirstNameAndLastName(string $username)
     {
-        $query = 'UPDATE users
-                SET name = :newName,
-                    lastname = :newLastName
-                WHERE id = :id AND name = :name';
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':newName', ucfirst(trim($this->__get('name'))));
-        $stmt->bindValue(':newLastName', trim($this->__geT('lastName')));
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->bindValue(':name', $username);
-        $stmt->execute();
+        try {
+            $query = 'UPDATE users
+                    SET name = :newName,
+                        lastname = :newLastName
+                    WHERE id = :id AND name = :name';
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':newName', ucfirst(trim($this->name)));
+            $stmt->bindValue(':newLastName', trim($this->lastName));
+            $stmt->bindValue(':id', $this->id);
+            $stmt->bindValue(':name', $username);
+            $stmt->execute();
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -188,7 +208,7 @@ class Users extends Model
     {
         $msgError = [];
 
-        if (!$this->__get('password')) {
+        if (!$this->password) {
             $msgError[] = 'Insira sua nova senha.';
         }
 
@@ -196,7 +216,7 @@ class Users extends Model
             $msgError[] = 'Confirme sua senha.';
         }
 
-        if ($this->__get('password') != $newPasswordCS) {
+        if ($this->password != $newPasswordCS) {
             $msgError[] = 'A confirmação das senhas estão incorretas.';
         }
 
@@ -210,15 +230,19 @@ class Users extends Model
      */
     public function updatePassword()
     {
-        $query = 'UPDATE users
-                 SET password = :newPassword
-                 WHERE id = :id AND name = :name';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':newPassword', password_hash($this->__get('password'), PASSWORD_DEFAULT));
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->bindValue(':name', $this->__get('name'));
-        $stmt->execute();
+        try {
+            $query = 'UPDATE users
+                     SET password = :newPassword
+                     WHERE id = :id AND name = :name';
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':newPassword', password_hash($this->password, PASSWORD_DEFAULT));
+            $stmt->bindValue(':id', $this->id);
+            $stmt->bindValue(':name', $this->name);
+            $stmt->execute();
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
     }
 
     /**
@@ -231,31 +255,35 @@ class Users extends Model
      */
     public function updateProfileImage($fileType, $temporaryName, $oldImage)
     {
-        $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
-        $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-        $fileExtension = pathInfo($this->__get('image'), PATHINFO_EXTENSION);
-
-        if (in_array($fileExtension, $allowedFiles) && in_array($fileType, $allowedFileTypes)) {
-            $imageName = 'images/users/' . bin2hex(random_bytes(5)) . $this->__get('image');
-
-            $query = 'UPDATE users 
-                      SET image = :image 
-                      WHERE id = :id AND name = :name';
-
-            $stmt = $this->db->prepare($query);
-            $stmt->bindValue(':id', $this->__get('id'));
-            $stmt->bindValue(':name', $this->__get('name'));
-            $stmt->bindValue(':image', $imageName);
-            $stmt->execute();
-
-            @unlink(__DIR__ . './../../public/' . $oldImage);
-            move_uploaded_file($temporaryName, $imageName);
-            
-            return 'success';
-            exit;
-        } else {
-            return 'unsupportedFile';
-            exit;
+        try {
+            $allowedFiles = ['jpeg', 'jpg', 'png', 'JPEG', 'JPG', 'PNG'];
+            $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            $fileExtension = pathInfo($this->image, PATHINFO_EXTENSION);
+    
+            if (in_array($fileExtension, $allowedFiles) && in_array($fileType, $allowedFileTypes)) {
+                $imageName = 'images/users/' . bin2hex(random_bytes(5)) . $this->image;
+    
+                $query = 'UPDATE users 
+                          SET image = :image 
+                          WHERE id = :id AND name = :name';
+    
+                $stmt = $this->db->prepare($query);
+                $stmt->bindValue(':id', $this->id);
+                $stmt->bindValue(':name', $this->name);
+                $stmt->bindValue(':image', $imageName);
+                $stmt->execute();
+    
+                @unlink(__DIR__ . './../../public/' . $oldImage);
+                move_uploaded_file($temporaryName, $imageName);
+                
+                return 'success';
+                exit;
+            } else {
+                return 'unsupportedFile';
+                exit;
+            }
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
         }
     }
 
@@ -267,35 +295,43 @@ class Users extends Model
      */
     public function deleteProfileImage($currentImage)
     {
-        $query = 'UPDATE users
-                SET image = null
-                WHERE id = :id AND name = :name ';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->bindValue(':name', $this->__get('name'));
-        $stmt->execute();
-
-        @unlink(__DIR__ . './../../public/' . $currentImage);
+        try {
+            $query = 'UPDATE users
+                    SET image = null
+                    WHERE id = :id AND name = :name ';
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':id', $this->id);
+            $stmt->bindValue(':name', $this->name);
+            $stmt->execute();
+    
+            @unlink(__DIR__ . './../../public/' . $currentImage);
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
         
     }
 
     /**
-     * Método responsável fazer a alteração do texto de biográfia do usuário no banco de dados.
+     * Método responsável fazer a alteração do texto de biografia do usuário no banco de dados.
      *
      * @return void
      */
     public function updateAboutYou()
     {
-        $query = 'UPDATE users
-                  SET bio = :newBio
-                  WHERE id = :id AND name = :name';
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':newBio', ucfirst(trim($this->__get('bio'))));
-        $stmt->bindValue(':id', $this->__get('id'));
-        $stmt->bindValue(':name', $this->__get('name'));
-        $stmt->execute();
+        try {
+            $query = 'UPDATE users
+                      SET bio = :newBio
+                      WHERE id = :id AND name = :name';
+    
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':newBio', ucfirst(trim($this->bio)));
+            $stmt->bindValue(':id', $this->id);
+            $stmt->bindValue(':name', $this->name);
+            $stmt->execute();
+        } catch (\PDOException $exception) {
+            header("Location: http://localhost:8000/");
+        }
         
     }
 }

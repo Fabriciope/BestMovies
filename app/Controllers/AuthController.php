@@ -16,12 +16,10 @@ class AuthController extends Action
     {
         $user = Container::getModel('Users');
 
-        $user->__set('name', filter_input(INPUT_POST, "name"));
-        $user->__set('lastName', filter_input(INPUT_POST, "lastName"));
-        $user->__set('email', filter_input(INPUT_POST, "emailRegister", FILTER_VALIDATE_EMAIL));
-        $user->__set('password', filter_input(INPUT_POST, "passwordRegister"));
-
-
+        $user->name =  filter_input(INPUT_POST, "name");
+        $user->lastName =  filter_input(INPUT_POST, "lastName");
+        $user->email =  filter_input(INPUT_POST, "emailRegister", FILTER_VALIDATE_EMAIL);
+        $user->password =  filter_input(INPUT_POST, "passwordRegister");
 
         $verificationErrorMessage = $user->checkUserData(filter_input(INPUT_POST, "passwordCS"));
 
@@ -63,8 +61,8 @@ class AuthController extends Action
     {
         $user = Container::getModel('Users');
 
-        $user->__set('email', filter_input(INPUT_POST, "emailEnter", FILTER_VALIDATE_EMAIL));
-        $user->__set('password', filter_input(INPUT_POST, "passwordEnter"));
+        $user->email =  filter_input(INPUT_POST, "emailEnter", FILTER_VALIDATE_EMAIL);
+        $user->password =  filter_input(INPUT_POST, "passwordEnter");
 
         $userValidation =  $user->authenticateUser();
 

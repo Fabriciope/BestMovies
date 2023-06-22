@@ -39,16 +39,16 @@ class IndexController extends Action
         }
 
         foreach ($allMovies as $category => $movies) {
-            uasort($movies, function ($a, $b){
+            uasort($movies, function ($a, $b) {
                 if ($a['rating'] === $b['rating']) return 0;
                 return $a['rating'] < $b['rating'] ? 1 : -1;
-             });
-             $bestMovies[$category] = $movies[array_key_first($movies)];
-             $imageName = strtolower(str_replace(' ', '-', $category));
-             $bestMovies[$category]['imageBanner'] = 'images/banners/banner-' . $imageName . '.png';
-             if ($bestMovies[$category]['rating'] === 0 || $category === 'Novos'){
+            });
+            $bestMovies[$category] = $movies[array_key_first($movies)];
+            $imageName = strtolower(str_replace(' ', '-', $category));
+            $bestMovies[$category]['imageBanner'] = 'images/banners/banner-' . $imageName . '.png';
+            if ($bestMovies[$category]['rating'] === 0 || $category === 'Novos') {
                 unset($bestMovies[$category]);
-             }
+            }
         }
         $reorderAllMovies = [
             'novos' => $allMovies['Novos'] ?? [],
@@ -60,12 +60,9 @@ class IndexController extends Action
             'romance' => $allMovies['Romance'] ?? [],
             'ficção científica' => $allMovies['Ficção científica'] ?? [],
             'terror' => $allMovies['Terror'] ?? [],
-            ];
+        ];
         $this->view->bestMovies = $bestMovies;
         $this->view->allMovies = $reorderAllMovies;
-        // echo '<pre>';
-        // print_r($reorderAllMovies);
-        // echo '</pre>';
         $this->render('home/index', 'layout');
     }
 
@@ -74,7 +71,7 @@ class IndexController extends Action
         session_start();
 
         $movies = Container::getModel('Movies');
-        $movies->__set('title', filter_input(INPUT_GET, "search"));
+        $movies->title = filter_input(INPUT_GET, "search");
 
         $foundMovies = $movies->search();
 

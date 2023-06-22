@@ -29,11 +29,11 @@ class MoviesController extends Action
 
         $movie = Container::getModel('Movies');
 
-        $movie->__set('title', filter_input(INPUT_POST, "title"));
-        $movie->__set('description', filter_input(INPUT_POST, "description"));
-        $movie->__set('trailer', $_POST['trailer']);
-        $movie->__set('category', filter_input(INPUT_POST, "category"));
-        $movie->__set('userID', $_SESSION['userID']);
+        $movie->title = filter_input(INPUT_POST, "title");
+        $movie->description = filter_input(INPUT_POST, "description");
+        $movie->trailer = $_POST['trailer'];
+        $movie->category = filter_input(INPUT_POST, "category");
+        $movie->userID = $_SESSION['userID'];
 
         $hours = filter_input(INPUT_POST, "hours", FILTER_VALIDATE_INT);
         $minutes = filter_input(INPUT_POST, "minutes", FILTER_VALIDATE_INT);
@@ -50,12 +50,10 @@ class MoviesController extends Action
                 'inputTrailer' => $_POST['trailer'] ?? '',
                 'inputDescription' => $_POST['description'] ?? ''
             ];
-            // echo 'estamos no erro';
-            // print_r($verificationErrorMessage);
             $this->pageRegisterMovie();
         } else {
-            $movie->__set('userID', $_SESSION['userID']);
-            $movie->__set('length', "$hours horas e $minutes minutos");
+            $movie->userID = $_SESSION['userID'];
+            $movie->length = "$hours horas e $minutes minutos";
 
             $movie->registerMovie($_FILES['movieFile']['tmp_name']);
 
@@ -101,8 +99,8 @@ class MoviesController extends Action
         $this->validateUser();
 
         $movie = Container::getModel('Movies');
-        $movie->__set('id', filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT));
-        $movie->__set('id_user', $_SESSION['userID']);
+        $movie->id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+        $movie->id_user = $_SESSION['userID'];
          
         $checkMovie = $movie->checkMovie();
 
@@ -122,11 +120,11 @@ class MoviesController extends Action
 
         $movie = Container::getModel('Movies');
 
-        $movie->__set('id', filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT));
-        $movie->__set('title', filter_input(INPUT_POST, "title"));
-        $movie->__set('description', filter_input(INPUT_POST, "description"));
-        $movie->__set('trailer', $_POST['trailer']);
-        $movie->__set('category', filter_input(INPUT_POST, "category"));
+        $movie->id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+        $movie->title = filter_input(INPUT_POST, "title");
+        $movie->description = filter_input(INPUT_POST, "description");
+        $movie->trailer = $_POST['trailer'];
+        $movie->category = filter_input(INPUT_POST, "category");
 
         $hours = filter_input(INPUT_POST, "hours", FILTER_VALIDATE_INT);
         $minutes = filter_input(INPUT_POST, "minutes", FILTER_VALIDATE_INT);
@@ -140,7 +138,7 @@ class MoviesController extends Action
             $this->view->movieData = $movieData;
             $this->render('movie/edit-movie', 'layout');
         }
-        $movie->__set('length', "$hours horas e $minutes minutos");
+        $movie->length = "$hours horas e $minutes minutos";
         
         $movie->editMovie($movieData['image'], $_FILES['movieEditFile']['tmp_name']);
         $this->view->msgSeccessUpdateMovie = 'Filme editado com sucesso.';
@@ -152,8 +150,8 @@ class MoviesController extends Action
     {
         session_start();
         $movie = Container::getModel('movies');
-        $movie->__set('id', filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT));
-        $movie->__set('id_user', $_SESSION['username']);
+        $movie->id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+        $movie->id_user = $_SESSION['username'];
 
         $checkMovie = $movie->checkMovie();
 

@@ -37,9 +37,9 @@ class UserController extends Action
     {
         session_start();
         $user = Container::getModel('Users');
-        $user->__set('id', $_SESSION['userID']);
-        $user->__set('name', filter_input(INPUT_POST, "newName"));
-        $user->__set('lastName', filter_input(INPUT_POST, "newLastName"));
+        $user->id = $_SESSION['userID'];
+        $user->name = filter_input(INPUT_POST, "newName");
+        $user->lastName = filter_input(INPUT_POST, "newLastName");
 
         $verificationErrorMessage = $user->checkFirstNameAndLastName();
 
@@ -50,7 +50,6 @@ class UserController extends Action
             $user->updateFirstNameAndLastName($_SESSION['username']);
             $_SESSION['username'] = trim($user->__get('name'));
             $this->view->msgUpdateNameSuccess = 'Seu nome e sobrenome foram alterados com sucesso!';
-            // header('location: /perfil');
             $this->pageProfile();
         }
 
@@ -67,9 +66,9 @@ class UserController extends Action
         session_start();
         $user= Container::getModel('Users');
         
-        $user->__set('id', $_SESSION['userID']);
-        $user->__set('name', $_SESSION['username']);
-        $user->__set('password', filter_input(INPUT_POST, "newPassword"));
+        $user->id = $_SESSION['userID'];
+        $user->name = $_SESSION['username'];
+        $user->password = filter_input(INPUT_POST, "newPassword");
 
         $verificationErrorMessage = $user->checkUpdatePassword(filter_input(INPUT_POST, "newPasswordCS"));
 
@@ -98,9 +97,9 @@ class UserController extends Action
             $user = Container::getModel('Users');
 
             $oldImage= $user->retrieveUserData($_SESSION['userID'], $_SESSION['username'])['image'];
-            $user->__set('id', $_SESSION['userID']);
-            $user->__set('name', $_SESSION['username']);
-            $user->__set('image', $_FILES['profile-image']['name']);
+            $user->id = $_SESSION['userID'];
+            $user->name = $_SESSION['username'];
+            $user->image = $_FILES['profile-image']['name'];
 
             $updateImage = $user->updateProfileImage($_FILES['profile-image']['type'], $_FILES['profile-image']['tmp_name'], $oldImage);
             
@@ -132,8 +131,8 @@ class UserController extends Action
 
         $user= Container::getModel('Users');
 
-        $user->__set('id', $_SESSION['userID']);
-        $user->__set('name', $_SESSION['username']);
+        $user->id = $_SESSION['userID'];
+        $user->name = $_SESSION['username'];
 
         $userData = $user->retrieveUserData($_SESSION['userID'], $_SESSION['username']);
         $currentImage = $userData['image'];
@@ -152,11 +151,10 @@ class UserController extends Action
     public function updateAboutYou()
     {
         session_start();
-        // echo filter_input(INPUT_POST, "aboutYou");
         $user= Container::getModel('Users');
-        $user->__set('id', $_SESSION['userID']);
-        $user->__set('name', $_SESSION['username']);
-        $user->__set('bio', filter_input(INPUT_POST, "aboutYou"));
+        $user->id = $_SESSION['userID'];
+        $user->name = $_SESSION['username'];
+        $user->bio = filter_input(INPUT_POST, "aboutYou");
 
         $user->updateAboutYou();
 
@@ -183,7 +181,7 @@ class UserController extends Action
         $userID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
         $user = Container::getModel('Users');
-        $user->__set('id', $userID);
+        $user->id = $userID;
         $userData = $user->retrieveUser();
 
         if (!$userID || empty($userData)) {

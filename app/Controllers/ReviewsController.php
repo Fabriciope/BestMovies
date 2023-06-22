@@ -20,16 +20,15 @@ class ReviewsController extends Action
         $movieID = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
         $movie = Container::getModel('Movies');
-        $movie->__set('id', $movieID);
+        $movie->id = $movieID;
 
-        // $checkMovie = $movie->checkIfMovieExists();
         if (!$movieID || !$movie->checkIfMovieExists()) {
             header('location: /home?');
         }
 
         $reviews = Container::getModel('Reviews');
-        $reviews->__set('id_user', $_SESSION['userID'] ?? '');
-        $reviews->__set('id_movie', $movieID);
+        $reviews->id_user = $_SESSION['userID'] ?? '';
+        $reviews->id_movie = $movieID;
 
         $movieData = $movie->recoverMovie();
 
@@ -39,7 +38,6 @@ class ReviewsController extends Action
         }
         $this->view->userComment = $userComment;
 
-        // $movieUserID = (int) $movieData['id_user'];
         $checkComment = $reviews->__get('id_user') === (int) $movieData['id_user'];
         $this->view->checkComment = $checkComment;
 
@@ -49,7 +47,6 @@ class ReviewsController extends Action
         $this->view->movieData = $movieData;
         $this->view->movieData['rating'] = $reviews->calculateRatings($movieID) ? number_format($reviews->calculateRatings($movieID),1,'.') : 'Não avaliado';
 
-        // print_r($userComment);
         $this->render('movie/movie', 'layout');
     }
 
@@ -64,10 +61,10 @@ class ReviewsController extends Action
 
         $reviews = Container::getModel('Reviews');
 
-        $reviews->__set('id_user', $_SESSION['userID']);
-        $reviews->__set('id_movie', filter_input(INPUT_POST, "id_movie"));
-        $reviews->__set('review', filter_input(INPUT_POST, "comment"));
-        $reviews->__set('rating', filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT));
+        $reviews->id_user = $_SESSION['userID'];
+        $reviews->id_movie = filter_input(INPUT_POST, "id_movie");
+        $reviews->review = filter_input(INPUT_POST, "comment");
+        $reviews->rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_INT);
 
         $checkNewAssessment = $reviews->checkAssessmentRecord();
         $userComment = $reviews->userComment(filter_input(INPUT_POST, "id_movie"));
@@ -89,8 +86,8 @@ class ReviewsController extends Action
         session_start();
 
         $reviews = Container::getModel('Reviews');
-        $reviews->__set('id', filter_input(INPUT_POST, "reviewID", FILTER_VALIDATE_INT));
-        $reviews->__set('id_user', $_SESSION['userID']);
+        $reviews->id = filter_input(INPUT_POST, "reviewID", FILTER_VALIDATE_INT);
+        $reviews->id_user = $_SESSION['userID'];
 
         if (!$reviews->checkIdToDelete()) {
             header('location: /movie?id=' . $_GET['id']);
