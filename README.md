@@ -69,4 +69,4 @@
   --- 
   <br>
   
-  ### Contato: <a target="_black" href="mailto:fabricioalvespa@gmail.com"> fabricioalvespa@gmail.com <a>
+### Contato: <a target="_black" href="mailto:fabricioalves.dev@gmail.com"> fabricioalves.dev@gmail.com <a>
